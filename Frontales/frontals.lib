@@ -1,0 +1,420 @@
+///////////////////////////////////////////////////////////////////////////////
+version="$Id: frontalsurf.lib  2022-17-03 $";
+category="Singularity Theory, Commutative Algebra";
+info="
+LIBRARY: frontals.lib        Compute geometric invariants of a corank 1 frontal
+                             surface
+AUTHORS: C. Munoz-Cabello,   chmuca@alumni.uv.es
+
+PROCEDURES:
+ fcodim(f);           frontal codimension
+ fmilnor(f);          frontal Milnor number
+ invariants(f);       compute geometric frontal invariants
+ is_frontal(f);       check if input is frontal
+ qi(f);				  compute QI
+ wfinvariants(g, y);  compute geometric invariants of the discriminant
+
+REFERENCES:
+ [1] Ishikawa, G. (2020) Recognition problem of frontal singularities
+ [2] Marar, W.L., Montaldi, J.A. and Ruas, M.A.S. (1999) Multiplicities of
+ zero-schemes in quasihomogeneous corank-1 singularities
+ [3] Nuno-Ballesteros, J.J. (2015) Unfolding plane curves with cusps and nodes
+";
+
+ // Required libraries
+LIB "general.lib";     // product
+LIB "presmatrix.lib";  // presmatrix
+LIB "ring.lib";        // ord_test
+LIB "sing.lib";        // milnor
+
+//-----------------------------------------------------------------------------
+proc frontalise(poly p, q, y)
+{
+ /* Given a corank 1 frontal map in the form
+  *
+  *   map f = R, x, p[x,y], q[x,y]
+  *
+  * with x=x[1]..x[n-1], f is a frontal if and and only if diff(p,y) divides
+  * diff(q,y) or vice versa. If we assume the former and set
+  *
+  *   poly p = px[2] * y^2 + px[3] * y^3 + ...
+  *   poly q = qx[2] * y^2 + qx[3] * y^3 + ...
+  *
+  * seen as elements in F[x][y], diff(p, y) divides diff(q, y) if and only if
+  * there are functions u[1]..u[k-1] such that
+  *
+  *    qx[k] = px[k] * u[1] + px[k-1] * u[2] + ...
+  *                ... + p[3] * u[k-2] + p[2] * u[k-1] */
+
+ int degp = vardeg(p, y);
+ int degq = vardeg(p, y);
+
+  // we assume degp is less than degq
+ if (degq > degp) { return frontalise(q, p, y); }
+
+  // construct u such that diff(q, y) = mu * deg(p, y)
+ int degu = degq - degp;
+
+ ring src = basering;
+ ring aux = char(basering), X(1..degu + 1), ds;
+ def extsrc = src + aux;
+
+ poly py = imap (src, diff(p, y));  // <- haven't tested this concoction
+ poly qy = imap (src, diff(q, y));
+ poly u = X[degu + 1];
+
+ /* The formula above for qx is tied to two constraints:
+  * - px can only go as high as degp
+  * - u can only go as high as degu + 1 */
+
+ // coeffs(qy,y)
+ // coeffs(py,y)
+
+  // we get the equations we need to remove by 
+ poly k = qy - mu * py;
+
+ "// auxiliary variables:";
+ "//   X[1] .. X[" + string(degmu) "]";
+ "// frontalisation equations:";
+ "//   " + string(subst(k, y, 0)) + " = 0");
+ 
+ for (i = degqy; i => 0; i--)
+ {
+  k = diff(k, y);
+  "//   " + string(subst(k, y, 0)) + "= 0";
+ }
+}
+
+//-----------------------------------------------------------------------------
+proc invariants(map f)
+{
+ ideal @I;
+ int @S, @K, @W, @muC, @muD, @mufC;
+ list fdata, dpsf;
+ map @f;
+ number @muf, @mufD;
+
+ string br_name = nameof(basering);  // we later need to use the presmatrix
+                                     // library, which does all its
+                                     // computations in global scope
+ baseringlocal();
+ checkvars(2);
+ option(noredefine);                 // hide messages such as "redefining"
+ fdata = c1fsurf(f);
+
+  // computations related to the double point scheme
+ dpsf = dp_scheme(fdata[2..4]);
+ @S = dpsf[1];                   // variables with an address sign are
+ @K = dpsf[2];                   // going to be exported during runtime
+ @W = dpsf[3];
+ @muC = dpsf[4];
+ @muD = dpsf[5];
+
+  // computations related to target triple point space
+ @f = preimage(f), fdata[1..3];  // exported for presmatrix!
+ @I = 0;                       // ditto
+ export(@f, @I);
+
+ print("");
+ print("// Computing triple point space...");
+ presmatrix(@f, @I);
+ setring RTPr;
+ int @T = vdim(std(fitting(PM, 2))) - @S - @K;
+
+  // frontal marar-mond equations and frontal milnor number
+  // we need number because we are using rational numbers
+ execute("setring " + string(br_name));
+ @mufC = 2 * @S + @muC;
+ @mufD = @K + @T + 1/2 * (@muD + 1 - @W - @S);
+ @muf = 1/2 * (@muD - 1 + @S + @W) - @K - 2 * @T;
+
+ "";
+ "// Isolated frontal singularities:";
+ "//   Swallowtails:               @S = " + string(@S);
+ "//   Cusp-folds:                 @K = " + string(@K);
+ "//   Triple points:              @T = " + string(@T);
+ "//   Folded Whitney umbrellas:   @W = " + string(@W);
+ export(@S, @K, @T, @W);
+
+ "";
+ "// Branch of cuspidal edges:";
+ "//   @cuspedge = " + string(@cuspedge);
+ "//   Milnor number (source):     @muC = " + string(@muC);
+ "//                 (target):    @mufC = " + string(@mufC);
+ "";
+ export(@muC, @mufC);
+
+ "// Branch of transversal double points:";
+ "//   @dpoints = " + string(@dpoints);
+ "//   Milnor number (source):     @muD = " + string(@muD);
+ "//                 (target):    @mufD = " + string(@mufD);
+ "";
+ export(@muD, @mufD);
+
+ "// Frontal Milnor number:        @muf = " + string(@muf);
+ "";
+ export(@muf);
+}
+
+//-----------------------------------------------------------------------------
+proc is_frontal(map f, list #)
+{
+ // Arguments for `#`:
+ // - w: throw an exception if the map is not frontal
+ // - r: report whether the map is frontal
+
+ // [2] Corollary 2.5
+ ideal jf = minor(jacob(ideal(f)), nvars(basering));
+
+ if (size(#) == 0)
+ {
+  if (size(std(jf)) > 1) { "// map is not frontal!"; }
+  else { "// map is frontal!"; }
+ }
+
+ if (#[1] == "w" && size(std(jf)) > 1) { ERROR("not a frontal map"); }
+ 
+ if (#[1] == "r")
+ {
+  if (size(std(jf)) > 1) {return(0);}  // not frontal
+  else {return(1);}                    // frontal
+ }
+}
+
+//-----------------------------------------------------------------------------
+proc qi(ideal f, poly t)
+{
+ is_frontal(f, "w");
+
+ ideal I;
+ int i;
+ poly qt = diff(f[2],t);
+ poly pt = diff(f[1],t);
+ poly mu = qt/pt;
+ 
+ for (i=1; i <= nvars(basering); i++)
+ {
+  if (var(i) != t)
+  {
+   I = I, diff(f[2], var(i)) - diff(f[1], var(i)) * mu;
+  }
+ }
+
+ return reduce(I,f);
+}
+
+//-----------------------------------------------------------------------------
+proc wfinvariants(poly g, poly z)
+{
+ /* Let G[x,y,z] = [x,y,g[x,y,z]] be A-finite and weighted homogeneous.
+  * If g has weights [w1, w2, w3] and degree d,
+  *
+  *        [d - w3] [d - 2 w3] [d - 3 w3]
+  *   S = --------------------------------;
+  *                  w1 w2 w3
+  *
+  *   K = S [d - 4 w3];  T = 1/6 K [d - 5 w3]
+  *
+  * where S, K, T are the numbers of swallowtails [A_3], cusp-folds [A_1A_2]
+  * and triple points [A_1A_1A_1] on the discriminant of G. */
+
+ int leadvar, prod, @S, @K, @T;
+ intvec w;
+ 
+
+ baseringlocal();
+ checkvars(3);
+ option(noredefine);     // hide messages such as "redefining"
+
+ w = wdeg(g);            // find the weights and weighted degree of g
+ leadvar = rvar(z);      // find which variable was declared
+
+ if(rvar(z) == 0)
+  { ERROR("variable not in base ring"); }
+
+  // product from the formula
+ prod = w[4] div w[leadvar] * (1, 1, 1) - (1, 2, 3);
+
+ /* Singular does not like to use the `/` sign for integer division, so we
+  * need to use `div` instead.
+  * See https://www.singular.uni-kl.de/Manual/4-0-3/sing_466.htm for details
+  */
+
+ @S = w[leadvar]^3 * product(prod) div product(w, 1..3);
+ @K = @S * (w[4] - 4 * w[leadvar]) div w[leadvar];
+ @T = @K * (w[4] - 5 * w[leadvar]) div (6 * w[leadvar]);
+
+ "";
+ "// Swallowtails:               @S = " + string(@S);
+ "// Cusp-folds:                 @K = " + string(@K);
+ "// Triple points:              @T = " + string(@T);
+ "";
+ "// Target triple point space:       " + string(@S + @K + @T);
+ "";
+ export(@S, @K, @T);
+}
+
+//-----------------------------------------------------------------------------
+static proc baseringlocal()
+{
+ option(noredefine);        // hide messages such as "redefining"
+
+ if (ord_test(basering) != -1)
+  { ERROR("no local order ring"); }
+}
+
+//-----------------------------------------------------------------------------
+static proc corank(map f)
+{
+ // i am not aware of any library that does this
+
+ ideal jf = jacob(ideal(f));  // jacob does not accept maps
+
+ for (int i = 1; i <= nvars(basering); i++) { jf = subst(jf, var(i), 0); }
+
+ return nvars(basering) - size(std(jf));
+}
+
+//-----------------------------------------------------------------------------
+static proc checkvars(int n)
+{
+ option(noredefine);        // hide messages such as "redefining"
+
+ if (nvars(basering) != n)
+ {
+  ERROR("ring " + nameof(basering) + " must
+   have " + string(n) + " variables");
+ }
+}
+
+//-----------------------------------------------------------------------------
+static proc c1fsurf (map f)
+{
+ /* Given map f = R, x, p, q frontal, either diff(p, y) divides diff(q, y) or q_y | p_y.
+  * This procedure finds whether p_y | q_y or vice versa. */
+
+  is_frontal(f, "w");
+
+   // for error messages
+  string src_name = nameof(basering);
+  string tgt_name = nameof(preimage(f));
+
+  proc find_y (map f)            // returns [x,y]
+  {
+   if (f[1] == var(1))
+    { return(var(1), var(2)); }
+
+   if (f[1] == var(2))
+    { return(var(2), var(1)); }
+
+   print("// ** please introduce the map in the prenormal form");
+   print("// **   map f = " + tgt_name + ", var, p, q");
+   print("// ** where var is a variable in " + src_name);
+   print("// ** and p, q are polynomials");
+   ERROR("map not set to prenormal form");
+ }
+
+ list xy = find_y(f);
+ poly f2y = diff(f[2], xy[2]);
+ poly f3y = diff(f[3], xy[2]);
+
+ if (reduce(f3y, f2y) == 0)
+  { return(xy[1], f[2], f[3], xy[2]); }  // p == f2y
+ else
+  { return(xy[1], f[3], f[2], xy[2]); }  // p == f3y
+}
+
+//-----------------------------------------------------------------------------
+static proc dp_scheme(poly p, poly q, poly y)
+{
+  // add an auxiliar variable for divided differences
+ ring src = basering;
+ int charsrc = ringlist(src)[1];
+ ring aux = charsrc, @z, ds;
+ def divdifring = src + aux;
+ setring divdifring;
+
+ poly p = imap(src, p);
+ poly q = imap(src, q);
+ poly y = imap(src, y);
+
+ print("// Computing double point scheme...");
+
+  // compute the double point scheme via divided differences
+ poly P = (p - subst(p, y, @z)) / (y - @z);
+ poly Q = (q - subst(q, y, @z)) / (y - @z);
+ poly py = diff(p, y);
+ poly tau = resultant(P, Q, @z) / py^2;
+
+  // compute formulas from []
+ poly alpha = reduce(P, py) / (y - @z);
+ poly beta = reduce(Q, py) / (y - @z);
+ ideal PAA = py, alpha, beta;
+ int dimPAA = vdim(std(PAA));
+
+ setring src;
+ poly @cuspedge = imap(divdifring, py);
+ ideal P3 = @cuspedge, diff(@cuspedge, y);
+ int dimP3 = vdim(std(P3));
+
+ poly @dpoints = imap(divdifring, tau);
+ ideal PT = @cuspedge, @dpoints;
+ int dimPT = vdim(std(PT));
+
+ export(@cuspedge, @dpoints);
+
+  // S, K, W, mu(C,0), mu(D,0)
+ return(dimP3, dimPAA - 2 * dimP3, dimPT - dimPAA, milnor(@cuspedge),
+  milnor(@dpoints));
+}
+
+//-----------------------------------------------------------------------------
+static proc noparam_warning(list #)
+{
+ if(size(#) == 0)
+  {
+  print("// ** this procedure requires a frontal stable unfolding to work
+   correctly");
+  print("// ** if the map is stable, you may ignore this message");
+  print("");
+  print("// (hint) declare unfolding parameters after the map");
+  }
+}
+
+//-----------------------------------------------------------------------------
+static proc vardeg(poly f, y)
+{
+ // degree of a polynomial with respect to a given variable
+
+ for (int i=1; i <= nvars(basering); i++)
+  { if (var(i) != y) { f = subst (f, var(i), 0); } }
+
+ return deg(f);
+}
+
+//-----------------------------------------------------------------------------
+static proc wdeg(poly g)
+{
+ /* Given a quasihomogeneous polynomial g, find d such that
+  *
+  *   g(var(1)^w[1], ..., var(n)^w[n])
+  *
+  * is a homogeneous polynomial of degree d, where where w[1], ..., w[n] are
+  * the weights of g. */
+
+ intvec w = qhweight(g);
+
+  // check that g is quasihomogeneous
+ if (w == 0)
+ {
+  ERROR("this procedure only works for quasihomogeneous polynomials");
+ }
+
+ // make g homogeneous
+ for (int i = 1; i <= size(w); i++)
+  { g = subst(g, var(i), var(i)^w[i]); }
+
+ return(w, deg(g));
+}
+
+///////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,19 @@
+/* To run this script:
+/* - run Singular from the directory where you have this
+/*   script and write `< imgeq.sing`
+/* - write `Singular imgeq.sing` from the directory where
+/*   you have this script                               */
+
+ring target = 0, (x,y,z), ds;
+ring source = 0, (x,y),ds;
+
+map f = target, x, y2, xy3;
+ideal i = 0;
+export(f, i);
+
+LIB "presmatrix.lib";
+
+presmatrix(f, i);
+setring RTPr;
+
+"The generating equation is: " + print(fitting(PM, 0));
