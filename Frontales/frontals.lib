@@ -155,16 +155,13 @@ proc invariants(map f)
 }
 
 //-----------------------------------------------------------------------------
-proc IsFrontal(list f, list #)
+proc IsFrontal(map f, list #)
 {
     /* Arguments for `#`:
     /* (no argument): throw an exception if the map is not frontal
     /* r:             report whether the map is frontal                      */
 
-    // we assume f is an ideal but the user may use a map if so desired
-    if (typeof(f) == "map") { return (IsFrontal(ideal(f), #)); }
-
-    ideal jf = minor(jacob(f), nvars(basering));    // see [2]
+    ideal jf = minor(ideal(jacob(f)), nvars(basering));    // see [2]
 
     if (nvars(preimage(f)) != nvars(basering) + 1)
     { ERROR(nameof(f) + " not a parametric hypersurface"); }
@@ -179,12 +176,10 @@ proc IsFrontal(list f, list #)
 }
 
 //-----------------------------------------------------------------------------
-proc Qi (list f)
+proc Qi (map f)
 {
     IsFrontal(f);
 
-    
-    
  
     for (i=1; i <= nvars(basering); i++)
     {
@@ -256,7 +251,7 @@ static proc baseringlocal()
 }
 
 //-----------------------------------------------------------------------------
-static proc corank(map f)
+static proc corank (map f)
 {
  // i am not aware of any library that does this
 
@@ -280,20 +275,21 @@ static proc checkvars(int n)
 }
 
 //-----------------------------------------------------------------------------
-proc getnormal (list f)
+proc getnormal (map f)
 {
     /* Use the Gram-Schmidt process to find the orthogonal complement of the
     /* tangent hypersurface to f.
     /* Adapted from [4]                                                      */
 
-    if(typeof(f[1]) == "map") { return (getnormal(ideal(f))); }    
-    IsFrontal(f[1]);
+    IsFrontal(f);
     
-    list U = diff(f[1], var(1));
+    list U = diff(f, var(1));
 
-    for (int i = 2; i <= size(f[1]); i++)
+	int n = size(preimage(f));
+
+    for (int i = 2; i <= n; i++)
     {
-        U[i] = diff(f[1], var(i));
+        U[i] = diff(f, var(i));
 
         for (int j = 1; j < i; j++)
         { U[i] = U[i] - innerproduct(U[j], U[i]) * U[j]; }
@@ -301,11 +297,11 @@ proc getnormal (list f)
         U[i] = U[i] / innerproduct(U[i], U[i]);
     }
 
-    return U[size(f[1])];
+    return U[n];
 }
 
 //-----------------------------------------------------------------------------
-proc prenormal (map f)
+static proc prenormal (map f)
 {
    /* Given a corank 1 frontal f(x,y)=(x, p(x, y), q(x, y)), we shall say that
    /* f is in prenormal form if diff(p, y) divides diff(q, y).
