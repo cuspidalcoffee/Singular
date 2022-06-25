@@ -10,6 +10,7 @@ AUTHORS: C. Munoz-Cabello,    chmuca@alumni.uv.es
 PROCEDURES:
     fcodim(f);             frontal codimension
     fmilnor(f);            frontal Milnor number
+    gernotmal(f);          compute the normal line
     invariants(f);         compute stable frontal zero-schemes
     IsFrontal(f);          check if input is frontal
     qi(f);				   compute QI
@@ -86,14 +87,34 @@ proc frontalise(poly p, q, y)
 }
 
 //-----------------------------------------------------------------------------
+proc getnormal (map f)
+{
+    /* Use the Gram-Schmidt process to find the orthogonal complement of the
+    /* tangent hypersurface to f.
+    /* Adapted from [4]                                                      */
+
+    IsFrontal(f);
+    
+    list U = diff(f, var(1));
+
+	int n = size(preimage(f));
+
+    for (int i = 2; i <= n; i++)
+    {
+        U[i] = diff(f, var(i));
+
+        for (int j = 1; j < i; j++)
+        { U[i] = U[i] - innerproduct(U[j], U[i]) * U[j]; }
+
+        U[i] = U[i] / innerproduct(U[i], U[i]);
+    }
+
+    return (U[n]);
+}
+
+//-----------------------------------------------------------------------------
 proc invariants(map f)
 {
-    ideal @I;
-    int @mufC;
-    list fdata;
-    map @f;
-    number @muf, @mufD;
-
     // store name of basering to use presmatrix
     string br_name = nameof(basering);
 
@@ -101,30 +122,29 @@ proc invariants(map f)
     baseringlocal();
     checkvars(2);
     
-    option(noredefine);                 // hide messages such as "redefining"
-    fdata = c1fsurf(f);
+    option(noredefine);
+    list fdata = c1fsurf(f);
 
     // computations related to the double point scheme
-    int @S, @K, @W, @muC, @muD = dp_scheme(fdata[2..4]);
+    int @S, @K, @W, @muC, @muD = DPSpace(fdata[2..4]);
 
     // computations related to target triple point space
     // (export to use presmatrix)
-    @f = preimage(f), fdata[1..3];  
-    @I = 0;
+    map @f = preimage(f), fdata[1..3];  
+    ideal @I = 0;
     export(@f, @I);
 
-    "";
-    "// Computing triple point space...";
     presmatrix(@f, @I);
     setring RTPr;
     int @T = vdim(std(fitting(PM, 2))) - @S - @K;
 
     // frontal marar-mond equations and frontal milnor number
-    // we need number because we are using rational numbers
     execute("setring " + string(br_name));
-    @mufC = 2 * @S + @muC;
-    @mufD = @K + @T + 1/2 * (@muD + 1 - @W - @S);
-    @muf = 1/2 * (@muD - 1 + @S + @W) - @K - 2 * @T;
+    int @mufC = 2 * @S + @muC;
+    number @mufD = @K + @T + 1/2 * (@muD + 1 - @W - @S);
+    number @muf = 1/2 * (@muD - 1 + @S + @W) - @K - 2 * @T;
+
+    export(@S, @K, @T, @W, @muC, @mufC, @muD, @mufD, @muf);
 
     "";
     "// Isolated frontal singularities:";
@@ -132,26 +152,20 @@ proc invariants(map f)
     "//   Cusp-folds:                 @K = " + string(@K);
     "//   Triple points:              @T = " + string(@T);
     "//   Folded Whitney umbrellas:   @W = " + string(@W);
-    export(@S, @K, @T, @W);
-
     "";
     "// Branch of cuspidal edges:";
     "//   @cuspedge = " + string(@cuspedge);
     "//   Milnor number (source):     @muC = " + string(@muC);
     "//                 (target):    @mufC = " + string(@mufC);
     "";
-    export(@muC, @mufC);
-
     "// Branch of transversal double points:";
     "//   @dpoints = " + string(@dpoints);
     "//   Milnor number (source):     @muD = " + string(@muD);
     "//                 (target):    @mufD = " + string(@mufD);
     "";
-    export(@muD, @mufD);
-
     "// Frontal Milnor number:        @muf = " + string(@muf);
     "";
-    export(@muf);
+    "// Access these variables from global scope by typing their varnames!";
 }
 
 //-----------------------------------------------------------------------------
@@ -193,73 +207,68 @@ proc Qi (map f)
 //-----------------------------------------------------------------------------
 proc wfinvariants(poly g, poly z)
 {
-    /* Let G[x,y,z] = [x,y,g[x,y,z]] be A-finite and weighted homogeneous.
-    /* If g has weights [w1, w2, w3] and degree d,
+    /* Let G(x,y,z) = (x, y, g(x,y,z)) be A-finite and weighted homogeneous.
+    /* If g has weights w and degree d,
     /*
-    /*        [d - w3] [d - 2 w3] [d - 3 w3]
-    /*   S = --------------------------------;
-    /*                  w1 w2 w3
+    /*        (d - w[3]) (d - 2 w[3]) (d - 3 w[3])
+    /*   S = --------------------------------------;
+    /*                  w[1] w[2] w[3]
     /*
-    /*   K = S [d - 4 w3];  T = 1/6 K [d - 5 w3]
+    /*   K = S (d - 4 w[3]);  T = 1/6 K (d - 5 w[3])
     /*
-    /* where S, K, T are the numbers of swallowtails (A_3), cusp-folds (A_1A_2)
-    /* and triple points A_1^3 on the discriminant of G. */
+    /* where S, K, T are the numbers of swallowtails A_3, cusp-folds A_1 A_2
+    /* and triple points A_1^3 on the discriminant of G.                     */
 
- int leadvar, prod, @S, @K, @T;
- intvec w;
- 
+    int leadvar, prod, @S, @K, @T;
+    intvec w;
 
- baseringlocal();
- checkvars(3);
- option(noredefine);     // hide messages such as "redefining"
+    baseringlocal();
+    checkvars(3);
+    option(noredefine);
 
- w = wdeg(g);            // find the weights and weighted degree of g
- leadvar = rvar(z);      // find which variable was declared
+    w = wdeg(g);            // find the weights and weighted degree of g
+    leadvar = rvar(z);      // find which variable was declared
 
- if(rvar(z) == 0)
-  { ERROR("variable not in base ring"); }
+    if(rvar(z) == 0) { ERROR("variable not in base ring"); }
 
-  // product from the formula
- prod = w[4] div w[leadvar] * (1, 1, 1) - (1, 2, 3);
+    // product from the formula
+    prod = w[4] div w[leadvar] * (1, 1, 1) - (1, 2, 3);
 
- /* Singular does not like to use the `/` sign for integer division, so we
-  * need to use `div` instead.
-  * See https://www.singular.uni-kl.de/Manual/4-0-3/sing_466.htm for details
-  */
+    /* Singular does not like to use the `/` sign for integer division, so we
+    /* need to use `div` instead.                                            */
 
- @S = w[leadvar]^3 * product(prod) div product(w, 1..3);
- @K = @S * (w[4] - 4 * w[leadvar]) div w[leadvar];
- @T = @K * (w[4] - 5 * w[leadvar]) div (6 * w[leadvar]);
+    @S = w[leadvar]^3 * product(prod) div product(w, 1..3);
+    @K = @S * (w[4] - 4 * w[leadvar]) div w[leadvar];
+    @T = @K * (w[4] - 5 * w[leadvar]) div (6 * w[leadvar]);
 
- "";
- "// Swallowtails:               @S = " + string(@S);
- "// Cusp-folds:                 @K = " + string(@K);
- "// Triple points:              @T = " + string(@T);
- "";
- "// Target triple point space:       " + string(@S + @K + @T);
- "";
- export(@S, @K, @T);
+    export(@S, @K, @T);
+
+    "";
+    "// Swallowtails:               @S = " + string(@S);
+    "// Cusp-folds:                 @K = " + string(@K);
+    "// Triple points:              @T = " + string(@T);
+    "";
+    "// Access these variables from global scope by typing their varnames!";
 }
 
-//-----------------------------------------------------------------------------
+//////////////////////  STATIC PROCEDURES  ////////////////////////////////////
+
 static proc baseringlocal()
 {
- option(noredefine);        // hide messages such as "redefining"
+    option(noredefine);        // hide messages such as "redefining"
 
- if (ord_test(basering) != -1)
-  { ERROR("no local order ring"); }
+    if (ord_test(basering) != -1)
+    { ERROR("no local order ring"); }
 }
 
 //-----------------------------------------------------------------------------
 static proc corank (map f)
 {
- // i am not aware of any library that does this
+    matrix jf = jacob(ideal(f));
 
- ideal jf = jacob(ideal(f));  // jacob does not accept maps
+    for (int i = 1; i <= nvars(basering); i++) { jf = subst(jf, var(i), 0); }
 
- for (int i = 1; i <= nvars(basering); i++) { jf = subst(jf, var(i), 0); }
-
- return nvars(basering) - size(std(jf));
+    return nvars(basering) - rank(jf);
 }
 
 //-----------------------------------------------------------------------------
@@ -275,32 +284,6 @@ static proc checkvars(int n)
 }
 
 //-----------------------------------------------------------------------------
-proc getnormal (map f)
-{
-    /* Use the Gram-Schmidt process to find the orthogonal complement of the
-    /* tangent hypersurface to f.
-    /* Adapted from [4]                                                      */
-
-    IsFrontal(f);
-    
-    list U = diff(f, var(1));
-
-	int n = size(preimage(f));
-
-    for (int i = 2; i <= n; i++)
-    {
-        U[i] = diff(f, var(i));
-
-        for (int j = 1; j < i; j++)
-        { U[i] = U[i] - innerproduct(U[j], U[i]) * U[j]; }
-
-        U[i] = U[i] / innerproduct(U[i], U[i]);
-    }
-
-    return U[n];
-}
-
-//-----------------------------------------------------------------------------
 static proc prenormal (map f)
 {
    /* Given a corank 1 frontal f(x,y)=(x, p(x, y), q(x, y)), we shall say that
@@ -309,90 +292,50 @@ static proc prenormal (map f)
 
     IsFrontal(f, "w");
 
-    for (int i = 1; i <= nvars(basering); i++)
-    {
-        for (int j = 1; i <= nvars(basering); j++)
-        {
-            if (var(i) == f[j])
-            {
-                string(var(i)) + "is a component!";
-                i++;
-                continue;
-            }
-        }
+    // what is a simple, efficient way to find the x??
+    
+    
+    
+    map prenormal = preimage(f), immpart, p, q;
 
-        
-    	
-    }
-
-    proc find_y (map f)
-    {
-         if (f[1] == var(1))
-         { return(var(1), var(2)); }
-
-         if (f[1] == var(2))
-         { return(var(2), var(1)); }
-
-        "// please introduce the map in the form";
-        "//    map f = " + nameof(preimage(f)) + ", var, p, q";
-        "// where var is a variable in " + nameof(basering);
-        "// and p, q are polynomials";
-   
-        ERROR("map not set to prenormal form");
-    }
-
-    list xy = find_y(f);
-    poly f2y = diff(f[2], xy[2]);
-    poly f3y = diff(f[3], xy[2]);
-
-    if (reduce(f3y, f2y) == 0)
-    { return(xy[1], f[2], f[3], xy[2]); }  // p == f2y
-    else
-    { return(xy[1], f[3], f[2], xy[2]); }  // p == f3y
+    return (prenormal);
 }
 
 //-----------------------------------------------------------------------------
-static proc dp_scheme(poly p, poly q, poly y)
+static proc DPSpace(poly p, poly q, poly y)
 {
-  // add an auxiliar variable for divided differences
- ring src = basering;
- int charsrc = ringlist(src)[1];
- ring aux = charsrc, @z, ds;
- def divdifring = src + aux;
- setring divdifring;
+    // add an auxiliar variable for divided differences
+    ring aux = ringlist(src)[1], @z, ds;
+    def divdifring = src + aux;
+    setring divdifring;
 
- poly p = imap(src, p);
- poly q = imap(src, q);
- poly y = imap(src, y);
+    poly p = imap(src, p);
+    poly q = imap(src, q);
+    poly y = imap(src, y);
 
- print("// Computing double point scheme...");
+    "// Computing double point scheme...";
 
-  // compute the double point scheme via divided differences
- poly P = (p - subst(p, y, @z)) / (y - @z);
- poly Q = (q - subst(q, y, @z)) / (y - @z);
- poly py = diff(p, y);
- poly tau = resultant(P, Q, @z) / py^2;
+    // compute the double point scheme via divided differences
+    poly P = (p - subst(p, y, @z)) / (y - @z);
+    poly Q = (q - subst(q, y, @z)) / (y - @z);
+    poly py = diff(p, y);
+    poly tau = resultant(P, Q, @z) / py^2;
 
-  // compute formulas from []
- poly alpha = reduce(P, py) / (y - @z);
- poly beta = reduce(Q, py) / (y - @z);
- ideal PAA = py, alpha, beta;
- int dimPAA = vdim(std(PAA));
+    poly alpha = reduce(P, py) / (y - @z);
+    poly beta = reduce(Q, py) / (y - @z);
+    int PAA = vdim(std(py, alpha, beta));
 
- setring src;
- poly @cuspedge = imap(divdifring, py);
- ideal P3 = @cuspedge, diff(@cuspedge, y);
- int dimP3 = vdim(std(P3));
+    setring src;
+    poly @cuspedge = imap(divdifring, py);
+    int P3 = vdim(std(@cuspedge, diff(@cuspedge, y)));
 
- poly @dpoints = imap(divdifring, tau);
- ideal PT = @cuspedge, @dpoints;
- int dimPT = vdim(std(PT));
+    poly @dpoints = imap(divdifring, tau);
+    int PT = vdim(std(@cuspedge, @dpoints));
 
- export(@cuspedge, @dpoints);
+    export(@cuspedge, @dpoints);
 
-  // S, K, W, mu(C,0), mu(D,0)
- return(dimP3, dimPAA - 2 * dimP3, dimPT - dimPAA, milnor(@cuspedge),
-  milnor(@dpoints));
+     // S, K, W, mu(C,0), mu(D,0)
+    return(P3, PAA - 2 * P3, PT - PAA, milnor(@cuspedge), milnor(@dpoints));
 }
 
 //-----------------------------------------------------------------------------
