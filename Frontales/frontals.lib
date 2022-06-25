@@ -156,25 +156,21 @@ proc invariants(map f)
 proc IsFrontal(map f, list #)
 {
     /* Arguments for `#`:
-    /* - w: throw an exception if the map is not frontal
-    /* - r: report whether the map is frontal                                  */
+    /* (no argument): throw an exception if the map is not frontal
+    /* r:             report whether the map is frontal                      */
 
     ideal jf = minor(jacob(ideal(f)), nvars(basering));    // see [2]
 
-    if (size(#) == 0)
-    {
-        if (size(std(jf)) > 1) { "// map is not frontal!"; }
-        else { "// map is frontal!"; }
-    }
+    if (nvars(preimage(f)) != nvars(basering) + 1)
+    { ERROR(nameof(f) + " not a parametric hypersurface"); }
 
-    if (#[1] == "w" && size(std(jf)) > 1) { ERROR("not a frontal map"); }
- 
     if (#[1] == "r")
     {
         if (size(std(jf)) > 1) {return(0);}    // not frontal
-        
         return(1);                             // frontal
     }
+
+    if (size(std(jf)) > 1) { ERROR("not a frontal map"); }
 }
 
 //-----------------------------------------------------------------------------
@@ -282,40 +278,54 @@ static proc checkvars(int n)
 }
 
 //-----------------------------------------------------------------------------
-static proc c1fsurf (map f)
+proc prenormal (map f)
 {
- /* Given map f = R, x, p, q frontal, either diff(p, y) divides diff(q, y) or q_y | p_y.
-  * This procedure finds whether p_y | q_y or vice versa. */
+   /* Given a corank 1 frontal f(x,y)=(x, p(x, y), q(x, y)), we shall say that
+   /* f is in prenormal form if diff(p, y) divides diff(q, y).
+   /* This procedure sets f to prenormal form.                               */
 
-  is_frontal(f, "w");
+    IsFrontal(f, "w");
 
-   // for error messages
-  string src_name = nameof(basering);
-  string tgt_name = nameof(preimage(f));
+    for (int i = 1; i <= nvars(basering); i++)
+    {
+        for (int j = 1; i <= nvars(basering); j++)
+        {
+            if (var(i) == f[j])
+            {
+                string(var(i)) + "is a component!";
+                i++;
+                continue;
+            }
+        }
 
-  proc find_y (map f)            // returns [x,y]
-  {
-   if (f[1] == var(1))
-    { return(var(1), var(2)); }
+        
+    	
+    }
 
-   if (f[1] == var(2))
-    { return(var(2), var(1)); }
+    proc find_y (map f)
+    {
+         if (f[1] == var(1))
+         { return(var(1), var(2)); }
 
-   print("// ** please introduce the map in the prenormal form");
-   print("// **   map f = " + tgt_name + ", var, p, q");
-   print("// ** where var is a variable in " + src_name);
-   print("// ** and p, q are polynomials");
-   ERROR("map not set to prenormal form");
- }
+         if (f[1] == var(2))
+         { return(var(2), var(1)); }
 
- list xy = find_y(f);
- poly f2y = diff(f[2], xy[2]);
- poly f3y = diff(f[3], xy[2]);
+        "// please introduce the map in the form";
+        "//    map f = " + nameof(preimage(f)) + ", var, p, q";
+        "// where var is a variable in " + nameof(basering);
+        "// and p, q are polynomials";
+   
+        ERROR("map not set to prenormal form");
+    }
 
- if (reduce(f3y, f2y) == 0)
-  { return(xy[1], f[2], f[3], xy[2]); }  // p == f2y
- else
-  { return(xy[1], f[3], f[2], xy[2]); }  // p == f3y
+    list xy = find_y(f);
+    poly f2y = diff(f[2], xy[2]);
+    poly f3y = diff(f[3], xy[2]);
+
+    if (reduce(f3y, f2y) == 0)
+    { return(xy[1], f[2], f[3], xy[2]); }  // p == f2y
+    else
+    { return(xy[1], f[3], f[2], xy[2]); }  // p == f3y
 }
 
 //-----------------------------------------------------------------------------
