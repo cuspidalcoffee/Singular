@@ -207,18 +207,6 @@ proc Qi (map f)
 //-----------------------------------------------------------------------------
 proc wfinvariants(poly g, poly z)
 {
-    /* Let G(x,y,z) = (x, y, g(x,y,z)) be A-finite and weighted homogeneous.
-    /* If g has weights w and degree d,
-    /*
-    /*        (d - w[3]) (d - 2 w[3]) (d - 3 w[3])
-    /*   S = --------------------------------------;
-    /*                  w[1] w[2] w[3]
-    /*
-    /*   K = S (d - 4 w[3]);  T = 1/6 K (d - 5 w[3])
-    /*
-    /* where S, K, T are the numbers of swallowtails A_3, cusp-folds A_1 A_2
-    /* and triple points A_1^3 on the discriminant of G.                     */
-
     int leadvar, prod, @S, @K, @T;
     intvec w;
 
