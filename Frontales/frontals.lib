@@ -20,6 +20,8 @@ REFERENCES:
     [2] Marar, W.L., Montaldi, J.A. and Ruas, M.A.S. (1999) Multiplicities of
         zero-schemes in quasihomogeneous corank-1 singularities
     [3] Nuno-Ballesteros, J.J. (2015) Unfolding plane curves with cusps and nodes
+    [4] https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process
+        (Accessed: 2022-06-25)
 ";
 
 LIB "general.lib";       // product
@@ -153,13 +155,16 @@ proc invariants(map f)
 }
 
 //-----------------------------------------------------------------------------
-proc IsFrontal(map f, list #)
+proc IsFrontal(list f, list #)
 {
     /* Arguments for `#`:
     /* (no argument): throw an exception if the map is not frontal
     /* r:             report whether the map is frontal                      */
 
-    ideal jf = minor(jacob(ideal(f)), nvars(basering));    // see [2]
+    // we assume f is an ideal but the user may use a map if so desired
+    if (typeof(f) == "map") { return (IsFrontal(ideal(f), #)); }
+
+    ideal jf = minor(jacob(f), nvars(basering));    // see [2]
 
     if (nvars(preimage(f)) != nvars(basering) + 1)
     { ERROR(nameof(f) + " not a parametric hypersurface"); }
@@ -174,15 +179,12 @@ proc IsFrontal(map f, list #)
 }
 
 //-----------------------------------------------------------------------------
-proc Qi (ideal f, poly t)
+proc Qi (list f)
 {
-    is_frontal(f, "w");
+    IsFrontal(f);
 
-    ideal I;
-    int i;
-    poly qt = diff(f[2],t);
-    poly pt = diff(f[1],t);
-    poly mu = qt/pt;
+    
+    
  
     for (i=1; i <= nvars(basering); i++)
     {
@@ -278,6 +280,31 @@ static proc checkvars(int n)
 }
 
 //-----------------------------------------------------------------------------
+proc getnormal (list f)
+{
+    /* Use the Gram-Schmidt process to find the orthogonal complement of the
+    /* tangent hypersurface to f.
+    /* Adapted from [4]                                                      */
+
+    if(typeof(f[1]) == "map") { return (getnormal(ideal(f))); }    
+    IsFrontal(f[1]);
+    
+    list U = diff(f[1], var(1));
+
+    for (int i = 2; i <= size(f[1]); i++)
+    {
+        U[i] = diff(f[1], var(i));
+
+        for (int j = 1; j < i; j++)
+        { U[i] = U[i] - innerproduct(U[j], U[i]) * U[j]; }
+
+        U[i] = U[i] / innerproduct(U[i], U[i]);
+    }
+
+    return U[size(f[1])];
+}
+
+//-----------------------------------------------------------------------------
 proc prenormal (map f)
 {
    /* Given a corank 1 frontal f(x,y)=(x, p(x, y), q(x, y)), we shall say that
@@ -370,6 +397,22 @@ static proc dp_scheme(poly p, poly q, poly y)
   // S, K, W, mu(C,0), mu(D,0)
  return(dimP3, dimPAA - 2 * dimP3, dimPT - dimPAA, milnor(@cuspedge),
   milnor(@dpoints));
+}
+
+//-----------------------------------------------------------------------------
+static proc innerproduct(ideal u, v)
+{
+    // inner product of two vector fields encoded as ideals
+
+    if (size(u) != size(v))
+    { ERROR("incompatible lengths"); }
+
+    poly product;
+
+    for (int i = 1; i <= length(u); i++)
+    { product = product + u[i]*v[i]; }
+
+    return (product);
 }
 
 //-----------------------------------------------------------------------------
