@@ -91,17 +91,19 @@ proc presmatrix(map f, ideal i)
         ERROR("dimension mismatch");
     }
 
+	setring source;
+
 	// the first n components will give a finite map
-    map pf = finite_projection(fm, nameof(f));
+    map pf = FiniteProjection(fm, nameof(f));
 
     // find generators for Q(f) (they will be exported)
-	quot_basis(pf, i, nameof(f));
+	LocalAlgBasis(pf, i, nameof(f));
 
 	// compute the presentation matrix
 }
 
 //-----------------------------------------------------------------------------
-static proc finite_projection (ideal f, string fname)
+static proc FiniteProjection (ideal f, string fname)
 {
 	/* A map f: Kn -> K[n+1] is finite if and only if On/f^*m has finite
 	/* dimension.
@@ -126,16 +128,16 @@ static proc finite_projection (ideal f, string fname)
 }
 
 //-----------------------------------------------------------------------------
-static proc quot_basis (ideal f, i, string fname)
+static proc LocalAlgBasis (ideal f, i, string fname)
 {
+    // compute the local algebra of f: X -> C[n+1] where X = V(i)
 	ideal fi = f, i;
-	ideal Q = kbase(std(f));    // local algebra
+	ideal Q = kbase(std(fi));
 
 	if (size(Q) == 0)
 	{
-		print("// Quotient algebra Q = " + nameof(basering) + " / " + fname + " has no");
-		"// generators.";
-		"// Please verify input!";
+		print("// Quotient algebra Q(" + fname + ") has no generators!");
+		"// Please verify input";
 
 		ERROR("invalid map " + namef);
 	}
@@ -144,7 +146,7 @@ static proc quot_basis (ideal f, i, string fname)
 	matrix @generators[1][size(Q)];
 
     for (int j = 1; j <? size(Q); j++)
-	{ @generators[1, j] = Q[size(Q)+1-j]; }
+	{ @generators[1, j] = Q[size(Q) + 1 - j]; }
 
 	"// Generators of Q(" + fname + "):";
 	print(@generators);
@@ -155,57 +157,49 @@ static proc quot_basis (ideal f, i, string fname)
 }
 
 //-----------------------------------------------------------------------------
-static proc compute_matrix()
+static proc ???(ideal f, i)
 {
-	string Rh = nameof(target) + "^" + string(h);
-   	
-   	print("//" + Rh + " --> " + Rh + " --> Ox --> 0");
-   	"";
-   	"// Presentation matrix:";
-   	print(@PM);
+	ring source = basering;
+	ring target = preimage(f);
 
-	export(@PM);
-   	"// Type @PM to access the presentation matrix from global scope.";
-}
+	setring source;
+	int dimQ = size(@generators);
 
-//-----------------------------------------------------------------------------
-proc presmatrix(map Pullf, ideal ISource)
-{   
-    ring RG = 0, G(1..h), ds;		         //auxiliar ring
-    ring RT = 0, (X(1..n),Y), ds;	         //auxiliar target ring
-    matrix M[size(KB)][size(KB)];		   	 //auxiliar matrix
-    matrix Pres = diag(Y, size(KB));	     //presentation matrix
- 			                        
+	setring target;
+    matrix M[dimQ][dimQ];
+    matrix Pres = diag(Y, dimQ);
+
     ring RS = 0, (x(1..l)), ds;	                    //internal auxiliary ring source
-    execute("ideal IPf=fetch("+RSName+",IPullf)");     //mapping "Pullf" to RS
-    execute("ideal I=fetch("+RSName+",ISource)");      //mapping "I" to RS
+    ideal IPf = fetch(source, f);
+    ideal I = fetch(source, i);
  							
-    map Pf = RT, IPf;					        //print("Pullf IN RT->RS:Pf="+string(Pf));//
-    int done;					        //indicates row done
-    for(int rh=1;rh<=h;rh++)
- 	{//for rh
-       		int d=1;  
+    int done;
+    for(int rh = 1; rh <= h; rh++)
+ 	{
+        int d = 1;
+        
  		while(!done)
- 		{// while done
-                                                              //    print("ROW "+string( rh)+" WITH DEGREE "+ string( d));
- 			setring RT;
- 			matrix  Pols=PolyGen(d);                             //see proc PolyGen below
- 			int     np=size(Pols[1,1])+(h-1)*size(Pols[1,2])-1;  //number of parameters
- 			poly    D=Pols[1,1];
- 			poly    A=Pols[1,2];
-			ring    RTP1=(0,a(1..np)),(X(1..n),Y),ds;           //target ring with parameters
-			poly    D=fetch(RT,D);
-			poly    A=fetch(RT,A);
+ 		{
+ 		    setring target;
+ 		    
+ 		    // define a polynomial of degree d with coefficients set to 1
+ 			poly D, A = PolyGen(d, nvars(target));
+
+ 			// define an extended target ring with parameters
+            int np = size(D) + (size(@generators) - 1) * size(A) - 1;
+            ring target_param = (0,a(1..np)), (X(1..n),Y), ds;
+			poly D = fetch(target, D);
+			poly A = fetch(target, A);
+			
 			list    ML=Row(rh,D,A,h);                           //see proc Row below
 			matrix  M=ML[1];
 			list    ParList=ML[2];
 			map     mM=RG,M;                                    //mM[i]=M[1,i], i=num.generators
-		        ring    RSP1=(0,a(1..np)),x(1..l),dp;               //source ring with the same parameters
+		    ring    RSP1=(0,a(1..np)),x(1..l),dp;               //source ring with the same parameters
 			ideal   IPf=fetch(RS,IPf);                          //copying IPf from Rs to RSP1
-	    		map     Pf=RTP1,IPf;     
+	    	map     Pf=RTP1,IPf;     
 			ideal   I=fetch(RS,I);  I=std(I); 
-	        	execute("matrix Gen=fetch("+RSName+",Gen)");      
-		        //now all objects are in source ring RSP1.
+	        matrix generators = fetch(source, @generators);
   						
 			poly p=(Pf(mM)[1])*Gen[1,1];
     			for(int c=2;c<=h;c++)
@@ -214,8 +208,7 @@ proc presmatrix(map Pullf, ideal ISource)
 			}  //we multiply the row matrix M by column matrix Gen, getting the generic polynomial
 			   //in the source. Next step is to reduce modulo ideal I.
       			p=reduce(p,I);
-			
-//--------------------------------------------------------------------------------------------------------------			
+
 			ideal J; 
 			poly u=1;
 			for(int v=1;v<=l;v++)
@@ -255,7 +248,22 @@ proc presmatrix(map Pullf, ideal ISource)
     matrix PM[h][h]=fetch(RT,Pres);
 	exportto(Top,RTPr);
     exportto(Top,PM);
+
+
+
+
+
+	string Rh = nameof(target) + "^" + string(h);
+   	
+   	print("//" + Rh + " --> " + Rh + " --> Ox --> 0");
+   	"";
+   	"// Presentation matrix:";
+   	print(@PM);
+
+	export(@PM);
+   	"// Type @PM to access the presentation matrix from global scope.";
 }
+
 //---------------------------------------proc Sols return solutions of linear system of parameters-----------
 
 static proc Sols(ideal J)
@@ -314,7 +322,7 @@ static proc Sols(ideal J)
 	     
 //--------------------------------------------------------------------------------------------------
 
-proc Row(int rh,poly D,poly A, int h)
+static proc Row(int rh,poly D,poly A, int h)
 // rh = rh line; D = diagonal polin; A= no diagonal polin.; h = order of present. matrix;
 {
   matrix M[1][h];
@@ -356,16 +364,14 @@ proc Row(int rh,poly D,poly A, int h)
   return(L);
 }
 
-//------------------------Create polynomial with coefs = 1 and degree d---------------------------------
-static proc polygen(int d)
+//-----------------------------------------------------------------------------
+static proc polygen(int d, n)
 {
     poly D = sparsepoly(0, d, 0, 1);
     poly PY;
 
-	for(int i=1; i<=d; i++) { PY = PY + Y^i; }
+	for(int i = 1; i <= d; i++) { PY = PY + vars(n)^i; }
 
-    poly A = D-PY;
-    matrix Pols[1][2]= D, A;
-    return(Pols);
+    return (D, D - PY);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
