@@ -123,14 +123,14 @@ proc invariants(map f)
     checkvars(2);
     
     option(noredefine);
-    list fdata = c1fsurf(f);
+    list prenormalf = prenormal(f);
 
     // computations related to the double point scheme
-    int @S, @K, @W, @muC, @muD = DPSpace(fdata[2..4]);
+    int @S, @K, @W, @muC, @muD = DPSpace(prenormalf[2..4]);
 
     // computations related to target triple point space
     // (export to use presmatrix)
-    map @f = preimage(f), fdata[1..3];  
+    map @f = preimage(f), prenormalf[1..3];
     ideal @I = 0;
     export(@f, @I);
 
@@ -241,57 +241,97 @@ proc wfinvariants(poly g, poly z)
 
 //////////////////////  STATIC PROCEDURES  ////////////////////////////////////
 
+//-----------------------------------------------------------------------------
 static proc baseringlocal()
 {
-    option(noredefine);        // hide messages such as "redefining"
+    // Output: none
+
+    option(noredefine);
 
     if (ord_test(basering) != -1)
-    { ERROR("no local order ring"); }
+    {
+        "// please use local order (ds) for " + nameof(basering);
+        ERROR("no local order ring");
+    }
 }
 
 //-----------------------------------------------------------------------------
 static proc corank (map f)
 {
+    // Output: int (corank of f at 0)
+
     matrix jf = jacob(ideal(f));
 
     for (int i = 1; i <= nvars(basering); i++) { jf = subst(jf, var(i), 0); }
 
-    return nvars(basering) - rank(jf);
+    return (nvars(basering) - rank(jf));
 }
 
 //-----------------------------------------------------------------------------
 static proc checkvars(int n)
 {
- option(noredefine);        // hide messages such as "redefining"
+    // Output: none
+    
+    option(noredefine);
 
- if (nvars(basering) != n)
- {
-  ERROR("ring " + nameof(basering) + " must
-   have " + string(n) + " variables");
- }
+    if (nvars(basering) != n)
+    {
+        ERROR(nameof(basering) + " must have " + string(n) + " variables");
+    }
 }
 
 //-----------------------------------------------------------------------------
 static proc prenormal (map f)
 {
-   /* Given a corank 1 frontal f(x,y)=(x, p(x, y), q(x, y)), we shall say that
+   /* Given a corank 1 frontal f(x, y)=(x, p(x, y), q(x, y)), we shall say that
    /* f is in prenormal form if diff(p, y) divides diff(q, y).
-   /* This procedure sets f to prenormal form.                               */
+   /* This procedure sets f to prenormal form.
+   /*
+   /* Output: ideal formed by p, q, y                                        */
 
     IsFrontal(f, "w");
+    if (corank (f) != 1) { ERROR(nameof(f) + " does not have corank 1"); }
 
-    // what is a simple, efficient way to find the x??
-    
-    
-    
-    map prenormal = preimage(f), immpart, p, q;
+    // the output will be given as `map @f = preimage(f), @X, p, q`
+        
+    intvec ypos = 1..nvars(basering);
+    intvec pqpos = 1..size(ideal(f));
 
-    return (prenormal);
+    /* If f has corank 1, size(ypos) will be reduced to 1 by the end of the
+    /* double loop, and size(pqpos) will be reduced to 2.                    */
+
+    for (int i = 1; i <= nvars(basering); i++)
+    {
+    	for (int j = 1; j <= size(ideal(f)); j++)
+    	{
+            if (var(i) == f[j])
+            {
+                /* this can be further optimised so ypos and pqpos reduce the
+                /* number of wasted iterations!                              */
+                
+                delete(ypos, i);
+                delete(pqpos, j);
+                
+                continue;          // exit the j-loop
+            }
+    	}
+    }
+
+    poly p, q = f [pqpos];
+    poly @y = ypos[1];
+
+    // diff(q, y) modulo diff(p, y)
+    poly QyModPy = reduce(vardeg(q, @y), vardeg(p, @y));
+
+  	if (QyModPy == 0) { return (p, q, @y); }
+   	else { return (q, p, @y); }
 }
 
 //-----------------------------------------------------------------------------
 static proc DPSpace(poly p, poly q, poly y)
 {
+    // Output: intvec of size five
+
     // add an auxiliar variable for divided differences
     ring aux = ringlist(src)[1], @z, ds;
     def divdifring = src + aux;
@@ -329,15 +369,14 @@ static proc DPSpace(poly p, poly q, poly y)
 //-----------------------------------------------------------------------------
 static proc innerproduct(ideal u, v)
 {
-    // inner product of two vector fields encoded as ideals
+    /* Output: inner product of the vectors whose entries are the generators
+    /* of u and v                                                            */
 
-    if (size(u) != size(v))
-    { ERROR("incompatible lengths"); }
+    if (size(u) != size(v)) { ERROR("incompatible lengths"); }
 
     poly product;
 
-    for (int i = 1; i <= length(u); i++)
-    { product = product + u[i]*v[i]; }
+    for (int i = 1; i <= length(u); i++) { product = product + u[i]*v[i]; }
 
     return (product);
 }
@@ -345,6 +384,8 @@ static proc innerproduct(ideal u, v)
 //-----------------------------------------------------------------------------
 static proc NoParamWarning(string name, list #)
 {
+    // Output: none
+
     if(size(#) == 0)
     {
         "// this procedure requires a frontal stable unfolding to work correctly";
