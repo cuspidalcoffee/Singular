@@ -39,12 +39,14 @@ EXAMPLE:  example derlog; shows an example"
     // function
     if (typeof(f[1]) == "map")
     {
-        print("// Computing implicit function of " + nameof(f));
+        "// Computing implicit function of " + nameof(f);
 
         // check that the map goes from Kn to K(n+1)
         if (nvars(preimage(f[1])) != nvars(basering) + 1)
         {
-            "// Please introduce a map from K^n to K^(n+1)!";
+
+            int n = nvars(basering);
+            "// Please introduce a map from R^" string(n) + " to R^" + string(n+1) + "!";
             ERROR("dimension mistmatch");
         }
 
@@ -90,12 +92,15 @@ EXAMPLE:  example derlog; shows an example"
         }
     }
 
-    print("Killing fields (X(g) = 0):");
-    print(@Kill);
+    "";
 
-    print("Euler fields (X(g) = "+ print(lambda) + "g):");
+    "// Killing fields (X(g) = 0):";
+    print(@Kill);
+    "";
+
+    "// Euler fields (X(g) = "+ string(lambda) + "g):";
     print(@Euler);
-    ;
+    "";
 
     "Use the @Kill and @Euler variables to access them from global scope!";
 }
