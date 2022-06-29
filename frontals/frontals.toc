@@ -1,0 +1,22 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\babel@toc {english}{}
+\etoc@startlocaltoc {1}
+\etoc@startlocaltoc {2}
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {mtocsection}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}Methods}{1}{section.2}%
+\contentsline {mtocsection}{\numberline {2}Methods}{1}{section.2}
+\contentsline {section}{\numberline {3}Frontalise}{1}{section.3}%
+\contentsline {mtocsection}{\numberline {3}Frontalise}{1}{section.3}
+\contentsline {section}{\numberline {4}Getnormal}{2}{section.4}%
+\contentsline {mtocsection}{\numberline {4}Getnormal}{2}{section.4}
+\contentsline {section}{\numberline {5}Invariants}{2}{section.5}%
+\contentsline {mtocsection}{\numberline {5}Invariants}{2}{section.5}
+\contentsline {section}{\numberline {6}IsFrontal}{2}{section.6}%
+\contentsline {mtocsection}{\numberline {6}IsFrontal}{2}{section.6}
+\contentsline {section}{\numberline {7}wfinvariants}{2}{section.7}%
+\contentsline {mtocsection}{\numberline {7}wfinvariants}{2}{section.7}
+\contentsline {section}{\numberline {A}Appendix}{2}{appendix.A}%
+\contentsline {mtocsection}{\numberline {A}Appendix}{2}{appendix.A}
+\contentsline {section}{\numberline {B}Prenormal}{2}{appendix.B}%
+\contentsline {mtocsection}{\numberline {B}Prenormal}{2}{appendix.B}

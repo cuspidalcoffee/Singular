@@ -1,0 +1,127 @@
+% Load the kaohandt class (with the default options)
+\documentclass[
+	%fontsize=10pt,
+	%twoside=false,
+	%secnumdepth=2,
+	%abstract=true,
+]{kaohandt}
+
+\usepackage[english]{babel}
+\usepackage[english=british]{csquotes}
+
+%\usepackage{showframe}
+%\usepackage{showlabels}
+
+\usepackage{algebra}
+\usepackage{fonts}
+\usepackage{topology}
+\usepackage{kaotheorems}
+
+\usepackage{kaobiblio}
+\addbibresource{report-template.bib} % Bibliography file
+
+\usepackage{kaorefs}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	REPORT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title[The \texttt{frontals.lib} library]{The \texttt{frontals.lib} library}
+
+\author[CMC]{C. Muñoz-Cabello}
+
+\date{\today}
+
+%----------------------------------------------------------------------------------------
+%	TITLE AND ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\maketitle
+
+\margintoc
+
+\begin{abstract}
+\noindent
+\end{abstract}
+
+% {\noindent\textbf{Keywords:} \LaTeX, Kao, handout, article, report}
+
+\medskip
+
+%----------------------------------------------------------------------------------------
+%	MAIN BODY
+%----------------------------------------------------------------------------------------
+
+\section{Introduction}
+
+Given a corank $1$ analytic map $f\colon (\mb{K}^n,0) \to (\mb{K}^{n+1},0)$, we may always choose coordinates in the source and target such that
+\begin{equation}\label{corank 1}
+	f(x,y)=(x, p(x,y), q(x,y))
+\end{equation}
+for some $p,q \in \mf{m}_n^2$, $x \in \mb{K}^n$, $y \in \mb{K}$.
+Nuño-Ballesteros showed in \sidecite{Nuno_CuspsAndNodes} that, under this parametrisation, $f$ is a frontal if and only if $p_y | q_y$ or $q_y | p_y$.
+We shall say that $f$ is in \emph{prenormal form} if $p_y|q_y$, in which case we write $\mu=q_y/p_y$.
+
+% \blindtext\sidenote[][*-8]{\blindtext}
+
+\section{Methods}
+
+\section{Frontalise}
+If we assume that $f$ is analytic and given as in Equation \eqref{corank 1} (not necessarily being frontal), we may write
+	\begin{align*}
+		p(x,y)&=p_2(x)y^2+p_3(x)y^3+\dots\\
+		q(x,y)&=q_2(x)y^2+q_3(x)y^3+\dots
+	\end{align*}
+in which case $p_y|q_y$ if and only if there are functions $u_1,\dots, u_{k-1} \in \mb{K}\{x\}$ such that
+	\[kq_k=kp_ku_0+(k-1)p_{k-1}u_1+\dots+p_1u_{k-1}\]
+This gives a method to generate examples of frontal maps using analytic plane curves.
+
+It is shown in \sidecite{MNO_FrontalDeformations} that, if $f$ is the versal deformation of some analytic plane curve $\gamma$, there exists a graph-type immersion $h$ such that the pull-back $h^*f$ is a versal frontal unfolding of $\gamma$.
+
+\section{Getnormal}
+A smooth map $f\colon (\mb{K}^n,S) \to (\mb{K}^{n+1},0)$ is frontal if and only if there is a germ of differential $1$-form $\nu$ on $(\mb{K}^{n+1},0)$ that does not vanish on $f(S)$ and such that
+	\[\nu(df \circ \xi)=0\]
+for all $\xi \in \theta_n$.
+The differential form $\nu$ represents a line that is normal to the hypersurface $f(\mb{K}^n,S)$ at every point, and is usually computed as the orthogonal complement of $df_x(T_x\mb{K}^n)$ for all regular values $x \in (\mb{K}^n,S)$ of $f$.
+Assuming $f$ is a proper frontal (i.e. the germ of $\mathrm{Sing}(f)$ at $S$ is nowhere dense in $(\mb{K}^n,S)$) implies that $\nu$ is uniquely determined up to a constant factor.
+
+Orthogonalising an $n\times p$ matrix using the Gram-Schmidt process has a computational complexity of $\mc{O}(np^2)$ flops\sidenote{https://stackoverflow.com/a/27986858},
+However, since we are only interested in the last column of the matrix, it is more efficient to perform textbook orthogonalisation (i.e. solving the corresponding system of equations).
+It is known that Gauss echelon reduction using the LU decomposition has a computational complexity of $\mc{O}(n^2)$ flops.
+
+If $f$ is given in prenormal form, a simple computation shows that
+\begin{align*}
+	\nu_j=\frac{\p q}{\p x_j}-\mu\frac{\p p}{\p x_j}; && \nu_n=\mu; && \nu_{n+1}=-1
+\end{align*}
+gives one such $\nu$, with a computational complexity of $\mc{O}(n)$ (assuming partial derivates are known).
+
+\section{Invariants}
+\sidecite{MNO_FrontalSurfaces}
+
+\section{IsFrontal}
+\sidecite{Ishikawa_Survey}
+
+\section{wfinvariants}
+\sidecite{MMR_ZeroSchemes}
+
+\appendix % From here onwards, chapters are numbered with letters, as is the appendix convention
+
+\section{Appendix}
+
+\section{Prenormal}
+
+% \blindtext
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+% The bibliography needs to be compiled with biber using your LaTeX editor, or on the command line with 'biber main' from the template directory
+
+\printbibliography[title=Bibliography] % Set the title of the bibliography and print the references
+
+\end{document}

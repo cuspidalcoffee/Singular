@@ -1,0 +1,3411 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.25)  29 JUN 2022 21:56
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**frontals.tex
+(./frontals.tex
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-05-07>
+(/home/hannah/texmf/tex/latex/kaobook/kaohandt.cls
+Document Class: kaohandt 2021/08/23 v0.9.8 kaohandt
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrartcl.cls
+Document Class: scrartcl 2021/03/17 v3.33 KOMA-Script document class (article)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2021/03/17 v3.33 KOMA-Script package (file load hooks)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2021/03/17 v3.33 KOMA-Script package (using LaTeX hooks)
+
+
+LaTeX3 Info: Defining command \BeforeFile with sig. 'm' on line 61.
+
+
+LaTeX3 Info: Defining command \AfterFile with sig. 'm' on line 65.
+
+
+LaTeX3 Info: Defining command \BeforeClass with sig. 'm' on line 69.
+
+
+LaTeX3 Info: Defining command \BeforePackage with sig. 'm' on line 73.
+
+
+LaTeX3 Info: Defining command \AfterAtEndOfClass with sig. 'smo+m' on line 83.
+
+
+LaTeX3 Info: Defining command \AfterAtEndOfPackage with sig. 'smo+m' on line
+(LaTeX3)     93.
+
+
+LaTeX3 Info: Defining command \scrlfile@AfterClass with sig. 'smo+m' on line
+(LaTeX3)     173.
+
+
+LaTeX3 Info: Defining command \AfterClass with sig. '' on line 174.
+
+
+LaTeX3 Info: Defining command \scrlfile@AfterPackage with sig. 'smo+m' on line
+(LaTeX3)     191.
+
+
+LaTeX3 Info: Defining command \AfterPackage with sig. '' on line 192.
+
+
+LaTeX3 Info: Defining command \ReplaceInput with sig. '' on line 193.
+
+
+LaTeX3 Info: Defining command \ReplaceClass with sig. 'mm' on line 196.
+
+
+LaTeX3 Info: Defining command \ReplacePackage with sig. 'mm' on line 199.
+
+
+LaTeX3 Info: Defining command \UnReplaceInput with sig. '' on line 200.
+
+
+LaTeX3 Info: Defining command \UnReplaceClass with sig. 'm' on line 203.
+
+
+LaTeX3 Info: Defining command \UnReplacePackage with sig. 'mm' on line 206.
+
+
+LaTeX3 Info: Defining command \PreventPackageFromLoading with sig. 's+om' on
+(LaTeX3)     line 234.
+
+
+LaTeX3 Info: Defining command \StorePreventPackageFromLoading with sig. 'm' on
+(LaTeX3)     line 242.
+
+
+LaTeX3 Info: Defining command \ResetPreventPackageFromLoading with sig. '' on
+(LaTeX3)     line 247.
+
+
+LaTeX3 Info: Defining command \UnPreventPackageFromLoading with sig. 'sm' on
+(LaTeX3)     line 261.
+
+
+LaTeX3 Info: Defining command \BeforeClosingMainAux with sig. 'om' on line
+(LaTeX3)     274.
+
+
+LaTeX3 Info: Defining command \AfterReadingMainAux with sig. 'om' on line 287.
+
+
+LaTeX3 Info: Defining command \protected@immediate@write with sig. 'm+m+m' on
+(LaTeX3)     line 298.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2021/03/17 v3.33 KOMA-Script package (logo)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+Skipping: [2021/05/01] Usage of raw option list on input line 252.
+Applying: [0000/00/00] compatibility for LaTeX before 2021/05/01 on input line 
+337.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2021/03/17 v3.33 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip47
+\scr@dte@tocline@numbox=\box47
+)
+Package tocbasic Info: babel extension for `toc' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 135.
+Class scrartcl Info: File `scrsize11pt.clo' used instead of
+(scrartcl)           file `scrsize11.clo' to setup font sizes on input line 223
+9.
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
+File: scrsize11pt.clo 2021/03/17 v3.33 KOMA-Script font size class option (11pt
+)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2021/03/17 v3.33 KOMA-Script package (type area)
+\ta@bcor=\skip48
+\ta@div=\count179
+\ta@hblk=\skip49
+\ta@vblk=\skip50
+\ta@temp=\skip51
+\footheight=\skip52
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 10
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 418.25555pt
+(typearea)              DIV departure   = -6%
+(typearea)              \evensidemargin = 17.3562pt
+(typearea)              \oddsidemargin  = 17.3562pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 595.80026pt
+(typearea)              \topmargin      = -25.16531pt
+(typearea)              \headheight     = 17.0pt
+(typearea)              \headsep        = 20.40001pt
+(typearea)              \topskip        = 11.0pt
+(typearea)              \footskip       = 47.6pt
+(typearea)              \baselineskip   = 13.6pt
+(typearea)              on input line 1741.
+)
+\c@part=\count180
+\c@section=\count181
+\c@subsection=\count182
+\c@subsubsection=\count183
+\c@paragraph=\count184
+\c@subparagraph=\count185
+\scr@dte@section@maxnumwidth=\skip53
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\section on input line 4846.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\section on input line 4846.
+\scr@dte@part@maxnumwidth=\skip54
+Class scrartcl Info: using compatibility default `afterindent=false'
+(scrartcl)           for `\part on input line 4854.
+\scr@dte@subsection@maxnumwidth=\skip55
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsection on input line 4864.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsection on input line 4864.
+\scr@dte@subsubsection@maxnumwidth=\skip56
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsubsection on input line 4874.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsubsection on input line 4874.
+\scr@dte@paragraph@maxnumwidth=\skip57
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\paragraph on input line 4885.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\paragraph on input line 4885.
+\scr@dte@subparagraph@maxnumwidth=\skip58
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subparagraph on input line 4895.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subparagraph on input line 4895.
+\abovecaptionskip=\skip59
+\belowcaptionskip=\skip60
+\c@pti@nb@sid@b@x=\box48
+Package tocbasic Info: babel extension for `lof' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 6127.
+
+\scr@dte@figure@maxnumwidth=\skip61
+\c@figure=\count186
+Package tocbasic Info: babel extension for `lot' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 6139.
+
+\scr@dte@table@maxnumwidth=\skip62
+\c@table=\count187
+Class scrartcl Info: Redefining `\numberline' on input line 6303.
+\bibindent=\dimen138
+)
+(/home/hannah/texmf/tex/latex/kaobook/kao.sty
+Package: kao 
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count188
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count189
+\calc@Bcount=\count190
+\calc@Adimen=\dimen139
+\calc@Bdimen=\dimen140
+\calc@Askip=\skip63
+\calc@Bskip=\skip64
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count191
+\calc@Cskip=\skip65
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Package option `usenames' ignored on input line 216.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen141
+\ar@mcellbox=\box49
+\extrarowheight=\dimen142
+\NC@list=\toks16
+\extratabsurround=\skip66
+\backup@length=\skip67
+\ar@cellbox=\box50
+)
+\everycr=\toks17
+\minrowclearance=\skip68
+)
+\rownum=\count192
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xifthen/xifthen.sty
+Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
+Package: ifmtarg 2018/04/16 v1.2b check for an empty argument
+))
+(/usr/share/texlive/texmf-dist/tex/latex/options/options.sty
+Package: options 2015/03/01, Daan Leijen, Provides convenient path-value (or ke
+y-value) options
+\opt@nesting=\count193
+\opt@idx=\count194
+\opt@choiceord=\count195
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2021-05-07 L3 programming layer (loader) 
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count196
+\l__pdf_internal_box=\box51
+))
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse-2020-10-01.st
+y (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.tex
+))) (/usr/share/texlive/texmf-dist/tex/latex/xpatch/xpatch.sty
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count197
+\decimalpart=\count198
+)
+Package: xstring 2019/02/06 v1.83 String manipulations (CT)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/afterpage.sty
+Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
+\AP@output=\toks18
+\AP@partial=\box52
+\AP@footins=\box53
+)
+(/usr/share/texlive/texmf-dist/tex/latex/imakeidx/imakeidx.sty
+Package: imakeidx 2016/10/15 v1.3e Package for typesetting indices in a synchro
+nous mode
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks19
+\XKV@tempa@toks=\toks20
+)
+\XKV@depth=\count199
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
+\c@tracingmulticols=\count266
+\mult@box=\box54
+\multicol@leftmargin=\dimen143
+\c@unbalance=\count267
+\c@collectmore=\count268
+\doublecol@number=\count269
+\multicoltolerance=\count270
+\multicolpretolerance=\count271
+\full@width=\dimen144
+\page@free=\dimen145
+\premulticols=\dimen146
+\postmulticols=\dimen147
+\multicolsep=\skip69
+\multicolbaselineskip=\skip70
+\partial@page=\box55
+\last@line=\box56
+\maxbalancingoverflow=\dimen148
+\mult@rightbox=\box57
+\mult@grightbox=\box58
+\mult@gfirstbox=\box59
+\mult@firstbox=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\c@minrows=\count272
+\c@columnbadness=\count273
+\c@finalcolumnbadness=\count274
+\last@try=\dimen149
+\multicolovershoot=\dimen150
+\multicolundershoot=\dimen151
+\mult@nat@firstbox=\box98
+\colbreak@box=\box99
+\mc@col@check@num=\count275
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/varioref.sty
+Package: varioref 2020/08/11 v1.6e package for extended references (FMi)
+\c@vrcnt=\count276
+)
+\hscale=\skip71
+\vscale=\skip72
+
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count277
+\Gm@cntv=\count278
+\c@Gm@tempcnt=\count279
+\Gm@bindingoffset=\dimen152
+\Gm@wd@mp=\dimen153
+\Gm@odd@mp=\dimen154
+\Gm@even@mp=\dimen155
+\Gm@layoutwidth=\dimen156
+\Gm@layoutheight=\dimen157
+\Gm@layouthoffset=\dimen158
+\Gm@layoutvoffset=\dimen159
+\Gm@dimlist=\toks21
+)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlayer-scrpage.sty
+Package: scrlayer-scrpage 2021/03/17 v3.33 KOMA-Script package (end user interf
+ace for scrlayer)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlayer.sty
+Package: scrlayer 2021/03/17 v3.33 KOMA-Script package (defining layers and pag
+e styles)
+Package scrlayer Info: Using already defined \footheight
+(scrlayer)             hoping, that this is a length and
+(scrlayer)             not only a macro on input line 136.
+Package scrlayer Info: patching LaTeX kernel macro \pagestyle on input line 216
+2.
+)
+Package scrlayer-scrpage Info: Makeing stand-alone element `pagehead' from
+(scrlayer-scrpage)             alias to `pageheadfoot' on input line 1085.
+Package scrlayer-scrpage Info: deactivating warning for font element
+(scrlayer-scrpage)             `pagefoot' on input line 1109.
+)
+Package scrlayer-scrpage Info: auto-selection of `pagestyleset=KOMA-Script'.
+\headtextwidth=\skip73
+\headmarginparsep=\skip74
+\headmarginparwidth=\skip75
+\headtotal=\skip76
+\contentwidth=\skip77
+
+(/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2021/02/05 v3.0 ragged2e Package
+
+(/usr/share/texlive/texmf-dist/tex/latex/everysel/everysel.sty
+Package: everysel 2021/01/20 v2.1 EverySelectfont Package (MS)
+
+(/usr/share/texlive/texmf-dist/tex/latex/everysel/everysel-2011-10-28.sty))
+\CenteringLeftskip=\skip78
+\RaggedLeftLeftskip=\skip79
+\RaggedRightLeftskip=\skip80
+\CenteringRightskip=\skip81
+\RaggedLeftRightskip=\skip82
+\RaggedRightRightskip=\skip83
+\CenteringParfillskip=\skip84
+\RaggedLeftParfillskip=\skip85
+\RaggedRightParfillskip=\skip86
+\JustifyingParfillskip=\skip87
+\CenteringParindent=\skip88
+\RaggedLeftParindent=\skip89
+\RaggedRightParindent=\skip90
+\JustifyingParindent=\skip91
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyphenat/hyphenat.sty
+Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
+\langwohyphens=\language85
+LaTeX Info: Redefining \_ on input line 43.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2021/03/14 v2.8c Micro-typographical refinements (RS)
+\MT@toks=\toks22
+\MT@count=\count280
+LaTeX Info: Redefining \textls on input line 790.
+\MT@outer@kern=\dimen160
+LaTeX Info: Redefining \textmicrotypecontext on input line 1374.
+\MT@listname@count=\count281
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2021/03/14 v2.8c Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 915.
+LaTeX Info: Redefining \lslig on input line 915.
+\MT@outer@space=\skip92
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2021/03/14 v2.8c microtype main configuration file (RS)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+(/usr/share/texlive/texmf-dist/tex/latex/marginnote/marginnote.sty
+Package: marginnote 2018/08/09 v1.4b non floating margin notes for LaTeX
+\c@mn@abspage=\count282
+)
+(/usr/share/texlive/texmf-dist/tex/latex/sidenotes/sidenotes.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2021-05-07 LaTeX2e option processing using LaTeX3 keys
+)
+Package: sidenotes 2016/04/21 v1.00 rich text in the margin for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen161
+\captionmargin@=\dimen162
+\captionwidth=\dimen163
+\caption@tempdima=\dimen164
+\caption@indent=\dimen165
+\caption@parindent=\dimen166
+\caption@hangindent=\dimen167
+Package caption Info: KOMA-Script document class detected.
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption-koma.sto
+File: caption-koma.sto 2020/09/21 v2.0b Adaption of the caption package to the 
+KOMA-Script document classes (AR)
+))
+\c@caption@flags=\count283
+\c@continuedfloat=\count284
+)
+(/usr/share/texlive/texmf-dist/tex/latex/changepage/changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count285
+\cp@tempcnt=\count286
+)
+\c@sidenote=\count287
+\@sidenotes@marginfigurebox=\box100
+\@sidenotes@margintablebox=\box101
+)
+(/usr/share/texlive/texmf-dist/tex/latex/chngcntr/chngcntr.sty
+Package: chngcntr 2018/04/09 v1.1a change counter resetting
+Package chngcntr Info: \counterwithout already defined.
+(chngcntr)             Quitting chngcntr on input line 21.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/footmisc/footmisc.sty
+Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
+\FN@temptoken=\toks23
+\footnotemargin=\dimen168
+\c@pp@next@reset=\count288
+Package footmisc Info: Declaring symbol style bringhurst on input line 855.
+Package footmisc Info: Declaring symbol style chicago on input line 863.
+Package footmisc Info: Declaring symbol style wiley on input line 872.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 883.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 903.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
+.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/footnotebackref/footnotebackref.sty
+Package: footnotebackref 2012/07/01 v1.0 Backreferences for footnotes (Holger L
+ange)
+
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen169
+\Hy@linkcounter=\count289
+\Hy@pagecounter=\count290
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2021-02-27 v7.00k Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def
+File: hyperref-langpatches.def 2021-02-27 v7.00k Hyperref: patches for babel la
+nguages
+)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count291
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count292
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4804.
+\XeTeXLinkMargin=\dimen170
+
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count293
+\Field@Width=\dimen171
+\Fld@charsize=\dimen172
+Package hyperref Info: Hyper figures OFF on input line 6075.
+Package hyperref Info: Link nesting OFF on input line 6080.
+Package hyperref Info: Hyper index ON on input line 6083.
+Package hyperref Info: backreferencing OFF on input line 6090.
+Package hyperref Info: Link coloring OFF on input line 6095.
+Package hyperref Info: Link coloring with OCG OFF on input line 6100.
+Package hyperref Info: PDF/A mode OFF on input line 6105.
+LaTeX Info: Redefining \ref on input line 6145.
+LaTeX Info: Redefining \pageref on input line 6149.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
+ge
+with kernel methods
+)
+\Hy@abspage=\count294
+\c@Item=\count295
+\c@Hfootnote=\count296
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2021-02-27 v7.00k Hyperref driver for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
+e
+with kernel methods
+)
+\Fld@listcount=\count297
+\c@bookmark@seq@number=\count298
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip93
+)
+\c@BackrefHyperFootnoteCounter=\count299
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+)
+\Gin@req@height=\dimen173
+\Gin@req@width=\dimen174
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks24
+\pgfutil@tempdima=\dimen175
+\pgfutil@tempdimb=\dimen176
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box102
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2020/12/27 v3.1.8b (3.1.8b)
+))
+Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks25
+\pgfkeys@temptoks=\toks26
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks27
+))
+\pgf@x=\dimen177
+\pgf@y=\dimen178
+\pgf@xa=\dimen179
+\pgf@ya=\dimen180
+\pgf@xb=\dimen181
+\pgf@yb=\dimen182
+\pgf@xc=\dimen183
+\pgf@yc=\dimen184
+\pgf@xd=\dimen185
+\pgf@yd=\dimen186
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count300
+\c@pgf@countb=\count301
+\c@pgf@countc=\count302
+\c@pgf@countd=\count303
+\t@pgf@toka=\toks28
+\t@pgf@tokb=\toks29
+\t@pgf@tokc=\toks30
+\pgf@sys@id@count=\count304
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2020/12/27 v3.1.8b (3.1.8b)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f
+File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex
+File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfsyssoftpath@smallbuffer@items=\count305
+\pgfsyssoftpath@bigbuffer@items=\count306
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex
+File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen187
+\pgfmath@count=\count307
+\pgfmath@box=\box103
+\pgfmath@toks=\toks31
+\pgfmath@stack@operand=\toks32
+\pgfmath@stack@operation=\toks33
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count308
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x
+File: pgfcorepoints.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@picminx=\dimen188
+\pgf@picmaxx=\dimen189
+\pgf@picminy=\dimen190
+\pgf@picmaxy=\dimen191
+\pgf@pathminx=\dimen192
+\pgf@pathmaxx=\dimen193
+\pgf@pathminy=\dimen194
+\pgf@pathmaxy=\dimen195
+\pgf@xx=\dimen196
+\pgf@xy=\dimen197
+\pgf@yx=\dimen198
+\pgf@yy=\dimen199
+\pgf@zx=\dimen256
+\pgf@zy=\dimen257
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex
+File: pgfcorepathconstruct.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@path@lastx=\dimen258
+\pgf@path@lasty=\dimen259
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex
+File: pgfcorepathusage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@shorten@end@additional=\dimen260
+\pgf@shorten@start@additional=\dimen261
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x
+File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfpic=\box104
+\pgf@hbox=\box105
+\pgf@layerbox@main=\box106
+\pgf@picture@serial@count=\count309
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex
+File: pgfcoregraphicstate.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgflinewidth=\dimen262
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex
+File: pgfcoretransformations.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@pt@x=\dimen263
+\pgf@pt@y=\dimen264
+\pgf@pt@temp=\dimen265
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex
+File: pgfcoreobjects.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex
+File: pgfcorepathprocessing.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x
+File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfarrowsep=\dimen266
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@max=\dimen267
+\pgf@sys@shading@range@num=\count310
+\pgf@shadingcount=\count311
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex
+File: pgfcoreexternal.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfexternal@startupbox=\box107
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex
+File: pgfcoretransparency.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex
+File: pgfcorepatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfnodeparttextbox=\box108
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty
+Package: pgfcomp-version-0-65 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@nodesepstart=\dimen268
+\pgf@nodesepend=\dimen269
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty
+Package: pgfcomp-version-1-18 2020/12/27 v3.1.8b (3.1.8b)
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen270
+\pgffor@skip=\dimen271
+\pgffor@stack=\toks34
+\pgffor@toks=\toks35
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex
+File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@plot@mark@count=\count312
+\pgfplotmarksize=\dimen272
+)
+\tikz@lastx=\dimen273
+\tikz@lasty=\dimen274
+\tikz@lastxsaved=\dimen275
+\tikz@lastysaved=\dimen276
+\tikz@lastmovetox=\dimen277
+\tikz@lastmovetoy=\dimen278
+\tikzleveldistance=\dimen279
+\tikzsiblingdistance=\dimen280
+\tikz@figbox=\box109
+\tikz@figbox@bg=\box110
+\tikz@tempbox=\box111
+\tikz@tempbox@bg=\box112
+\tikztreelevel=\count313
+\tikznumberofchildren=\count314
+\tikznumberofcurrentchild=\count315
+\tikz@fig@count=\count316
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfmatrixcurrentrow=\count317
+\pgfmatrixcurrentcolumn=\count318
+\pgf@matrix@numberofcolumns=\count319
+)
+\tikz@expandcount=\count320
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/tikzpagenodes/tikzpagenodes.sty
+Package: tikzpagenodes 2012/09/16 v1.1 Special PGF/TikZ nodes for areas of the 
+page
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count321
+LaTeX Info: Redefining \checkoddpage on input line 45.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen281
+\lightrulewidth=\dimen282
+\cmidrulewidth=\dimen283
+\belowrulesep=\dimen284
+\belowbottomsep=\dimen285
+\aboverulesep=\dimen286
+\abovetopsep=\dimen287
+\cmidrulesep=\dimen288
+\cmidrulekern=\dimen289
+\defaultaddspace=\dimen290
+\@cmidla=\count322
+\@cmidlb=\count323
+\@aboverulesep=\dimen291
+\@belowrulesep=\dimen292
+\@thisruleclass=\count324
+\@lastruleclass=\count325
+\@thisrulewidth=\dimen293
+)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip94
+\multirow@cntb=\count326
+\multirow@dima=\skip95
+\bigstrutjot=\dimen294
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+\c@r@tfl@t=\count327
+\rotFPtop=\skip96
+\rotFPbot=\skip97
+\rot@float@box=\box113
+\rot@mess@toks=\toks36
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count328
+\lst@gtempboxa=\box114
+\lst@token=\toks37
+\lst@length=\count329
+\lst@currlwidth=\dimen295
+\lst@column=\count330
+\lst@pos=\count331
+\lst@lostspace=\dimen296
+\lst@width=\dimen297
+\lst@newlines=\count332
+\lst@lineno=\count333
+\lst@maxwidth=\dimen298
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count334
+\lst@skipnumbers=\count335
+\lst@framebox=\box115
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/floatrow/floatrow.sty
+Package: floatrow 2008/08/02 v0.3b floatrow: float package extension
+\c@float@type=\count336
+\float@exts=\toks38
+\float@box=\box116
+\@floatcapt=\box117
+Package floatrow Info: Modified float package code loaded on input line 455.
+Package floatrow Info: Modified rotfloat package code loaded on input line 473.
+
+\FR@everyfloat=\toks39
+\flrow@foot=\insert252
+\FB@wd=\dimen299
+\FBo@wd=\dimen300
+\FBc@wd=\dimen301
+\FBo@ht=\skip98
+\FBc@ht=\skip99
+\FBf@ht=\skip100
+\FBo@max=\skip101
+\FBc@max=\skip102
+\FBf@max=\skip103
+\c@FBl@b=\count337
+\floatbox@depth=\count338
+\c@FRobj=\count339
+\c@FRsobj=\count340
+\Xhsize=\skip104
+\sXhsize=\skip105
+\Zhsize=\skip106
+\sZhsize=\skip107
+\flrow@rowbox=\box118
+\FR@Zunitlength=\dimen302
+\c@FBcnt=\count341
+\FPOScnt=\count342
+\LTleft=\skip108
+\LTright=\skip109
+\LTleft=\skip110
+\LTright=\skip111
+\flrow@types=\toks40
+)
+\kaomarginskipabove=\skip112
+\kaomarginskipbelow=\skip113
+\@sidenotes@marginlistingbox=\box119
+\mycap=\box120
+\scr@dte@lstlisting@maxnumwidth=\skip114
+\scr@dte@chapter@maxnumwidth=\skip115
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoc/etoc.sty
+Package: etoc 2020/05/15 v1.09c Completely customisable TOCs (JFB)
+\Etoc@toctoks=\toks41
+\c@etoc@tocid=\count343
+\c@etoc@tocdepth=\count344
+\etoc@framed@titlebox=\box121
+\etoc@framed@contentsbox=\box122
+)
+\c@margintocdepth=\count345
+\mtocshift=\skip116
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks42
+\inpenc@posthook=\toks43
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks44
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/newpxtext.sty
+Package: newpxtext 2021/03/22 v1.415
+
+`newpxtext' v1.415, 2021/03/22 Text macros taking advantage of TeXGyre Pagella 
+and its extensions (msharpe)
+(/usr/share/texlive/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+Package: fontaxes 2020/07/21 v1.0e Font selection axes
+LaTeX Info: Redefining \upshape on input line 29.
+LaTeX Info: Redefining \itshape on input line 31.
+LaTeX Info: Redefining \slshape on input line 33.
+LaTeX Info: Redefining \swshape on input line 35.
+LaTeX Info: Redefining \scshape on input line 37.
+LaTeX Info: Redefining \sscshape on input line 39.
+LaTeX Info: Redefining \ulcshape on input line 41.
+LaTeX Info: Redefining \textsw on input line 47.
+LaTeX Info: Redefining \textssc on input line 48.
+LaTeX Info: Redefining \textulc on input line 49.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+zpltlf on input line
+ 112.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/t1zpltlf.fd
+File: t1zpltlf.fd 2015/01/17 v1.0 font definition file for T1/zpl/tlf
+)
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 10.6215pt on input line 112.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+))
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/newpxmath.sty
+Package: newpxmath 2021/03/22 v1.415
+
+`newpxmath' v1.415, 2021/03/22 Math macros based on pxfonts (msharpe)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip117
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks45
+\ex@=\dimen303
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen304
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count346
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count347
+\leftroot@=\count348
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count349
+\DOTSCASE@=\count350
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box123
+\strutbox@=\box124
+\big@size=\dimen305
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count351
+\c@MaxMatrixCols=\count352
+\dotsspace@=\muskip17
+\c@parentequation=\count353
+\dspbrk@lvl=\count354
+\tag@help=\toks46
+\row@=\count355
+\column@=\count356
+\maxfields@=\count357
+\andhelp@=\toks47
+\eqnshift@=\dimen306
+\alignsep@=\dimen307
+\tagshift@=\dimen308
+\tagwidth@=\dimen309
+\totwidth@=\dimen310
+\lineht@=\dimen311
+\@envbody=\toks48
+\multlinegap=\skip118
+\multlinetaggap=\skip119
+\mathdisplay@stack=\toks49
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kastrup/binhex.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/centernot.sty
+Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
+)
+\px@tA=\toks50
+\px@tB=\toks51
+\px@su=\read3
+\px@Isdigit=\count358
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 197.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/zpltlf/m/n on input line 197.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/zpltlf/m/n on input line 197.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/zpltlf/m/n --> OT1/zpltlf/b/n on input line 198.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 201.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> T1/qhv/m/n on input line 201.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> T1/qhv/m/n on input line 201.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 202.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/zpltlf/m/it on input line 202.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/zpltlf/m/it on input line 202.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 203.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> T1/npxtt/m/n on input line 203.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> T1/npxtt/m/n on input line 203.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 205.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/zpltlf/b/n on input line 205.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/zpltlf/b/n on input line 205.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/zpltlf/m/it --> OT1/zpltlf/b/it on input line 206.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  T1/qhv/m/n --> T1/qhv/b/n on input line 208.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  T1/npxtt/m/n --> T1/npxtt/b/n on input line 209.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 220.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/npxmi/m/it on input line 220.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/npxmi/m/it on input line 220.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/npxmi/m/it --> OML/npxmi/b/it on input line 221.
+\symlettersA=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
+(Font)                  U/npxmia/m/it --> U/npxmia/b/it on input line 239.
+LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 241.
+Now handling font encoding LMS ...
+... no UTF-8 mapping file for font encoding LMS
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 249.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 249.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> LMS/npxsy/m/n on input line 249.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 249.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> LMS/npxsy/m/n on input line 249.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  LMS/npxsy/m/n --> LMS/npxsy/b/n on input line 250.
+\symAMSm=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `AMSm' in version `bold'
+(Font)                  U/npxsym/m/n --> U/npxsym/b/n on input line 268.
+\symsymbolsC=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
+(Font)                  U/npxsyc/m/n --> U/npxsyc/b/n on input line 290.
+Now handling font encoding LMX ...
+... no UTF-8 mapping file for font encoding LMX
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 310.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 3
+10.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> LMX/npxexx/m/n on input line 310.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 310
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> LMX/npxexx/m/n on input line 310.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  LMX/npxexx/m/n --> LMX/npxexx/b/n on input line 311.
+\symlargesymbolsPXA=\mathgroup9
+LaTeX Font Info:    Overwriting symbol font `largesymbolsPXA' in version `bold'
+
+(Font)                  U/npxexa/m/n --> U/npxexa/b/n on input line 318.
+\px@cntz=\count359
+\px@IsAlNum=\count360
+\px@sbptoks=\toks52
+LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 473.
+LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 474.
+LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 475.
+LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 476.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 477.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 478.
+LaTeX Font Info:    Redeclaring math delimiter \langle on input line 479.
+LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 481.
+LaTeX Font Info:    Redeclaring math delimiter \arrowvert on input line 485.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 486.
+LaTeX Font Info:    Redeclaring math symbol \parallel on input line 487.
+LaTeX Font Info:    Redeclaring math delimiter \Arrowvert on input line 488.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 528.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 529.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 530.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 531.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 532.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 533.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 534.
+LaTeX Font Info:    Redeclaring math accent \check on input line 535.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 539.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 540.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 1582.
+LaTeX Info: Redefining \Bbbk on input line 2159.
+LaTeX Info: Redefining \not on input line 2441.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/bera/beramono.sty
+Package: beramono 2004/01/31 (WaS)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mathalpha/mathalfa.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathalpha/mathalpha.sty
+Package: mathalpha 2019/10/05 - 1.13mathalpha (License LPPL) Michael Sharpe
+
+`mathalpha' v1.13, 2019/10/05, a renaming of mathalfa (msharpe)
+LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 297.
+LaTeX Font Info:    Overwriting math alphabet `\mathcal' in version `bold'
+(Font)                  U/BOONDOX-calo/m/n --> U/BOONDOX-calo/b/n on input line
+ 298.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/morewrites/morewrites.sty
+(/usr/share/texlive/texmf-dist/tex/latex/morewrites/primargs.sty
+Package: primargs 2018/12/29 Parsing arguments of primitives
+)
+Package: morewrites 2018/12/29 Always room for a new write
+\g__morewrites_later_int=\count361
+\l__morewrites_user_int=\count362
+\g__morewrites_iow=\write4
+\g__morewrites_ior=\read4
+\g__morewrites_group_level_int=\count363
+\g__morewrites_shipout_box=\box125
+\l__morewrites_collect_next_int=\count364
+\g__morewrites_alloc_write_int=\count365
+)
+(/usr/share/texlive/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
+\BKM@id=\count366
+))
+Package hyperref Info: Option `unicode' set `true' on input line 1118.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 1118.
+Package hyperref Info: Option `breaklinks' set `true' on input line 1118.
+Package hyperref Info: Option `colorlinks' set `true' on input line 1118.
+
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip120
+\enit@outerparindent=\dimen312
+\enit@toks=\toks53
+\enit@inbox=\box126
+\enit@count@id=\count367
+\enitdp@description=\count368
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
+Package: mdframed 2013/07/01 1.9b: mdframed
+
+(/usr/share/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
+Package: zref-abspage 2020-07-03 v2.32 Module abspage for zref (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/zref/zref-base.sty
+Package: zref-base 2020-07-03 v2.32 Module base for zref (HO)
+Package zref Info: New property list: main on input line 764.
+Package zref Info: New property: default on input line 765.
+Package zref Info: New property: page on input line 766.
+)
+\c@abspage=\count369
+Package zref Info: New property: abspage on input line 66.
+)
+\mdf@templength=\skip121
+\c@mdf@globalstyle@cnt=\count370
+\mdf@skipabove@length=\skip122
+\mdf@skipbelow@length=\skip123
+\mdf@leftmargin@length=\skip124
+\mdf@rightmargin@length=\skip125
+\mdf@innerleftmargin@length=\skip126
+\mdf@innerrightmargin@length=\skip127
+\mdf@innertopmargin@length=\skip128
+\mdf@innerbottommargin@length=\skip129
+\mdf@splittopskip@length=\skip130
+\mdf@splitbottomskip@length=\skip131
+\mdf@outermargin@length=\skip132
+\mdf@innermargin@length=\skip133
+\mdf@linewidth@length=\skip134
+\mdf@innerlinewidth@length=\skip135
+\mdf@middlelinewidth@length=\skip136
+\mdf@outerlinewidth@length=\skip137
+\mdf@roundcorner@length=\skip138
+\mdf@footenotedistance@length=\skip139
+\mdf@userdefinedwidth@length=\skip140
+\mdf@needspace@length=\skip141
+\mdf@frametitleaboveskip@length=\skip142
+\mdf@frametitlebelowskip@length=\skip143
+\mdf@frametitlerulewidth@length=\skip144
+\mdf@frametitleleftmargin@length=\skip145
+\mdf@frametitlerightmargin@length=\skip146
+\mdf@shadowsize@length=\skip147
+\mdf@extratopheight@length=\skip148
+\mdf@subtitleabovelinewidth@length=\skip149
+\mdf@subtitlebelowlinewidth@length=\skip150
+\mdf@subtitleaboveskip@length=\skip151
+\mdf@subtitlebelowskip@length=\skip152
+\mdf@subtitleinneraboveskip@length=\skip153
+\mdf@subtitleinnerbelowskip@length=\skip154
+\mdf@subsubtitleabovelinewidth@length=\skip155
+\mdf@subsubtitlebelowlinewidth@length=\skip156
+\mdf@subsubtitleaboveskip@length=\skip157
+\mdf@subsubtitlebelowskip@length=\skip158
+\mdf@subsubtitleinneraboveskip@length=\skip159
+\mdf@subsubtitleinnerbelowskip@length=\skip160
+
+(/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-1.mdf
+File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
+)
+\mdf@frametitlebox=\box127
+\mdf@footnotebox=\box128
+\mdf@splitbox@one=\box129
+\mdf@splitbox@two=\box130
+\mdf@splitbox@save=\box131
+\mdfsplitboxwidth=\skip161
+\mdfsplitboxtotalwidth=\skip162
+\mdfsplitboxheight=\skip163
+\mdfsplitboxdepth=\skip164
+\mdfsplitboxtotalheight=\skip165
+\mdfframetitleboxwidth=\skip166
+\mdfframetitleboxtotalwidth=\skip167
+\mdfframetitleboxheight=\skip168
+\mdfframetitleboxdepth=\skip169
+\mdfframetitleboxtotalheight=\skip170
+\mdffootnoteboxwidth=\skip171
+\mdffootnoteboxtotalwidth=\skip172
+\mdffootnoteboxheight=\skip173
+\mdffootnoteboxdepth=\skip174
+\mdffootnoteboxtotalheight=\skip175
+\mdftotallinewidth=\skip176
+\mdfboundingboxwidth=\skip177
+\mdfboundingboxtotalwidth=\skip178
+\mdfboundingboxheight=\skip179
+\mdfboundingboxdepth=\skip180
+\mdfboundingboxtotalheight=\skip181
+\mdf@freevspace@length=\skip182
+\mdf@horizontalwidthofbox@length=\skip183
+\mdf@verticalmarginwhole@length=\skip184
+\mdf@horizontalspaceofbox=\skip185
+\mdfsubtitleheight=\skip186
+\mdfsubsubtitleheight=\skip187
+\c@mdfcountframes=\count371
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+\mdf@envdepth=\count372
+\c@mdf@env@i=\count373
+\c@mdf@env@ii=\count374
+\c@mdf@zref@counter=\count375
+Package zref Info: New property: mdf@pagevalue on input line 895.
+)
+\c@kaocounter=\count376
+Package tocbasic Info: babel extension for `loi' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 1278.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2021/03/06 v0.5t Insert pages of external PDF documents (AM)
+
+(/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen313
+\ESO@tempdimb=\dimen314
+)
+\AM@pagewidth=\dimen315
+\AM@pageheight=\dimen316
+\AM@fboxrule=\dimen317
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2021/03/06 v0.5t Pdfpages driver for pdfTeX (AM)
+)
+\pdfpages@includegraphics@status=\count377
+\AM@pagebox=\box132
+\AM@global@opts=\toks54
+\AM@pagecnt=\count378
+\AM@toc@title=\toks55
+\c@AM@survey=\count379
+\AM@templatesizebox=\box133
+)
+(/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.sty
+Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
+
+(/usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+Package: import 2020/04/01  v 6.2
+))
+(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+Package: todonotes 2021/04/26 v1.1.4 Todonotes source and documentation.
+Package: todonotes 2018/11/22
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+\c@@todonotes@numberoftodonotes=\count380
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count381
+\algocf@hangindent=\skip188
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip189
+\skiplinenumber=\skip190
+\skiprule=\skip191
+\skiphlne=\skip192
+\skiptext=\skip193
+\skiplength=\skip194
+\algomargin=\skip195
+\skipalgocfslide=\skip196
+\algowidth=\dimen318
+\inoutsize=\dimen319
+\inoutindent=\dimen320
+\interspacetitleruled=\dimen321
+\interspacealgoruled=\dimen322
+\interspacetitleboxruled=\dimen323
+\algocf@ruledwidth=\skip197
+\algocf@inoutbox=\box134
+\algocf@inputbox=\box135
+\AlCapSkip=\skip198
+\AlCapHSkip=\skip199
+\algoskipindent=\skip256
+\algocf@nlbox=\box136
+\algocf@hangingbox=\box137
+\algocf@untilbox=\box138
+\algocf@skipuntil=\skip257
+\algocf@capbox=\box139
+\algocf@lcaptionbox=\skip258
+\algoheightruledefault=\skip259
+\algoheightrule=\skip260
+\algotitleheightruledefault=\skip261
+\algotitleheightrule=\skip262
+\c@algocfline=\count382
+\c@algocfproc=\count383
+\c@algocf=\count384
+\algocf@algoframe=\box140
+\algocf@algobox=\box141
+)
+(/usr/share/texlive/texmf-dist/tex/latex/ccicons/ccicons.sty
+Package: ccicons 2017/10/30 v1.6 LaTeX support for Creative Commons icons
+)
+(/usr/share/texlive/texmf-dist/tex/latex/metalogo/metalogo.sty
+Package: metalogo 2010/05/29 v0.12 Extended TeX logo macros
+\xl@everylogo=\toks56
+\xl@@everylogo=\toks57
+LaTeX Info: Redefining \TeX on input line 193.
+LaTeX Info: Redefining \LaTeX on input line 202.
+LaTeX Info: Redefining \LaTeXe on input line 219.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+Package: glossaries 2020/03/19 v4.46 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
+Package: mfirstuc 2017/11/14 v2.06 (NLCT)
+\@glsmfirst=\toks58
+\@glsmrest=\toks59
+)
+(/usr/share/texlive/texmf-dist/tex/latex/textcase/textcase.sty
+Package: textcase 2019/09/14 v1.00 Text only upper/lower case changing (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xfor/xfor.sty
+Package: xfor 2009/02/05 v1.05 (NLCT)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/datatool/datatool-base.sty
+Package: datatool-base 2019/09/27 v2.32 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/substr/substr.sty
+Package: substr 2009/10/20 v1.2 Handle substrings
+\c@su@anzahl=\count385
+)
+(/usr/share/texlive/texmf-dist/tex/latex/datatool/datatool-fp.sty
+Package: datatool-fp 2019/09/27 v2.32 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp.sty
+Package: fp 1995/04/02
+
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(/usr/share/texlive/texmf-dist/tex/latex/fp/defpattern.sty
+Package: defpattern 1994/10/12
+\actioncount=\count386
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-basic.sty
+Package: fp-basic 1996/05/13
+\FP@xs=\count387
+\FP@xia=\count388
+\FP@xib=\count389
+\FP@xfa=\count390
+\FP@xfb=\count391
+\FP@rega=\count392
+\FP@regb=\count393
+\FP@regs=\count394
+\FP@times=\count395
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-addons.sty
+Package: fp-addons 1995/03/15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-snap.sty
+Package: fp-snap 1995/04/05
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-exp.sty
+Package: fp-exp 1995/04/03
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-trigo.sty
+Package: fp-trigo 1995/04/14
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-pas.sty
+Package: fp-pas 1994/08/29
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-random.sty
+Package: fp-random 1995/02/23
+\FPseed=\count396
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eqn.sty
+Package: fp-eqn 1995/04/03
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-upn.sty
+Package: fp-upn 1996/10/21
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eval.sty
+Package: fp-eval 1995/04/03
+)))
+\@dtl@toks=\toks60
+\@dtl@tmpcount=\count397
+\dtl@tmplength=\skip263
+\dtl@sortresult=\count398
+\@dtl@numgrpsepcount=\count399
+\@dtl@datatype=\count400
+\dtl@codeA=\count401
+\dtl@codeB=\count402
+\@dtl@foreach@level=\count403
+)
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/base/glossaries-compatible-
+307.sty
+Package: glossaries-compatible-307 2020/03/19 v4.46 (NLCT)
+)
+\gls@level=\count404
+\@gls@tmpb=\toks61
+\gls@tmplen=\skip264
+\glskeylisttok=\toks62
+\glslabeltok=\toks63
+\glsshorttok=\toks64
+\glslongtok=\toks65
+
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.st
+y
+Package: glossary-hypernav 2020/03/19 v4.46 (NLCT)
+) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
+Package: glossary-list 2020/03/19 v4.46 (NLCT)
+\glslistdottedwidth=\skip265
+) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
+Package: glossary-long 2020/03/19 v4.46 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip266
+\LTright=\skip267
+\LTpre=\skip268
+\LTpost=\skip269
+\LTchunksize=\count405
+\LTcapwidth=\dimen324
+\LT@head=\box142
+\LT@firsthead=\box143
+\LT@foot=\box144
+\LT@lastfoot=\box145
+\LT@cols=\count406
+\LT@rows=\count407
+\c@LT@tables=\count408
+\c@LT@chunks=\count409
+\LT@p@ftn=\toks66
+)
+Class scrartcl Info: longtable captions redefined on input line 43.
+\glsdescwidth=\skip270
+\glspagelistwidth=\skip271
+)
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
+Package: glossary-super 2020/03/19 v4.46 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/supertabular/supertabular.sty
+Package: supertabular 2020/02/02 v4.1g the supertabular environment
+\c@tracingst=\count410
+\ST@wd=\dimen325
+\ST@rightskip=\skip272
+\ST@leftskip=\skip273
+\ST@parfillskip=\skip274
+\ST@pageleft=\dimen326
+\ST@headht=\dimen327
+\ST@tailht=\dimen328
+\ST@pagesofar=\dimen329
+\ST@pboxht=\dimen330
+\ST@lineht=\dimen331
+\ST@prevht=\dimen332
+\ST@toadd=\dimen333
+\ST@dimen=\dimen334
+\ST@pbox=\box146
+))
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
+Package: glossary-tree 2020/03/19 v4.46 (NLCT)
+\glstreeindent=\skip275
+))
+(/usr/share/texlive/texmf-dist/tex/latex/nomencl/nomencl.sty
+Package: nomencl 2020/12/29 v5.5 Nomenclature package
+Package tocbasic Info: babel extension for `nlo' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 187.
+Package tocbasic Info: babel extension for `nls' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 188.
+\nomlabelwidth=\dimen335
+\nom@tempdim=\dimen336
+\nomitemsep=\skip276
+))
+(/usr/share/texlive/texmf-dist/tex/latex/abstract/abstract.sty
+Package: abstract 2009/06/08 v1.2a configurable abstracts
+\abstitleskip=\skip277
+\absleftindent=\skip278
+\absrightindent=\skip279
+\absparindent=\skip280
+\absparsep=\skip281
+))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/04/26 3.58 The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2021/04/26 3.58 Babel common definitions
+\babel@savecnt=\count411
+\U@D=\dimen337
+\l@unhyphenated=\language86
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read5
+)
+\bbl@dirlevel=\count412
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language26). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language26). Reported on input line 108.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2021-02-22 v5.2l context-sensitive quotations (JAW)
+\csq@reset=\count413
+\csq@gtype=\count414
+\csq@glevel=\count415
+\csq@qlevel=\count416
+\csq@maxlvl=\count417
+\csq@tshold=\count418
+\csq@ltx@everypar=\toks67
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2021-02-22 v5.2l csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+)
+Package csquotes Info: Redefining alias 'english' -> 'english/british'.
+)
+(/home/hannah/texmf/tex/latex/custom/algebra.sty
+Package: algebra 2021/09/08 Some operators for algebra
+)
+(/home/hannah/texmf/tex/latex/custom/fonts.sty
+Package: fonts 2022/04/11 Shorthand for mathematical fonts
+
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup10
+LaTeX Font Info:    Redeclaring math alphabet \mathscr on input line 9.
+))
+(/home/hannah/texmf/tex/latex/custom/topology.sty
+Package: topology 2021/09/08 Some operators for topology
+)
+(/home/hannah/texmf/tex/latex/kaobook/kaotheorems.sty
+Package: kaotheorems 
+
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks68
+\thm@bodyfont=\toks69
+\thm@headfont=\toks70
+\thm@notefont=\toks71
+\thm@headpunct=\toks72
+\thm@preskip=\skip282
+\thm@postskip=\skip283
+\thm@headsep=\skip284
+\dth@everypar=\toks73
+LaTeX Info: Redefining \textsquare on input line 427.
+)
+Class scrartcl Info: amsthm's \deferred@thm@head patched.
+
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/thmtools.sty
+Package: thmtools 2020/08/01 v0.72
+\thmt@toks=\toks74
+\c@thmt@dummyctr=\count419
+
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/thm-patch.sty
+Package: thm-patch 2020/08/01 v0.72
+
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/parseargs.sty
+Package: parseargs 2020/08/01 v0.72
+\@parsespec=\toks75
+))
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/thm-kv.sty
+Package: thm-kv 2020/08/01 v0.72
+Package thm-kv Info: Theorem names will be uppercased on input line 42.
+Package thm-kv Info: kvsetkeys patch (v1.16 or later) on input line 158.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/thm-autoref.sty
+Package: thm-autoref 2020/08/01 v0.72
+
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/aliasctr.sty
+Package: aliasctr 2020/08/01 v0.72
+))
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/thm-listof.sty
+Package: thm-listof 2020/08/01 v0.72
+)
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/thm-restate.sty
+Package: thm-restate 2020/08/01 v0.72
+)
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/thm-amsthm.sty
+Package: thm-amsthm 2020/08/01 v0.72
+\thmt@style@headstyle=\toks76
+))
+\c@theorem=\count420
+\c@definition=\count421
+\c@remark=\count422
+\c@example=\count423
+Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line
+ 406.
+
+(/usr/share/texlive/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
+Package: thmdef-mdframed 2020/08/01 v0.72
+)
+\c@exercise=\count424
+)
+(/home/hannah/texmf/tex/latex/kaobook/kaobiblio.sty
+Package: kaobiblio 
+
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/perpage.sty
+Package: perpage 2014/10/25 2.0 Reset/sort counters per page
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/iflang.sty
+Package: iflang 2018/01/21 v1.7 Checks for the current language (HO)
+Package iflang Info: Naming convention for patterns: babel.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2022/02/02 v3.17 programmable bibliographies (PK/MW)
+
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count425
+
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+\c@tabx@nest=\count426
+\c@listtotal=\count427
+\c@listcount=\count428
+\c@liststart=\count429
+\c@liststop=\count430
+\c@citecount=\count431
+\c@citetotal=\count432
+\c@multicitecount=\count433
+\c@multicitetotal=\count434
+\c@instcount=\count435
+\c@maxnames=\count436
+\c@minnames=\count437
+\c@maxitems=\count438
+\c@minitems=\count439
+\c@citecounter=\count440
+\c@maxcitecounter=\count441
+\c@savedcitecounter=\count442
+\c@uniquelist=\count443
+\c@uniquename=\count444
+\c@refsection=\count445
+\c@refsegment=\count446
+\c@maxextratitle=\count447
+\c@maxextratitleyear=\count448
+\c@maxextraname=\count449
+\c@maxextradate=\count450
+\c@maxextraalpha=\count451
+\c@abbrvpenalty=\count452
+\c@highnamepenalty=\count453
+\c@lownamepenalty=\count454
+\c@maxparens=\count455
+\c@parenlevel=\count456
+\blx@tempcnta=\count457
+\blx@tempcntb=\count458
+\blx@tempcntc=\count459
+\c@blx@maxsection=\count460
+\c@blx@maxsegment@0=\count461
+\blx@notetype=\count462
+\blx@parenlevel@text=\count463
+\blx@parenlevel@foot=\count464
+\c@blx@sectionciteorder@0=\count465
+\blx@entrysetcounter=\count466
+\blx@biblioinstance=\count467
+\labelnumberwidth=\skip285
+\labelalphawidth=\skip286
+\biblabelsep=\skip287
+\bibitemsep=\skip288
+\bibnamesep=\skip289
+\bibinitsep=\skip290
+\bibparsep=\skip291
+\bibhang=\skip292
+\blx@bcfin=\read6
+\blx@bcfout=\write19
+\blx@langwohyphens=\language87
+\c@mincomprange=\count468
+\c@maxcomprange=\count469
+\c@mincompwidth=\count470
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2022/02/02 v3.17 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex citestyle data model...
+Package biblatex Info: ... file 'numeric-comp.dbx' not found.
+Package biblatex Info: Trying to load biblatex bibstyle data model...
+Package biblatex Info: ... file 'numeric.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count471
+\c@savedafterword=\count472
+\c@annotator=\count473
+\c@savedannotator=\count474
+\c@author=\count475
+\c@savedauthor=\count476
+\c@bookauthor=\count477
+\c@savedbookauthor=\count478
+\c@commentator=\count479
+\c@savedcommentator=\count480
+\c@editor=\count481
+\c@savededitor=\count482
+\c@editora=\count483
+\c@savededitora=\count484
+\c@editorb=\count485
+\c@savededitorb=\count486
+\c@editorc=\count487
+\c@savededitorc=\count488
+\c@foreword=\count489
+\c@savedforeword=\count490
+\c@holder=\count491
+\c@savedholder=\count492
+\c@introduction=\count493
+\c@savedintroduction=\count494
+\c@namea=\count495
+\c@savednamea=\count496
+\c@nameb=\count497
+\c@savednameb=\count498
+\c@namec=\count499
+\c@savednamec=\count500
+\c@translator=\count501
+\c@savedtranslator=\count502
+\c@shortauthor=\count503
+\c@savedshortauthor=\count504
+\c@shorteditor=\count505
+\c@savedshorteditor=\count506
+\c@labelname=\count507
+\c@savedlabelname=\count508
+\c@institution=\count509
+\c@savedinstitution=\count510
+\c@lista=\count511
+\c@savedlista=\count512
+\c@listb=\count513
+\c@savedlistb=\count514
+\c@listc=\count515
+\c@savedlistc=\count516
+\c@listd=\count517
+\c@savedlistd=\count518
+\c@liste=\count519
+\c@savedliste=\count520
+\c@listf=\count521
+\c@savedlistf=\count522
+\c@location=\count523
+\c@savedlocation=\count524
+\c@organization=\count525
+\c@savedorganization=\count526
+\c@origlocation=\count527
+\c@savedoriglocation=\count528
+\c@origpublisher=\count529
+\c@savedorigpublisher=\count530
+\c@publisher=\count531
+\c@savedpublisher=\count532
+\c@language=\count533
+\c@savedlanguage=\count534
+\c@origlanguage=\count535
+\c@savedoriglanguage=\count536
+\c@pageref=\count537
+\c@savedpageref=\count538
+\shorthandwidth=\skip293
+\shortjournalwidth=\skip294
+\shortserieswidth=\skip295
+\shorttitlewidth=\skip296
+\shortauthorwidth=\skip297
+\shorteditorwidth=\skip298
+\locallabelnumberwidth=\skip299
+\locallabelalphawidth=\skip300
+\localshorthandwidth=\skip301
+\localshortjournalwidth=\skip302
+\localshortserieswidth=\skip303
+\localshorttitlewidth=\skip304
+\localshortauthorwidth=\skip305
+\localshorteditorwidth=\skip306
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2022/02/02 v3.17 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2022/02/02 v3.17 biblatex compatibility (PK/MW)
+\c@textcitecount=\count539
+\c@textcitetotal=\count540
+\c@textcitemaxnames=\count541
+\c@biburlbigbreakpenalty=\count542
+\c@biburlbreakpenalty=\count543
+\c@biburlnumpenalty=\count544
+\c@biburlucpenalty=\count545
+\c@biburllcpenalty=\count546
+\biburlbigskip=\muskip18
+\biburlnumskip=\muskip19
+\biburlucskip=\muskip20
+\biburllcskip=\muskip21
+\c@smartand=\count547
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2022/02/02 v3.17 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2022/02/02 v3.17 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count548
+\c@bbx:relatedtotal=\count549
+))
+Package biblatex Info: Trying to load citation style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric-comp.cbx
+File: numeric-comp.cbx 2022/02/02 v3.17 biblatex citation style (PK/MW)
+\c@cbx@tempcnta=\count550
+\c@cbx@tempcntb=\count551
+\c@cbx@tempcntc=\count552
+\c@cbx@tempcntd=\count553
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Document encoding is UTF8 ....
+Package biblatex Info: ... and expl3
+(biblatex)             2021-05-07 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+Package: blx-case-expl3 2022/02/02 v3.17 expl3 case changing code for biblatex
+))
+Package biblatex Info: Redefining '\fullcite' on input line 412.
+)
+(/home/hannah/texmf/tex/latex/kaobook/kaorefs.sty
+Package: kaorefs 
+
+(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2370.
+LaTeX Info: Redefining \cref on input line 2370.
+LaTeX Info: Redefining \Cref on input line 2370.
+LaTeX Info: Redefining \crefrange on input line 2370.
+LaTeX Info: Redefining \Crefrange on input line 2370.
+LaTeX Info: Redefining \cpageref on input line 2370.
+LaTeX Info: Redefining \Cpageref on input line 2370.
+LaTeX Info: Redefining \cpagerefrange on input line 2370.
+LaTeX Info: Redefining \Cpagerefrange on input line 2370.
+LaTeX Info: Redefining \labelcref on input line 2370.
+LaTeX Info: Redefining \labelcpageref on input line 2370.
+Package cleveref Info: `varioref' support loaded on input line 2605.
+Package cleveref Info: `cleveref' supersedes `varioref's \labelformatcommand on
+ input line 2605.
+LaTeX Info: Redefining \vref on input line 2605.
+LaTeX Info: Redefining \Vref on input line 2605.
+LaTeX Info: Redefining \vrefrange on input line 2605.
+LaTeX Info: Redefining \fullref on input line 2605.
+Package cleveref Info: `amsthm' support loaded on input line 3026.
+Package cleveref Info: `listings' support loaded on input line 3131.
+Package cleveref Info: `algorithm2e' support loaded on input line 3147.
+Package cleveref Info: always capitalise cross-reference names on input line 78
+25.
+Package cleveref Info: include cross-reference names in hyperlinks on input lin
+e 7836.
+Package cleveref Info: always capitalise cross-reference names on input line 78
+52.
+Package cleveref Info: include cross-reference names in hyperlinks on input lin
+e 7852.
+Package cleveref Info: no abbreviation of names on input line 7852.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrhack.sty
+Package: scrhack 2021/03/17 v3.33 KOMA-Script package (hacking other packages)
+Package scrhack Info: hyperref hack deactivated because of
+(scrhack)             detection of hyperref version, that doesn't
+(scrhack)             need that hack, on input line 162.
+Package scrhack Info: loading float hack on input line 169.
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/float.hak
+File: float.hak 2021/03/17 v3.33 KOMA-Script scrhack part (hacking package floa
+t)
+
+
+Package scrhack Warning: unknown \newfloat definition found!
+(scrhack)                Maybe you are using a unsupported float version.
+
+)
+Package scrhack Info: loading floatrow hack on input line 176.
+ (/usr/share/texlive/texmf-dist/tex/latex/koma-script/floatrow.hak
+File: floatrow.hak 2021/03/17 v3.33 KOMA-Script scrhack part (hacking package f
+loatrow)
+Package scrhack Info: redefining \DeclareNewFloatType on input line 150.
+Package scrhack Info: redefining \listof on input line 150.
+Package scrhack Info: undefining \float@addtolists on input line 150.
+)
+Package scrhack Info: loading listings hack on input line 183.
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/listings.hak
+File: listings.hak 2021/03/17 v3.33 KOMA-Script scrhack part (hacking package l
+istings)
+Package tocbasic Info: setting babel extension for `lol' on input line 143.
+Package scrhack Info: redefining \lstlistoflistings on input line 143.
+)
+Package scrhack Info: loading nomencl hack on input line 190.
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/nomencl.hak
+File: nomencl.hak 2021/03/17 v3.33 KOMA-Script scrhack part (hacking package no
+mencl)
+Package scrhack Info: only `tocbasic' loaded for `nomencl' on input line 79.
+)
+Package scrhack Info: loading setspace hack on input line 197.
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/setspace.hak
+File: setspace.hak 2021/03/17 v3.33 KOMA-Script scrhack part (hacking package s
+etspace)
+))
+LaTeX Font Info:    Trying to load font information for T1+zpllf on input line 
+27.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/t1zpllf.fd
+File: t1zpllf.fd 2015/01/17 v1.0 font definition file for T1/zpl/lf
+)
+LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
+(Font)              scaled to size 10.6215pt on input line 27.
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'english'.
+ (./frontals.aux)
+\openout1 = `frontals.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/npxmi/m/it on input line 27.
+LaTeX Font Info:    Trying to load font information for OML+npxmi on input line
+ 27.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/omlnpxmi.fd
+File: omlnpxmi.fd 2013/03/21 Fontinst v1.933 font definitions for OML/npxmi.
+)
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/npxexa/m/n on input line 27.
+LaTeX Font Info:    Trying to load font information for U+npxexa on input line 
+27.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/unpxexa.fd
+File: unpxexa.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxexa.
+)
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for LMS/npxsy/m/n on input line 27.
+LaTeX Font Info:    Trying to load font information for LMS+npxsy on input line
+ 27.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/lmsnpxsy.fd
+File: lmsnpxsy.fd 2016/07/04 Fontinst v1.933 font definitions for LMS/npxsy.
+)
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for LMX/npxexx/m/n on input line 27.
+LaTeX Font Info:    Trying to load font information for LMX+npxexx on input lin
+e 27.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/lmxnpxexx.fd
+File: lmxnpxexx.fd 2016/07/04 Fontinst v1.933 font definitions for LMX/npxexx.
+)
+LaTeX Font Info:    ... okay on input line 27.
+Package scrbase Info: activating english \contentsname on input line 27.
+Package scrbase Info: activating english \listfigurename on input line 27.
+Package scrbase Info: activating english \listtablename on input line 27.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count554
+\scratchdimen=\dimen338
+\scratchbox=\box147
+\nofMPsegments=\count555
+\nofMParguments=\count556
+\everyMPshowfont=\toks77
+\MPscratchCnt=\count557
+\MPscratchDim=\dimen339
+\MPnumerator=\count558
+\makeMPintoPDFobject=\count559
+\everyMPtoPDFconversion=\toks78
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(89.62662pt, 418.25148pt, 89.62663pt)
+* v-part:(T,H,B)=(101.4061pt, 591.5271pt, 152.1092pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=418.25148pt
+* \textheight=591.5271pt
+* \oddsidemargin=17.35663pt
+* \evensidemargin=17.35663pt
+* \topmargin=-8.2639pt
+* \headheight=17.0pt
+* \headsep=31.29787pt
+* \topskip=11.0pt
+* \footskip=47.6pt
+* \marginparwidth=59.7508pt
+* \marginparsep=12.8401pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(70.56247pt, 304.44289pt, 222.49937pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=304.44289pt
+* \textheight=689.12218pt
+* \oddsidemargin=-1.70752pt
+* \evensidemargin=-1.70752pt
+* \topmargin=-42.60774pt
+* \headheight=17.0pt
+* \headsep=31.29787pt
+* \topskip=11.0pt
+* \footskip=47.6pt
+* \marginparwidth=135.71892pt
+* \marginparsep=17.6406pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 27.
+LaTeX Info: Redefining \microtypecontext on input line 27.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 27.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ppl.cfg
+File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: changepage package is loaded.
+\caption@adjustwidth@hsize=\dimen340
+\caption@adjustwidth@linewidth=\dimen341
+Package caption Info: float package is loaded.
+Package caption Info: floatrow package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
+)
+Package caption Info: Fixing longtable code of `floatrow' package.
+Package caption Info: rotating package is loaded.
+Package caption Info: supertabular package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\@sidenotes@extrawidth=\skip307
+Package hyperref Info: Link coloring ON on input line 27.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count560
+LaTeX Info: Redefining \Ref on input line 520.
+)
+LaTeX Info: Redefining \ref on input line 27.
+LaTeX Info: Redefining \pageref on input line 27.
+LaTeX Info: Redefining \nameref on input line 27.
+LaTeX Info: Redefining \Ref on input line 27.
+\c@lstlisting=\count561
+
+(/usr/share/texlive/texmf-dist/tex/latex/floatrow/fr-longtable.sty
+Package: fr-longtable 2007/11/28 v0.1b (beta) floatrow: additions for longtable
+
+\flrow@LT@lasthead=\box148
+\flrow@LT@prelastfoot=\box149
+\c@FBLTpage=\count562
+)
+\Etoc@tf=\read7
+\c@mv@tabular=\count563
+\c@mv@boldtabular=\count564
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package scrhack Info: loading lscape hack on input line 77.
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/lscape.hak
+File: lscape.hak 2021/03/17 v3.33 KOMA-Script scrhack part (hacking package lsc
+ape)
+Package scrhack Info: \landscape patched to make \textheight change optional on
+ input line 90.
+\scrh@LT@textheight=\skip308
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2022/02/02 v3.17 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout4 = `frontals.bcf'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'frontals.bbl' not found.
+
+No file frontals.bbl.
+Package biblatex Info: Reference section=0 on input line 27.
+Package biblatex Info: Reference segment=0 on input line 27.
+Package scrhack Info: undefining \float@addtolists on input line 27.
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 44
+.
+(/usr/share/texlive/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
+File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
+)
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 9.8778pt on input line 44.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `qhv' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
+(Font)              scaled to size 9.8778pt on input line 44.
+LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
+(Font)              scaled to size 10.6215pt on input line 44.
+LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
+(Font)              scaled to size 20.11783pt on input line 44.
+LaTeX Font Info:    Trying to load font information for T1+fvm on input line 44
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvm.fd
+File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
+)
+LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
+(Font)              scaled to size 17.62912pt on input line 44.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `fvm' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
+(Font)              scaled to size 13.968pt on input line 44.
+LaTeX Font Info:    Trying to load font information for OT1+zpltlf on input lin
+e 44.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/ot1zpltlf.fd
+File: ot1zpltlf.fd 2015/01/17 v1.0 font definition file for OT1/zpl/tlf
+)
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 13.968pt on input line 44.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 10.18501pt on input line 44.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 7.663pt on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+npxmia on input line 
+44.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/unpxmia.fd
+File: unpxmia.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxmia.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsym on input line 
+44.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/unpxsym.fd
+File: unpxsym.fd 2015/03/21 Fontinst v1.933 font definitions for U/npxsym.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsyc on input line 
+44.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newpx/unpxsyc.fd
+File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
+)
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 44
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 44.
+
+\tf@toc=\write20
+\openout4 = `frontals.toc'.
+
+LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
+(Font)              scaled to size 13.968pt on input line 46.
+LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
+(Font)              scaled to size 9.70001pt on input line 46.
+Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 46
+.
+Package marginnote Info: right page because not two side mode on input line 46.
+
+Package marginnote Info: xpos seems to be 70.56247pt on input line 46.
+LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
+(Font)              scaled to size 8.73001pt on input line 46.
+LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
+(Font)              scaled to size 9.70001pt on input line 47.
+LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
+(Font)              scaled to size 12.99pt on input line 60.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 10.6215pt on input line 61.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 7.76001pt on input line 61.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 5.917pt on input line 61.
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'Nuno_CuspsAndNodes' on page 1 undefined on input line 
+66.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'Nuno_CuspsAndNodes' on page 1 undefined on input line 
+66.
+
+LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
+(Font)              scaled to size 8.73001pt on input line 66.
+LaTeX Font Info:    Font shape `T1/zpllf/m/it' will be
+(Font)              scaled to size 10.6215pt on input line 67.
+Package biblatex Info: Redefining '\kaobiblio@sidecite' on input line 83.
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'MNO_FrontalDeformations' on page 1 undefined on input 
+line 83.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'MNO_FrontalDeformations' on page 1 undefined on input 
+line 83.
+
+LaTeX Font Info:    Font shape `T1/zpllf/m/sl' will be
+(Font)              scaled to size 10.6215pt on input line 87.
+\openout4 = `frontals.mw'.
+
+[1
+
+
+
+{/usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `UniClass[letter]': font file present but
+ not included, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pagd8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pagdo8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pagk8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pagko8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pbkd8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pbkdi8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pbkdo8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pbkl8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pbkli8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pbklo8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pcrb8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pcrbo8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pcrr8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pcrro8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pcrr8rn': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvb8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvb8yn' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvbo8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvbo8yn' already exists, duplicates ignor
+ed
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvr8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvr8yn' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvro8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvro8yn' already exists, duplicates ignor
+ed
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pncb8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pncbi8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pncbo8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pncr8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pncri8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pncro8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pplb8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pplbi8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pplbo8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pplbu8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pplr8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pplr8yn': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pplri8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pplro8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pplrr8ye': SlantFont/ExtendFont can be use
+d only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `pplru8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `ptmb8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `ptmbi8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `ptmbo8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `ptmr8y' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `ptmr8yn': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `ptmri8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `ptmro8y': SlantFont/ExtendFont can be used
+ only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `ptmrr8ye': SlantFont/ExtendFont can be use
+d only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpcxbsl': font file present but not incl
+uded, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpcxsl': font file present but not inclu
+ded, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpxbsl': font file present but not inclu
+ded, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpxpplb': font file present but not incl
+uded, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rpxpplb' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpxpplbi': font file present but not inc
+luded, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rpxpplbi' already exists, duplicates ignor
+ed
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpxpplbo': font file present but not inc
+luded, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rpxpplbo' already exists, duplicates ignor
+ed
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpxpplr': font file present but not incl
+uded, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rpxpplr' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpxpplri': font file present but not inc
+luded, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rpxpplri' already exists, duplicates ignor
+ed
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpxpplro': font file present but not inc
+luded, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rpxpplro' already exists, duplicates ignor
+ed
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): ambiguous entry for `rpxsl': font file present but not includ
+ed, will be treated as font file not present
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pzcmi8y' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pagd8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pagdo8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pagk8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pagko8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pbkd8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pbkdi8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pbkl8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pbkli8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pcrb8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pcrbo8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pcrr8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pcrro8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvb8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvbo8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvr8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `phvro8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pncb8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pncbi8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pncr8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pncri8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pplb8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pplbi8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pplr8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pplri8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `psyr' already exists, duplicates ignored
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `psyrgo' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `ptmb8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `ptmbi8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `ptmr8g' already exists, duplicates ignored
+
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `ptmri8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pzcmi8g' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `pzdr' already exists, duplicates ignored
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rtxphvb' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `rtxphvbo': SlantFont/ExtendFont can be use
+d only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rtxphvr' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `rtxphvro': SlantFont/ExtendFont can be use
+d only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rtxptmb' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rtxptmbi' already exists, duplicates ignor
+ed
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `rtxptmbo': SlantFont/ExtendFont can be use
+d only with embedded Type1 fonts
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rtxptmr' already exists, duplicates ignore
+d
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): fontmap entry for `rtxptmri' already exists, duplicates ignor
+ed
+
+
+pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map): invalid entry for `rtxptmro': SlantFont/ExtendFont can be use
+d only with embedded Type1 fonts
+}] (./frontals.mw)
+\openout4 = `frontals.mw'.
+
+LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
+(Font)              scaled to size 7.76001pt on input line 92.
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]\T1/zpllf/m/n/9 (+20) 1:
+ []
+
+
+Overfull \hbox (15.58842pt too wide) in paragraph at lines 92--92
+\T1/zpllf/m/n/9 (-20) https://stackoverflow.com/a/27986858 
+ []
+
+Package biblatex Info: Redefining '\kaobiblio@sidecite' on input line 103.
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'MNO_FrontalSurfaces' on page 2 undefined on input line
+ 103.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'MNO_FrontalSurfaces' on page 2 undefined on input line
+ 103.
+
+Package biblatex Info: Redefining '\kaobiblio@sidecite' on input line 106.
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'Ishikawa_Survey' on page 2 undefined on input line 106
+.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'Ishikawa_Survey' on page 2 undefined on input line 106
+.
+
+Package biblatex Info: Redefining '\kaobiblio@sidecite' on input line 109.
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'MMR_ZeroSchemes' on page 2 undefined on input line 109
+.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+
+LaTeX Warning: Citation 'MMR_ZeroSchemes' on page 2 undefined on input line 109
+.
+
+
+LaTeX Warning: Empty bibliography on input line 125.
+
+\openout4 = `frontals.mw'.
+
+[2] (./frontals.mw)
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+ (./frontals.aux
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.45pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                frontals
+(biblatex)                and rerun LaTeX afterwards.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.mw'.
+
+\openout4 = `frontals.bcf'.
+
+Package logreq Info: Writing requests to 'frontals.run.xml'.
+\openout1 = `frontals.run.xml'.
+
+\openout4 = `frontals.toc'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 54170 strings out of 478862
+ 1038421 string characters out of 5858944
+ 2246506 words of memory out of 6000000
+ 70695 multiletter control sequences out of 15000+600000
+ 486756 words of font info for 163 fonts, out of 8000000 for 9000
+ 1137 hyphenation exceptions out of 8191
+ 133i,18n,159p,10604b,2244s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-lf.enc}{/usr/shar
+e/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/texlive/
+texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/typ
+e1/public/newpx/NewPXMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/n
+ewpx/NewPXMI_gnu.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvm
+b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newpx/pxmiaX.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/newpx/pxsys.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/newtx/txmiaSTbb.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/newpx/zplb.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/newpx/zplr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newp
+x/zplri.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/boondox/zxxrw8a.p
+fb>
+Output written on frontals.pdf (2 pages, 106439 bytes).
+PDF statistics:
+ 142 PDF objects out of 1000 (max. 8388607)
+ 126 compressed objects within 2 object streams
+ 17 named destinations out of 1000 (max. 500000)
+ 34397 words of extra memory for PDF output out of 35830 (max. 10000000)
+
