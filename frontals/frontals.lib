@@ -8,12 +8,8 @@ LIBRARY: frontals.lib         Compute topological invariants of corank 1
 AUTHORS: C. Munoz-Cabello,    chmuca@alumni.uv.es
 
 PROCEDURES:
-    fcodim(f);             frontal codimension of a plane curve
-    fmilnor(f);            frontal Milnor number
-    gernotmal(f);          compute the normal line
+    frontalise(f);         compute the frontal reduction of an unfolding
     invariants(f);         compute stable frontal zero-schemes
-    IsFrontal(f);          check if input is frontal
-    qi(f);				   compute QI
     wfinvariants(g, y);    compute geometric invariants of the discriminant
 
 REFERENCES:
@@ -84,7 +80,7 @@ proc invariants(map f)
     list prenormalf = prenormal(f);
 
     // computations related to the double point scheme
-    int @S, @K, @W, @muC, @muD = DPSpace(prenormalf[2..4]);
+    int @S, @K, @W, @muC, @muD = dp_space(prenormalf[2..4]);
 
     // computations related to target triple point space
     // (export to use presmatrix)
@@ -124,42 +120,6 @@ proc invariants(map f)
     "// Frontal Milnor number:        @muf = " + string(@muf);
     "";
     "// Access these variables from global scope by typing their varnames!";
-}
-
-//-----------------------------------------------------------------------------
-proc IsFrontal(map f, list #)
-{
-    /* Arguments for `#`:
-    /* (no argument): throw an exception if the map is not frontal
-    /* r:             report whether the map is frontal                      */
-
-    ideal jf = minor(ideal(jacob(f)), nvars(basering));    // see [2]
-
-    if (nvars(preimage(f)) != nvars(basering) + 1)
-    { ERROR(nameof(f) + " not a parametric hypersurface"); }
-
-    if (#[1] == "r")
-    {
-        if (size(std(jf)) > 1) {return(0);}    // not frontal
-        return(1);                             // frontal
-    }
-
-    if (size(std(jf)) > 1) { ERROR("not a frontal map"); }
-}
-
-//-----------------------------------------------------------------------------
-proc Qi (map f)
-{
-    IsFrontal(f);
-
- 
-    for (i=1; i <= nvars(basering); i++)
-    {
-        if (var(i) != t)
-        { I = I, diff(f[2], var(i)) - diff(f[1], var(i)) * mu; }
-    }
-
-    return reduce(I,f);
 }
 
 //-----------------------------------------------------------------------------
@@ -216,18 +176,6 @@ static proc baseringlocal()
 }
 
 //-----------------------------------------------------------------------------
-static proc corank (map f)
-{
-    // Output: int (corank of f at 0)
-
-    matrix jf = jacob(ideal(f));
-
-    for (int i = 1; i <= nvars(basering); i++) { jf = subst(jf, var(i), 0); }
-
-    return (nvars(basering) - rank(jf));
-}
-
-//-----------------------------------------------------------------------------
 static proc checkvars(int n)
 {
     // Output: none
@@ -241,54 +189,7 @@ static proc checkvars(int n)
 }
 
 //-----------------------------------------------------------------------------
-static proc prenormal (map f)
-{
-   /* Given a corank 1 frontal f(x, y)=(x, p(x, y), q(x, y)), we shall say that
-   /* f is in prenormal form if diff(p, y) divides diff(q, y).
-   /* This procedure sets f to prenormal form.
-   /*
-   /* Output: ideal formed by p, q, y                                        */
-
-    IsFrontal(f, "w");
-    if (corank (f) != 1) { ERROR(nameof(f) + " does not have corank 1"); }
-
-    // the output will be given as `map @f = preimage(f), @X, p, q`
-        
-    intvec ypos = 1..nvars(basering);
-    intvec pqpos = 1..size(ideal(f));
-
-    /* If f has corank 1, size(ypos) will be reduced to 1 by the end of the
-    /* double loop, and size(pqpos) will be reduced to 2.                    */
-
-    for (int i = 1; i <= nvars(basering); i++)
-    {
-    	for (int j = 1; j <= size(ideal(f)); j++)
-    	{
-            if (var(i) == f[j])
-            {
-                /* this can be further optimised so ypos and pqpos reduce the
-                /* number of wasted iterations!                              */
-                
-                delete(ypos, i);
-                delete(pqpos, j);
-                
-                continue;          // exit the j-loop
-            }
-    	}
-    }
-
-    poly p, q = f [pqpos];
-    poly @y = ypos[1];
-
-    // diff(q, y) modulo diff(p, y)
-    poly QyModPy = reduce(vardeg(q, @y), vardeg(p, @y));
-
-  	if (QyModPy == 0) { return (p, q, @y); }
-   	else { return (q, p, @y); }
-}
-
-//-----------------------------------------------------------------------------
-static proc DPSpace(poly p, poly q, poly y)
+static proc dp_space(poly p, poly q, poly y)
 {
     // Output: intvec of size five
 
