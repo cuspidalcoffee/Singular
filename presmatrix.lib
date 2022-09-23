@@ -17,7 +17,7 @@ PROCEDURES:
 AUXILIARY PROCEDURES:
   Sols(nJ);          return solutions of linear system of parameters
   Row(rh,D,A,h);     compute rh^th line of the presentation matrix
-  PolyGen(d);        create polynomial with coefs = 1 and degree d
+  PolyCoefOne(d);        create polynomial with coefs = 1 and degree d
  ";
 
  LIB "matrix.lib";   // diag
@@ -183,7 +183,7 @@ static proc ???(ideal f, i)
  		    setring target;
  		    
  		    // define a polynomial of degree d with coefficients set to 1
- 			poly D, A = PolyGen(d, nvars(target));
+ 			poly D, A = PolyCoefOne(d, nvars(target));
 
  			// define an extended target ring with parameters
             int np = size(D) + (size(@generators) - 1) * size(A) - 1;
@@ -365,12 +365,15 @@ static proc Row(int rh,poly D,poly A, int h)
 }
 
 //-----------------------------------------------------------------------------
-static proc polygen(int d, n)
+static proc PolyCoefOne(int d, poly x)
 {
+	// Create a degree d poylnomial over the variable x
+	// and coefficients set to 1
+
     poly D = sparsepoly(0, d, 0, 1);
     poly PY;
 
-	for(int i = 1; i <= d; i++) { PY = PY + vars(n)^i; }
+	for(int i = 1; i <= d; i++) { PY = PY + x^i; }
 
     return (D, D - PY);
 }
