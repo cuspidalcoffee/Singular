@@ -1,0 +1,87 @@
+///////////////////////////////////////////////////////////////////////////////
+version="$Id: frontools.lib  2022-17-03 $";
+category="Algebraic geometry";
+info="
+LIBRARY: frontools.lib      Tools for working with frontal hypersurfaces
+                            
+
+AUTHORS: C. Munoz-Cabello,  chmuca@alumni.uv.es
+
+PROCEDURES:
+    frontal(f);       information about the frontal
+";
+
+REFERENCES:
+    [Ish] Ishikawa, G. (2020) Recognition problem of frontal singularities
+    [NB]  Nuno-Ballesteros, J.J. (2015) Unfolding plane curves with cusps and
+          nodes
+
+LIB "general.lib";      // product
+LIB "presmatrix.lib";   // presmatrix
+LIB "ring.lib";         // ord_test
+LIB "sing.lib";         // milnor
+
+//-----------------------------------------------------------------------------
+proc frontal(map f)
+{    
+    is_frontal(f);
+
+
+    
+}
+example
+{
+    "EXAMPLE";
+    echo = 2;
+
+    ring target = 0, (x, y, z), ds;
+    ring source = 0, (x, y), ds;
+    export(source, target);  // only needed for this example!
+
+    // 5_3 singularity from Marar and Tari (1995)
+    map f = target, x, 5y4 + 3xy2, 4y5 + 2xy3;
+    invariants(f);
+}
+
+//-----------------------------------------------------------------------------
+proc normal(map f)
+{
+    /* Generate a vector normal to jacob[f] using the Gram-Schmidt process.
+     * Gram-Schmidt is O[n2], as opposed to O[n!] for determinants.          */
+
+     
+}
+
+//-----------------------------------------------------------------------------
+static proc dot(vector u, v, list #)
+{
+    if (size(u) == size(v))
+    {
+    	if (size(u) == 1) { return(#[1] + u[1] * v[1]); }
+    	
+   	    return(dot(u[1..size(u) - 1],
+   	               v[1..size(v) - 1],
+   	               #[1] + u[size(u)]] * v[size(v)]));
+    }
+
+    ERROR("size of vectors does not match!");
+}
+
+//-----------------------------------------------------------------------------
+static proc is_frontal(map f)
+{
+	// Using criterion from [Ish]
+
+    if (nvars(preimage(f)) == nvars(basering) + 1)
+    {
+	    ideal jf = minor(jacob(ideal(f)),
+	                     nvars(basering)
+	                     );
+	                     
+	    if (size(std(jf)) > 1) { ERROR("not a frontal map"); }
+
+	    return(1);
+	}
+
+	ERROR(nameof(f) + "is not a hypersurface");
+}
