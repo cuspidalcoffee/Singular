@@ -115,14 +115,28 @@ example
 }
 
 //-----------------------------------------------------------------------------
-proc is_frontal(map f)
+proc is_frontal(map f, list #)
 {
-    // Using criterion from [Ish]
-    
-    ring src = basering;
-    ideal jf = minor(jacob(ideal(f)), nvars(src));
+    /* Arguments for `#`:
+     * - w: throw an exception if the map is not frontal
+     * - r: report whether the map is frontal (no exception)                 */
 
-    if (size(std(jf)) > 1) { ERROR("not a frontal map"); }
+     // Using criterion from [Ish]
+     ideal jf = minor(jacob(ideal(f)), nvars(basering));
+
+     if (size(#) == 0)
+     {
+           if (size(std(jf)) > 1) { "// map is not frontal!"; }
+           else { "// map is frontal!"; }
+     }
+
+     if (#[1] == "w" && size(std(jf)) > 1) { ERROR("not a frontal map"); }
+ 
+     if (#[1] == "r")
+     {
+          if (size(std(jf)) > 1) { return(0); }  // not frontal
+          else { return(1); }                    // frontal
+     }
 }
 
 //-----------------------------------------------------------------------------
