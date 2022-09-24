@@ -30,6 +30,34 @@ LIB "homolog.lib";		// fitting
 LIB "presmatrix.lib";   // presmatrix
 LIB "ring.lib";         // ord_test
 LIB "sing.lib";         // tjurina
+=======
+LIB "general.lib";       // product
+LIB "hnoether.lib";      // delta invariant
+LIB "presmatrix.lib";    // presmatrix
+LIB "ring.lib";          // ord_test
+LIB "sing.lib";          // milnor
+                         // tjurina
+
+//-----------------------------------------------------------------------------
+proc fcodim(poly f)
+{
+    baseringlocal();  // local ring required for mult
+
+    if nvars(basering) == 2
+    {
+		int tau = tjurina(f);
+		int delta = delta(f);
+
+		// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
+        int mult = mult(f);      // needs local ring!
+
+        // [GLS II.2.30(5)
+    	return tau - delta - mult + 1;
+    }
+
+    ERROR(nameof(f) + "not a plane curve");
+}
+>>>>>>> 2bac0c3 (new branch):Frontales/frontals.lib
 
 //-----------------------------------------------------------------------------
 proc fcodim(poly f)
