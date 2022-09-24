@@ -7,3 +7,4 @@ A collection of all my Singular libraries
 ## Goals
 - [ ] Create an interface to display results
 - [ ] Separate the frontal library into two libraries, one for maps of corank 1 and another one for general properties of proper frontals.
+- [ ] Write documentation.
