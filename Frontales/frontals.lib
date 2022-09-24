@@ -9,7 +9,7 @@ AUTHORS: C. Munoz-Cabello,  chmuca@alumni.uv.es
 
 PROCEDURES:
     invariants(f);       compute geometric frontal invariants
-    is_frontal(f);       check if input is frontal
+    prenormal(f);        compute prenormal form of f
     wfinvariants(g, z);  compute geometric invariants of the discriminant
 ";
 
@@ -115,14 +115,50 @@ example
 }
 
 //-----------------------------------------------------------------------------
-proc is_frontal(map f)
+static proc prenormal (map f)
 {
-    // Using criterion from [Ish]
-    
-    ring src = basering;
-    ideal jf = minor(jacob(ideal(f)), nvars(src));
+   /* Given a corank 1 frontal f(x, y)=(x, p(x, y), q(x, y)), we shall say that
+   /* f is in prenormal form if diff(p, y) divides diff(q, y).
+   /* This procedure sets f to prenormal form.
+   /*
+   /* Output: ideal formed by p, q, y                                        */
 
-    if (size(std(jf)) > 1) { ERROR("not a frontal map"); }
+    IsFrontal(f, "w");
+    if (corank (f) != 1) { ERROR(nameof(f) + " does not have corank 1"); }
+
+    // the output will be given as `map @f = preimage(f), @X, p, q`
+        
+    intvec ypos = 1..nvars(basering);
+    intvec pqpos = 1..size(ideal(f));
+
+    /* If f has corank 1, size(ypos) will be reduced to 1 by the end of the
+    /* double loop, and size(pqpos) will be reduced to 2.                    */
+
+    for (int i = 1; i <= nvars(basering); i++)
+    {
+    	for (int j = 1; j <= size(ideal(f)); j++)
+    	{
+            if (var(i) == f[j])
+            {
+                /* this can be further optimised so ypos and pqpos reduce the
+                /* number of wasted iterations!                              */
+                
+                delete(ypos, i);
+                delete(pqpos, j);
+                
+                continue;          // exit the j-loop
+            }
+    	}
+    }
+
+    poly p, q = f [pqpos];
+    poly @y = ypos[1];
+
+    // diff(q, y) modulo diff(p, y)
+    poly QyModPy = reduce(vardeg(q, @y), vardeg(p, @y));
+
+  	if (QyModPy == 0) { return (p, q, @y); }
+   	else { return (q, p, @y); }
 }
 
 //-----------------------------------------------------------------------------
