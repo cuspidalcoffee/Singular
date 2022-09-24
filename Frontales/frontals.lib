@@ -9,16 +9,17 @@ AUTHORS: C. Munoz-Cabello,  chmuca@alumni.uv.es
 
 PROCEDURES:
     invariants(f);       compute geometric frontal invariants
-    is_frontal(f);       check if input is frontal
+    qi(f);				 compute the Q algebra defined on [Ish05]
     wfinvariants(g, z);  compute geometric invariants of the discriminant
 ";
 
 REFERENCES:
-    [Ish] Ishikawa, G. (2020) Recognition problem of frontal singularities
-    [MMR] Marar, W.L., Montaldi, J.A. and Ruas, M.A.S. (1999) Multiplicities of
-        zero-schemes in quasihomogeneous corank-1 singularities
-    [NB]  Nuno-Ballesteros, J.J. (2015) Unfolding plane curves with cusps and
-        nodes
+    [Ish05] Ishikawa, G. (2005)
+    [Ish20] Ishikawa, G. (2020) Recognition problem of frontal singularities
+    [MMR]   Marar, W.L., Montaldi, J.A. and Ruas, M.A.S. (1999) Multiplicities of
+          zero-schemes in quasihomogeneous corank-1 singularities
+    [NB]    Nuno-Ballesteros, J.J. (2015) Unfolding plane curves with cusps and
+          nodes
 
 LIB "general.lib";      // product
 LIB "presmatrix.lib";   // presmatrix
@@ -115,14 +116,17 @@ example
 }
 
 //-----------------------------------------------------------------------------
-proc is_frontal(map f)
+proc Qi (map f)
 {
-    // Using criterion from [Ish]
-    
-    ring src = basering;
-    ideal jf = minor(jacob(ideal(f)), nvars(src));
+    IsFrontal(f);
+ 
+    for (i=1; i <= nvars(basering); i++)
+    {
+        if (var(i) != t)
+        { I = I, diff(f[2], var(i)) - diff(f[1], var(i)) * mu; }
+    }
 
-    if (size(std(jf)) > 1) { ERROR("not a frontal map"); }
+    return reduce(I,f);
 }
 
 //-----------------------------------------------------------------------------
