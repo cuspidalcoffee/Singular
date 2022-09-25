@@ -10,3 +10,4 @@ A collection of all my Singular libraries
 - [ ] Implement a program that computes the normal line.
 	- [ ] Implement Gram-Schmidt.
 	- [ ] Make it so we can compute whether the conditions for Mather-Gaffney are satisfied (in corank 1)
+- [ ] Write documentation.
