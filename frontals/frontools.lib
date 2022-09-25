@@ -14,14 +14,8 @@ REFERENCES:
     [Ish] Ishikawa, G. (2020) Recognition problem of frontal singularities
     [NB]  Nuno-Ballesteros, J.J. (2015) Unfolding plane curves with cusps and
         nodes
-
-LIB "frontools.lib";     // isfrontal
-LIB "general.lib";       // product
-LIB "hnoether.lib";      // delta
-LIB "presmatrix.lib";    // presmatrix
+        
 LIB "ring.lib";          // ord_test
-LIB "sing.lib";          // milnor
-                         // tjurina
 
 //-----------------------------------------------------------------------------
 proc isfrontal(list f)
