@@ -141,17 +141,6 @@ example
 }
 
 //-----------------------------------------------------------------------------
-proc is_frontal(map f)
-{
-    // Using criterion from [Ish]
-    
-    ring src = basering;
-    ideal jf = minor(jacob(ideal(f)), nvars(src));
-
-    if (size(std(jf)) > 1) { ERROR("not a frontal map"); }
-}
-
-//-----------------------------------------------------------------------------
 proc wfinvariants(poly g, poly z)
 "USAGE:   wfinvariants(g, z);  g, z=poly
 COMPUTE:  invariants in the discriminant of G(x, y, z)=(x, y, g(x, y, z)),
@@ -229,7 +218,7 @@ static proc c1fsurf (map f)
      * This procedure assumes f is given as above to find x, y, gcd(p_y, q_y)
      * and the codimension of S. */
 
-    is_frontal(f);
+    isfrontal(f);
     string source_name = nameof(basering);
     string target_name = nameof(preimage(f));
 
