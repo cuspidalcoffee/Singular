@@ -40,7 +40,7 @@ REMARK:   This version of fcodim is only beta. Please send bugs and
           Known to work on Singular version 4.2.0.
 EXAMPLE:  example fcodim; shows an example"
 {
-    baseringlocal();  // local ring required for mult
+    baseringlocal();  // local ring required for ord
 
     if (nvars(basering) != 2)
     {
@@ -50,6 +50,34 @@ EXAMPLE:  example fcodim; shows an example"
 	// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
     // [GLS], II.2.30(5)
    	return(tjurina(f) - delta(f) - mult(f) + 1);
+=======
+	if (typeof(f) == "ideal")
+	{
+	    string br_name = nameof(basering);
+		ring @target = char(basering), X[1..2], ds;
+	    
+        map @f = @target, f;
+	    ideal @I = 0;
+    	export(@target, @f, @I);     // we need this for presmatrix
+
+		presmatrix(@f, @I);
+	    setring RTPr;
+	    poly g = fitting(PM, 0)[1];
+	
+	    execute("setring " + string(br_name));
+		poly g = imap(RTPr, g);
+		return (fcodim(g));
+	}
+
+	if (typeof(f[1]) != "poly")
+	{
+		ERROR("please introduce either an ideal or a polynomial");
+	}
+    
+	// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
+    // [GLS], II.2.30(5)
+   	return(tjurina(f[1]) - delta(f[1]) - ord(f[1]) + 1);
+>>>>>>> b8b49e7 (tifo there is actually an ord function???)
 }
 example
 {
@@ -62,10 +90,7 @@ example
     poly f = x5 + y3;
     fcodim(f);
 }
-=======
 
-
->>>>>>> 5dd17ee (commitment)
 //-----------------------------------------------------------------------------
 proc invariants(map f)
 "USAGE:   invariants(f);  f = map
