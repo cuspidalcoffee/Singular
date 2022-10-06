@@ -8,14 +8,22 @@ AUTHORS: C. Munoz-Cabello,  chmuca@alumni.uv.es
 
 PROCEDURES:
     isfrontal(f);           check if input is a frontal
-";
 
 REFERENCES:
     [Ish] Ishikawa, G. (2020) Recognition problem of frontal singularities
     [NB]  Nuno-Ballesteros, J.J. (2015) Unfolding plane curves with cusps and
         nodes
+";
         
 LIB "ring.lib";          // ord_test
+
+//-----------------------------------------------------------------------------
+static proc baseringlocal()
+{
+    option(noredefine);  // hide messages such as "redefining"
+
+    if (ord_test(basering) != -1) { ERROR("no local order ring"); }
+}
 
 //-----------------------------------------------------------------------------
 proc isfrontal(list f)
