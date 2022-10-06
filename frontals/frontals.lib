@@ -230,14 +230,6 @@ example
 }
 
 //-----------------------------------------------------------------------------
-static proc baseringlocal()
-{
-    option(noredefine);  // hide messages such as "redefining"
-
-    if (ord_test(basering) != -1) { ERROR("no local order ring"); }
-}
-
-//-----------------------------------------------------------------------------
 static proc checkvars(int n)
 {
     option(noredefine);  // hide messages such as "redefining"
