@@ -36,11 +36,13 @@ EXAMPLE:  example isfrontal; shows an example"
 {
     baseringlocal();
     option(noredefine);
-  
-    ideal df = std(jacob(ideal(f)));
+
+    int minor_size = min(nvars(basering), nvars(preimage(f)));
+    matrix df = jacob(ideal(f));
+    ideal Jf = std(minor(df, minor_size));
 
     // the size of the zero ideal is 0
-    if (size(df) != 1) { ERROR (nameof(f) + "not frontal!"); }
+    if (size(Jf) != 1) { ERROR (nameof(f) + "not frontal!"); }
 }
 example
 {
