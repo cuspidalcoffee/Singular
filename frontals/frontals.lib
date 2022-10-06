@@ -8,16 +8,10 @@ LIBRARY: frontals.lib       Compute geometric invariants of a corank 1 frontal
 AUTHORS: C. Munoz-Cabello,  chmuca@alumni.uv.es
 
 PROCEDURES:
-<<<<<<< HEAD
     fcodim(f);           frontal codimension of a plane curve
     invariants(f);       geometric frontal invariants
     wfinvariants(g, z);  geometric invariants of the discriminant
 
-=======
-    invariants(f);       compute geometric frontal invariants
-    wfinvariants(g, z);  compute geometric invariants of the discriminant
-    
->>>>>>> 344fe89 (moved is_frontal to frontools)
 REFERENCES:
     [dJP] de Jong, T., Pfister, G. (2000) Local analytic geometry
     [GLS] Greuel, G.-M., Lossen, C., Shustin, E. (2007) Introduction to
@@ -38,41 +32,36 @@ LIB "ring.lib";         // ord_test
 LIB "sing.lib";         // tjurina
 
 //-----------------------------------------------------------------------------
-proc fcodim(list f)
+proc fcodim(poly f)
+"USAGE:   fcodim(f);  f = poly
+RETURN:   frontal codimension of a plane curve
+REMARK:   This version of fcodim is only beta. Please send bugs and
+          comments to: <https://github.com/cuspidalcoffee/Singular>
+          Known to work on Singular version 4.2.0.
+EXAMPLE:  example fcodim; shows an example"
 {
-    baseringlocal();  // local ring required for ord
+    baseringlocal();  // local ring required for mult
 
-	if (typeof(f) == "ideal")
-	{
-	    string br_name = nameof(basering);
-		ring @target = char(basering), X[1..2], ds;
-	    
-        map @f = @target, f;
-	    ideal @I = 0;
-    	export(@target, @f, @I);     // we need this for presmatrix
+    if (nvars(basering) != 2)
+    {
+    	ERROR("this procedure is only defined for plane curves!");
+    }
 
-		presmatrix(@f, @I);
-	    setring RTPr;
-	    poly g = fitting(PM, 0)[1];
-	
-	    execute("setring " + string(br_name));
-		poly g = imap(RTPr, g);
-		return (fcodim(g));
-	}
-
-	if (typeof(f[1]) != "poly")
-	{
-		ERROR("please introduce either an ideal or a polynomial");
-	}
-    
 	// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
     // [GLS], II.2.30(5)
-   	return(tjurina(f[1]) - delta(f[1]) - ord(f[1]) + 1);
+   	return(tjurina(f) - delta(f) - mult(f) + 1);
 }
+example
+{
+    "EXAMPLE";
+    echo = 2;
 
-//-----------------------------------------------------------------------------
-
-
+    ring source = 0, (x, y), ds;
+    
+    // E_8 singularity from Bruce and Gaffney (1982)
+    poly f = x5 + y3;
+    fcodim(f);
+}
 //-----------------------------------------------------------------------------
 proc invariants(map f)
 "USAGE:   invariants(f);  f = map
@@ -84,7 +73,7 @@ RETURN:   * number of swallowtails (@S), cusp-folds (@K), triple points (@T)
             along with their Milnor numbers
           * frontal Milnor number
 REMARK:   This version of invariants is only beta. Please send bugs and
-          comments to: <https://github.com/Nelynx/Seminario-SINGULAR>
+          comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
 NOTE:     objects with @ sign are exported to global scope
 EXAMPLE:  example invariants; shows an example"
@@ -167,7 +156,7 @@ RETURN:   number of swallowtails (@S), cusp-folds (@K) and triple points (@T)
           in the discriminant of G.
 REMARK:   * g must be weighted homogeneous
           * This version of wfinvariants is only beta. Please send bugs and
-          comments to: <https://github.com/Nelynx/Seminario-SINGULAR>
+          comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
 NOTE:     objects with @ sign are exported to global scope
 EXAMPLE:  example wfinvariants; shows an example"
