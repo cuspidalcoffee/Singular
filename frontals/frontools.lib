@@ -26,7 +26,7 @@ static proc baseringlocal()
 }
 
 //-----------------------------------------------------------------------------
-proc isfrontal(list f)
+proc isfrontal(map f)
 "USAGE:   isfrontal(f);  f = map
 COMPUTE:  whether f is frontal
 REMARK:   This version of isfrontal is only beta. Please send bugs and
