@@ -6,10 +6,11 @@ LIBRARY:  presmatrix.lib          Compute presentation matrix
 
 AUTHORS:  Marcelo Escudeiro Hernandes,     mehernandes@uem.br
           Aldicio Jose Miranda,            aldicio@famat.ufu.br
-          Guillermo Penafort-Sanchis,      guillermo.penafort@uv.es 
+          C. Munoz-Cabello,                chmuca@alumni.uv.es
+          Guillermo Penafort-Sanchis,      guillermo.penafort@uv.es
   
 PROCEDURES:
-  presmatrix(Pullf, ISource); compute presentation matrix
+  presmatrix(Pullf, ISource);   compute presentation matrix
  
 AUXILIARY PROCEDURES:
   Sols(nJ);          return solutions of linear system of parameters
@@ -57,46 +58,45 @@ proc presmatrix(map Pullf, ideal ISource)
         ERROR("The number of generators must be greater than zero. Verify input!");
     } 
 
-	matrix Gen[1][K];                           //matrix of generators
-
+	matrix Gen[1][K];
+	
  	for (int r = 1; r <= K; r++) { Gen[1, r] = KB[K - r + 1]; }
 	
-    ring RG= 0, G(1..K), ds;
+    ring RG = 0, G(1..K), ds;
     matrix M[K][K];
     matrix Pres = diag(Y, K);
-           
-
- execute("ideal IPf=fetch("+RSName+",IPullf)");     //mapping "Pullf" to RS
- execute("ideal I=fetch("+RSName+",ISource)");      //mapping "I" to RS
- 							
- map Pf=RT,IPf;					        //print("Pullf IN RT->RS:Pf="+string(Pf));//
- int done;					        //indicates row done
- for(int rh=1;rh<=h;rh++)
- 	{//for rh
-       		int d=1;  
-		done=0;
- 		while(done==0)
- 		{// while done
-                                                              //    print("ROW "+string( rh)+" WITH DEGREE "+ string( d));
+    							
+ 	map Pf = RT, IPullf;
+ 	int done;					        //indicates row done
+ 	
+	for(int r = 1; r <= K; r++)
+ 	{
+    	int d=1;  
+		done = 0;
+ 		while(!done)
+ 		{
  			setring RT;
- 			matrix  Pols=PolyGen(d);                             //see proc PolyGen below
- 			int     np=size(Pols[1,1])+(h-1)*size(Pols[1,2])-1;  //number of parameters
- 			poly    D=Pols[1,1];
- 			poly    A=Pols[1,2];
-			ring    RTP1=(0,a(1..np)),(X(1..n),Y),ds;           //target ring with parameters
-			poly    D=fetch(RT,D);
-			poly    A=fetch(RT,A);
-			list    ML=Row(rh,D,A,h);                           //see proc Row below
-			matrix  M=ML[1];
-			list    ParList=ML[2];
-			map     mM=RG,M;                                    //mM[i]=M[1,i], i=num.generators
-		        ring    RSP1=(0,a(1..np)),x(1..l),dp;               //source ring with the same parameters
-			ideal   IPf=fetch(RS,IPf);                          //copying IPf from Rs to RSP1
-	    		map     Pf=RTP1,IPf;     
-			ideal   I=fetch(RS,I);  I=std(I); 
-	        	execute("matrix Gen=fetch("+RSName+",Gen)");      
-		        //now all objects are in source ring RSP1.
-  						
+ 			matrix Pols = PolyGen(d);
+ 			int np = size(Pols[1, 1]) + (h - 1) * size(Pols[1, 2]) - 1;
+ 			poly D = Pols[1,1];
+ 			poly A = Pols[1,2];
+
+			// add parameters to source and target
+ 			
+			ring RTP1 = (0, a(1..np)), (X(1..n), Y), ds;
+			poly D = fetch(RT, D);
+			poly A = fetch(RT, A);
+			list ML = Row(rh, D, A, h);
+			matrix M = ML[1];
+			list ParList = ML[2];
+			map mM = RG, M;
+		    ring RSP1 = (0, a(1..np)), x(1..l), dp;
+			ideal IPf = fetch(RS, IPullf);
+			map Pf = RTP1, IPullf;
+			ideal I=std(fetch(RS,ISource)); 
+
+			Gen = fetch(RS, Gen);
+			
 			poly p=(Pf(mM)[1])*Gen[1,1];
     			for(int c=2;c<=h;c++)
 			{
@@ -202,16 +202,18 @@ proc Sols(ideal nJ)
 	     
 	
 //--------------------------------------------------------------------------------------------------
-
-proc Row(int rh,poly D,poly A, int h)// rh = rh line; D = diagonal polin; A= no diagonal polin.; h = order of present. matrix;
+static proc Row(int rh, poly D, poly A, int h)
+// rh = rh line; D = diagonal polin; A= no diagonal polin.; h = order of present. matrix;
 {
-  matrix M[1][h];
-  D=D-Y; 	 
-  int sD=size(D);
-  int sA=size(A); 
-  list ParList;
-  int c=1;
-     for(int j=1;j<rh;j++) //before(or left) the diagonal 
+	matrix M[1][h];
+ 	D = D - Y; 	 
+  	int sD = size(D);
+  	int sA = size(A); 
+  	list ParList;
+
+  	int c=1;
+
+    for(int j=1;j<rh;j++) //before(or left) the diagonal 
         {   
 	  for(int i=1;i<=sA;i++)
 	    {                
@@ -240,7 +242,8 @@ proc Row(int rh,poly D,poly A, int h)// rh = rh line; D = diagonal polin; A= no 
 	   }			
       }
   list L;
-  L[1]=M;L[2]=ParList;
+  L[1]=M;
+  L[2]=ParList;
   return(L);
 }
 
@@ -250,9 +253,11 @@ static proc PolyGen(int d)
 	poly D = sparsepoly(0, d, 0, 1);
     poly PY;
 
-	for(int i=1; i<=d; i++) { PY=PY+Y^i; }						 
-     poly A = D-PY;					
-     matrix Pols[1][2]=D,A;
-     return(Pols);
- }                                                                          
+	for (int i=1; i<=d; i++) { PY = PY + Y^i; }
+	
+    poly A = D - PY;					
+    matrix Pols[1][2] = D, A;
+
+    return(Pols);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
