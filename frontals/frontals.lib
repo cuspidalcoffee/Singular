@@ -50,12 +50,6 @@ EXAMPLE:  example invariants; shows an example"
      // obtain information about f
     list finfo = c1fsurf(f);
 
-     // check frontal mather gaffney criterion
-    if (finfo[5] == 1)
-    {
-        ERROR("singular set of the Nash lift is not isolated");
-    }
-
     int @S, @K, @W, @C, @D = dp_scheme(finfo[2..4]);
 
     // image triple point space
@@ -218,14 +212,12 @@ static proc c1fsurf (map f)
     if (reduce(f3y, f2y) == 0)
     {
         poly ly = diff(f3y / f2y, y);
-        ideal S = f2y, ly;
-        return(xy[1], f[2], f[3], xy[2], vdim(std(S)));
+        return(xy[1], f[2], f[3], xy[2]);
     }
     else
     {
         poly ly = diff(f2y / f3y, y);
-        ideal S = f3y, ly;
-        return(xy[1], f[3], f[2], xy[2], vdim(std(S)));
+        return(xy[1], f[3], f[2], xy[2]);
     }
 }
 
