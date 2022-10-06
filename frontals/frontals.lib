@@ -24,35 +24,45 @@ REFERENCES:
         nodes
 ";
 
-LIB "general.lib";       // product
-LIB "hnoether.lib";      // delta invariant
-LIB "presmatrix.lib";    // presmatrix
-LIB "ring.lib";          // ord_test
-LIB "sing.lib";          // milnor
-                         // tjurina
+LIB "general.lib";      // product
+LIB "hnoether.lib";     // delta invariant
+LIB "homolog.lib";		// fitting
+LIB "presmatrix.lib";   // presmatrix
+LIB "ring.lib";         // ord_test
+LIB "sing.lib";         // tjurina
 
 //-----------------------------------------------------------------------------
-proc fcodim(poly f)
+proc fcodim(list f)
 {
-    baseringlocal();  // local ring required for mult
+    baseringlocal();  // local ring required for ord
 
-    if nvars(basering) == 2
-    {
-		int tau = tjurina(f);
-		int delta = delta(f);
+	if (typeof(f) == "ideal")
+	{
+	    string br_name = nameof(basering);
+		ring @target = char(basering), X[1..2], ds;
+	    
+        map @f = @target, f;
+	    ideal @I = 0;
+    	export(@target, @f, @I);     // we need this for presmatrix
 
-		// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
-        int mult = mult(f);      // needs local ring!
+		presmatrix(@f, @I);
+	    setring RTPr;
+	    poly g = fitting(PM, 0)[1];
+	
+	    execute("setring " + string(br_name));
+		poly g = imap(RTPr, g);
+		return (fcodim(g));
+	}
 
-        // [GLS II.2.30(5)
-    	return tau - delta - mult + 1;
-    }
-
-    ERROR(nameof(f) + "not a plane curve");
+	if (typeof(f[1]) != "poly")
+	{
+		ERROR("please introduce either an ideal or a polynomial");
+	}
+    
+	// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
+    // [GLS], II.2.30(5)
+   	return(tjurina(f[1]) - delta(f[1]) - ord(f[1]) + 1);
 }
-
-//-----------------------------------------------------------------------------
-
 
 //-----------------------------------------------------------------------------
 proc invariants(map f)

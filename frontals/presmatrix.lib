@@ -25,48 +25,47 @@ AUXILIARY PROCEDURES:
 //-------------------------------------------------------------------------------------------------
 proc presmatrix(map Pullf, ideal ISource)
 {
-option(noredefine);
- string RSName=nameof(basering);               // name of source ring
- int tbegin=timer;
+    option(noredefine);
  
- execute("int E=ord_test("+RSName+")");
- if (E!=-1) 
-   {
-     print("//No local order ring! Get generators using local order");
-   }
-  
-  
- ideal  IPullf=ideal(Pullf);
- execute("setring "+RSName);
- string RTName=nameof(preimage(Pullf));       //name of target ring 
- int    l=nvars(basering);		      //number of vars in source
-  execute("int n=nvars("+RTName+")-1");	      
-  int n2=size(IPullf);
-  if((n+1)!=n2)
-   {
-     ERROR("Target dimension must be equal the number of entries of given map!");
-   } 
-  execute("string Tvars=varstr("+RTName+")"); //name of vars in target 
- ideal   IPullf1=IPullf[1..n],ISource;        //ideal by first "(n-1)-entries of f" + "ideal I"
- ideal   KB= kbase(std(IPullf1));             //generators 
- int     K=size(KB);
- if(K==0)
-   {
-     ERROR("The number of generators must be greater than zero. Verify input!");
-   } 
- matrix  Gen[1][K];                           //matrix of generators
- for(int r1=1;r1<=K;r1++)
-   {
-     Gen[1,r1] = KB[K-r1+1];                  //just change the order of the generators
-   }
- print("//Generators = "+string(Gen));
- int     h=K;                            //number of generators
- ring    RG=0,G(1..h),ds;		 //auxiliar ring
- ring    RT=0,(X(1..n),Y),ds;	         //auxiliar target ring
- matrix  M[h][h];		   	 //auxiliar matrix
- matrix  Pres=diag(Y,h);	         //presentation matrix
- 			                        
- ring RS=0,(x(1..l)),ds;	                    //internal auxiliary ring source
+    if (ord_test(basering) != -1) 
+    {
+        print("//No local order ring! Get generators using local order");
+    }
+
+	ring RS = basering;
+	int l = nvars(RS);
+
+	ring RT = preimage(Pullf);
+ 	int n = nvars(preimage(Pullf)) - 1;
+ 	int n2 = size(IPullf);
+
+	setring RS;
+    ideal IPullf = ideal(Pullf);
+
+	if (n+1 != n2)
+	{
+		ERROR("Target dimension must be equal the number of entries of given map!");
+	}
+
+	execute("string Tvars=varstr("+RTName+")"); //name of vars in target 
+	ideal IPullf1 = IPullf[1..n], ISource;      //ideal by first "(n-1)-entries of f" + "ideal I"
+	ideal KB = kbase(std(IPullf1));
+	int K = size(KB);
+
+    if(K == 0)
+    {
+        ERROR("The number of generators must be greater than zero. Verify input!");
+    } 
+
+	matrix Gen[1][K];                           //matrix of generators
+
+ 	for (int r = 1; r <= K; r++) { Gen[1, r] = KB[K - r + 1]; }
+	
+    ring RG= 0, G(1..K), ds;
+    matrix M[K][K];
+    matrix Pres = diag(Y, K);
+           
+
  execute("ideal IPf=fetch("+RSName+",IPullf)");     //mapping "Pullf" to RS
  execute("ideal I=fetch("+RSName+",ISource)");      //mapping "I" to RS
  							
@@ -149,9 +148,7 @@ option(noredefine);
 	exportto(Top,RTPr);
         exportto(Top,PM);
 	print("");
- //	print("//Time = "+string(timer-tbegin)+" sec");
-//	print("");
-        print("//To access the presentation matrix PM, type:  setring RTPr; PM; ");      
+    print("//To access the presentation matrix PM, type:  setring RTPr; PM; ");      
 }
 //---------------------------------------proc Sols return solutions of linear system of parameters-----------
 
@@ -248,55 +245,14 @@ proc Row(int rh,poly D,poly A, int h)// rh = rh line; D = diagonal polin; A= no 
 }
 
 //------------------------Create polynomial with coefs = 1 and degree d---------------------------------
+static proc PolyGen(int d)
+{
+	poly D = sparsepoly(0, d, 0, 1);
+    poly PY;
 
-proc PolyGen(int d)
- { 
-     poly D = sparsepoly(0,d,0,1);
-     poly PY;
-	for(int i=1;i<=d;i++)
-	  {
-	     PY=PY+Y^i;
-	  }						 
+	for(int i=1; i<=d; i++) { PY=PY+Y^i; }						 
      poly A = D-PY;					
      matrix Pols[1][2]=D,A;
      return(Pols);
  }                                                                          
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//---------------- using presmatrix procedure to get presentation matrix-------------------------
-
-//f:X ----> R^n, I=I(X) is the ideal that define the variety X, (X in O_{l}), X=Cohen-Macaulay (n-1)-dimensional
-//choose the projection such that the quotient: O_{l}/<f_1,...f_n-1, I> has finite dimension.
-
-//STEPS:
-
-//1.  LIB "presmatrix.lib";
-//2.  define the target ring "R";
-//3.  define the source ring "r";
-//4.  define: map f = R, f_1,...,f_n; 
-//5.  define the ideal "I" in the source "r";
-
-//Example: f(x,y)= (xy, x^3+y^4); I=-3x^3+4y^4;
-
-//ring R=0,(X,Y),ds;
-//ring r=0,(x,y),ds;
-//map f=R,xy,x^3+y^4;
-//ideal I=-3x^3+4y^4;                                                                                                                                     
-//presmatrix(f, I);
-
-//--------output---------------
-
-//Generators = 1,x,x2,y,y2,y3,y4
-
-//     PM
-//R^h------>R^h------>Ox------>0;  h = 7, R = R
-
-//Y,     0,     0,    0,     0,     0,    -283/27,
-//0,     Y,     0,    0,     0,     -283/27X,0,   
-//0,     0,     Y,    0,     -283/27X2,0,    0,   
-//0,     0,     -283/256X,Y,     0,     0,    0,   
-//0,     -283/256X2,0,    0,     Y,     0,    0,   
-//-283/256X3,0,     0,    0,     0,     Y,    0,   
-//0,     0,     0,    -283/256X3,0,     0,    Y    
-
-//To access the presentation matrix PM, type:  setring RTPr; PM; 
