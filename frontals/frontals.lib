@@ -30,8 +30,6 @@ REFERENCES:
         nodes
 ";
 
-LIB "frontools.lib";	// baseringlocal
-                        // isfrontal
 LIB "general.lib";      // product
 LIB "hnoether.lib";     // delta invariant
 LIB "homolog.lib";		// fitting
@@ -71,6 +69,9 @@ proc fcodim(list f)
     // [GLS], II.2.30(5)
    	return(tjurina(f[1]) - delta(f[1]) - ord(f[1]) + 1);
 }
+
+//-----------------------------------------------------------------------------
+
 
 //-----------------------------------------------------------------------------
 proc invariants(map f)
@@ -209,6 +210,14 @@ example
 
     // 5_3 singularity from Marar and Tari (1995)
     wfinvariants(z5 + xz + yz3, z);
+}
+
+//-----------------------------------------------------------------------------
+static proc baseringlocal()
+{
+    option(noredefine);  // hide messages such as "redefining"
+
+    if (ord_test(basering) != -1) { ERROR("no local order ring"); }
 }
 
 //-----------------------------------------------------------------------------
