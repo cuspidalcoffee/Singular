@@ -31,7 +31,7 @@ REFERENCES:
 ";
 
 LIB "frontools.lib";	// baseringlocal
-                        // is_frontal
+                        // isfrontal
 LIB "general.lib";      // product
 LIB "hnoether.lib";     // delta invariant
 LIB "homolog.lib";		// fitting
