@@ -1,0 +1,54 @@
+///////////////////////////////////////////////////////////////////////////////
+version="$Id: frontools.lib  2022-17-03 $";
+category="Algebraic geometry";
+info="
+LIBRARY: frontools.lib      Tools to work with frontal hypersurfaces
+
+AUTHORS: C. Munoz-Cabello,  chmuca@alumni.uv.es
+
+PROCEDURES:
+    isfrontal(f);           check if input is a frontal
+
+REFERENCES:
+    [Ish] Ishikawa, G. (2020) Recognition problem of frontal singularities
+    [NB]  Nuno-Ballesteros, J.J. (2015) Unfolding plane curves with cusps and
+        nodes
+";
+        
+LIB "ring.lib";          // ord_test
+
+//-----------------------------------------------------------------------------
+static proc baseringlocal()
+{
+    option(noredefine);  // hide messages such as "redefining"
+
+    if (ord_test(basering) != -1) { ERROR("no local order ring"); }
+}
+
+//-----------------------------------------------------------------------------
+proc isfrontal(list f)
+"USAGE:   isfrontal(f);  f = map
+COMPUTE:  whether f is frontal
+REMARK:   This version of isfrontal is only beta. Please send bugs and
+          comments to: <https://github.com/cuspidalcoffee/Singular>
+          Known to work on Singular version 4.2.0.
+EXAMPLE:  example isfrontal; shows an example"
+{
+    baseringlocal();
+    option(noredefine);
+  
+    ideal df = std(jacob(ideal(f)));
+
+    // the size of the zero ideal is 0
+    if (size(df) != 1) { ERROR (nameof(f) + "not frontal!"); }
+}
+example
+{
+    "EXAMPLE";
+    echo = 2;
+
+    ring target = 0, (x, y, z), ds;
+    ring source = 0, (x, y), ds;
+    map f = target, x2, y2, x5 + y5;
+    isfrontal(f);
+}

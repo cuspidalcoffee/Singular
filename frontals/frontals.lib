@@ -8,10 +8,16 @@ LIBRARY: frontals.lib       Compute geometric invariants of a corank 1 frontal
 AUTHORS: C. Munoz-Cabello,  chmuca@alumni.uv.es
 
 PROCEDURES:
+<<<<<<< HEAD
     fcodim(f);           frontal codimension of a plane curve
     invariants(f);       geometric frontal invariants
     wfinvariants(g, z);  geometric invariants of the discriminant
 
+=======
+    invariants(f);       compute geometric frontal invariants
+    wfinvariants(g, z);  compute geometric invariants of the discriminant
+    
+>>>>>>> 344fe89 (moved is_frontal to frontools)
 REFERENCES:
     [dJP] de Jong, T., Pfister, G. (2000) Local analytic geometry
     [GLS] Greuel, G.-M., Lossen, C., Shustin, E. (2007) Introduction to
@@ -24,6 +30,8 @@ REFERENCES:
         nodes
 ";
 
+LIB "frontools.lib";	// baseringlocal
+                        // is_frontal
 LIB "general.lib";      // product
 LIB "hnoether.lib";     // delta invariant
 LIB "homolog.lib";		// fitting
@@ -201,14 +209,6 @@ example
 
     // 5_3 singularity from Marar and Tari (1995)
     wfinvariants(z5 + xz + yz3, z);
-}
-
-//-----------------------------------------------------------------------------
-static proc baseringlocal()
-{
-    option(noredefine);  // hide messages such as "redefining"
-
-    if (ord_test(basering) != -1) { ERROR("no local order ring"); }
 }
 
 //-----------------------------------------------------------------------------

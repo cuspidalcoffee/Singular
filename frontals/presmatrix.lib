@@ -240,6 +240,7 @@ static proc Row(int rh, poly D, poly A, int h)
 	        ParList[c]=list(A[i],j);
 	        c++;
 	   }			
+	   }
       }
   list L;
   L[1]=M;
