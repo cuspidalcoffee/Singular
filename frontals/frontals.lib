@@ -11,7 +11,6 @@ PROCEDURES:
     fcodim(f);           frontal codimension of a plane curve
     invariants(f);       geometric frontal invariants
     wfinvariants(g, z);  geometric invariants of the discriminant
-";
 
 REFERENCES:
     [dJP] de Jong, T., Pfister, G. (2000) Local analytic geometry
@@ -23,6 +22,7 @@ REFERENCES:
     [MNB] Mond, D., Nuno-Ballesteros, J.J. (2020) Singularities of Mappings
     [NB]  Nuno-Ballesteros, J.J. (2015) Unfolding plane curves with cusps and
         nodes
+";
 
 LIB "general.lib";       // product
 LIB "hnoether.lib";      // delta invariant
@@ -205,14 +205,6 @@ example
 
     // 5_3 singularity from Marar and Tari (1995)
     wfinvariants(z5 + xz + yz3, z);
-}
-
-//-----------------------------------------------------------------------------
-static proc baseringlocal()
-{
-    option(noredefine);  // hide messages such as "redefining"
-
-    if (ord_test(basering) != -1) { ERROR("no local order ring"); }
 }
 
 //-----------------------------------------------------------------------------
