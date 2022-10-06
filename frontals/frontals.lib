@@ -52,6 +52,9 @@ proc fcodim(poly f)
 }
 
 //-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
 proc invariants(map f)
 "USAGE:   invariants(f);  f = map
 COMPUTE:  invariants of a corank 1 frontal surface, using the formulas from
@@ -191,6 +194,14 @@ example
 }
 
 //-----------------------------------------------------------------------------
+static proc baseringlocal()
+{
+    option(noredefine);  // hide messages such as "redefining"
+
+    if (ord_test(basering) != -1) { ERROR("no local order ring"); }
+}
+
+//-----------------------------------------------------------------------------
 static proc checkvars(int n)
 {
     option(noredefine);  // hide messages such as "redefining"
@@ -286,6 +297,20 @@ static proc dp_scheme(poly p, poly q, poly y)
            dimPT - dimPAA,                    // W
            milnor(@cuspedge),                 // C
            milnor(@dpoints));                 // D
+}
+
+//-----------------------------------------------------------------------------
+static proc isfrontal(map f)
+{
+    baseringlocal();
+    option(noredefine);
+
+    int minor_size = min(nvars(basering), nvars(preimage(f)));
+    matrix df = jacob(ideal(f));
+    ideal Jf = std(minor(df, minor_size));
+
+    // the size of the zero ideal is 0
+    if (size(Jf) != 1) { ERROR (nameof(f) + "not frontal!"); }
 }
 
 //-----------------------------------------------------------------------------
