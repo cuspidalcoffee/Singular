@@ -193,27 +193,26 @@ proc Sols(ideal nJ)
         
         for(i = s; i >= 1; i--) {
             if(nj[i]) {
-			    LM = leadmonom(nJ[i]);
+                LM = leadmonom(nJ[i]);
 
-			    while(!univariate(nJ[i])) {
-			    	LM = leadmonom(nJ[i]);
-					nJ = subst(nJ, LM, 0);
-				}
+                while(!univariate(nJ[i])) {
+                    LM = leadmonom(nJ[i]);
+                    nJ = subst(nJ, LM, 0);
+                }
 
-			    LM = leadmonom(nJ[i]);
-			    Su= -nJ[i] / leadcoef(nJ[i]) + LM;
-			    L[2][pos] = list(univariate(nJ[i]), Su);
-			    
-			    pos++;
-				nJ = subst(nJ, LM, Su);
-		}
-	}
-	      } // ???
+                LM = leadmonom(nJ[i]);
+                Su= -nJ[i] / leadcoef(nJ[i]) + LM;
+                L[2][pos] = list(univariate(nJ[i]), Su);
+
+                pos++;
+                nJ = subst(nJ, LM, Su);
+            }
+        }
+    }
     
-	return(L);
+    return(L);
 }
-	     
-	
+
 //--------------------------------------------------------------------------------------------------
 static proc Row(int rh, poly D, poly A, int h)
 {
