@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-version="$Id: frontalsurf.lib  2023-06-20 $";
+version="$Id: frontals.lib  2023-06-20 $";
 category="Singularities";
 info="
 LIBRARY: frontals.lib       Compute geometric invariants of a corank 1 frontal
@@ -32,32 +32,72 @@ LIB "ring.lib";         // ord_test
 LIB "sing.lib";         // tjurina
 
 //-----------------------------------------------------------------------------
-proc fcodim(list f)
-"USAGE:   fcodim(f);  f = poly or ideal
-RETURN:   frontal codimension of a frontal hypersurface
-REMARK:   This version of fcodim is only beta. Please send bugs and
+proc fcodim(poly f, list #)
+"USAGE:   fcodim(f[, F, d]);  f, F = poly; d = int
+
+RETURN:   frontal codimension of a frontal hypersurface given by the ideal f,
+          with stable frontal unfolding in n parameters given by the ideal F
+          (not required for plane curves!)
+          
+REMARK:   * Unfolding variables must be added at the end in ring declaration
+          * This version of fcodim is only beta. Please send bugs and
           comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
+          
 EXAMPLE:  example fcodim; shows an example"
 {
-    baseringlocal();  // local ring required for mult
+    baseringlocal();
 
+    // we need to shed the parameter variables later
+    ring paramring = basering;
 
+    if (nvars(basering) > 1 && size(#) == 0)
+        { ERROR("stable unfolding not provided"); }
 
-	// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
-    // [GLS], II.2.30(5)
-   	return(tjurina(f) - delta(f) - mult(f) + 1);
+    // since # is a polymorphism, we need to check typing
+
+	if (typeof(#[1]) != "poly")
+	    { ERROR(nameof(#[1]) + " not a polynomial"); }
+
+    poly F = #[1];
+
+	if (typeof(#[2]) != "int")
+	    { ERROR("number of unfolding parameters not specificed"); }
+
+    int d = #[2];
+
+    /* computations */
+
+    if (nvars(basering) == 1)
+    	{ return(tjurina(f) - delta(f) - mult(f) + 1); }
+
+    ideal JF = jacob(F), F;
+    ideal JrelF = JF[1..nvars(basering) - d], f;
+
+    // compute the quotient and tensorize
+	module MF = modulo(JF, JrelF);
+
+	for (int i = nvars(basering) + d; i > nvars(basering); i--)
+        { MF = subst(MF, var(i), 0); }
+
+    ring noparamring = char(paramring), x(1..nvars(paramring) - d), ds;
+    module MF = imap(paramring, MF);
+
+    return vdim(std(MF));
+
 }
 example
 {
     "EXAMPLE";
     echo = 2;
 
-    ring source = 0, (x, y), ds;
+    ring source = 0, (x, y, t), ds;
     
     // E_8 singularity from Bruce and Gaffney (1982)
     poly f = x5 + y3;
-    fcodim(f);
+	ideal g = elim(f,xy);
+    
+    fcodim(g);
 }
 //-----------------------------------------------------------------------------
 proc classify(map f)
@@ -344,4 +384,13 @@ static proc isfrontal(map f)
 
     // the size of the zero ideal is 0
     if (size(Jf) != 1) { ERROR (nameof(f) + "not frontal!"); }
+}
+
+//-----------------------------------------------------------------------------
+static proc fcodim_curve(list f)
+{
+	baseringlocal();
+	option(noredefine);
+
+	
 }
