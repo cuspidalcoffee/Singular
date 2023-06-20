@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
-version="$Id: frontalsurf.lib  2022-17-03 $";
+version="$Id: frontalsurf.lib  2023-06-20 $";
 category="Singularities";
 info="
 LIBRARY: frontals.lib       Compute geometric invariants of a corank 1 frontal
                             surface
 
-AUTHORS: C. Munoz-Cabello,  chmuca@alumni.uv.es
+AUTHORS: C. Munoz-Cabello,  christian.munoz@uv.es
 
 PROCEDURES:
     fcodim(f);           frontal codimension of a plane curve
@@ -32,9 +32,9 @@ LIB "ring.lib";         // ord_test
 LIB "sing.lib";         // tjurina
 
 //-----------------------------------------------------------------------------
-proc fcodim(poly f)
-"USAGE:   fcodim(f);  f = poly
-RETURN:   frontal codimension of a plane curve
+proc fcodim(list f)
+"USAGE:   fcodim(f);  f = poly or ideal
+RETURN:   frontal codimension of a frontal hypersurface
 REMARK:   This version of fcodim is only beta. Please send bugs and
           comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
@@ -42,10 +42,7 @@ EXAMPLE:  example fcodim; shows an example"
 {
     baseringlocal();  // local ring required for mult
 
-    if (nvars(basering) != 2)
-    {
-    	ERROR("this procedure is only defined for plane curves!");
-    }
+
 
 	// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
     // [GLS], II.2.30(5)
@@ -63,7 +60,7 @@ example
     fcodim(f);
 }
 //-----------------------------------------------------------------------------
-proc invariants(map f)
+proc classify(map f)
 "USAGE:   invariants(f);  f = map
 COMPUTE:  invariants of a corank 1 frontal surface, using the formulas from
           C. Munoz-Cabello, J.J. Nuno-Ballesteros and R. Oset-Sinha's "\"\
@@ -147,39 +144,67 @@ example
 
 //-----------------------------------------------------------------------------
 proc wfinvariants(poly g, poly z)
-"USAGE:   wfinvariants(g, z);  g, z=poly
-COMPUTE:  invariants in the discriminant of G(x, y, z)=(x, y, g(x, y, z)),
+"USAGE:   wfinvariants(g, z);
+              g, z = poly
+
+COMPUTE:  invariants in the discriminant of the mapping 
+
+                  G(x, y, z) = (x, y, g(x, y, z)),
+              
           using the formulas from W.L. Marar, J.A. Montaldi and M.A.S. Ruas's
           "\Multiplicities of zero-schemes in quasihomogeneous corank-1
           singularities"\
+          
 RETURN:   number of swallowtails (@S), cusp-folds (@K) and triple points (@T)
           in the discriminant of G.
+          
 REMARK:   * g must be weighted homogeneous
           * This version of wfinvariants is only beta. Please send bugs and
           comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
+          
 NOTE:     objects with @ sign are exported to global scope
+
 EXAMPLE:  example wfinvariants; shows an example"
 {
     baseringlocal();
     checkvars(3);
-    option(noredefine);    // hide messages such as "redefining"
+    option(noredefine);     // hide messages such as "redefining"
 
-    intvec w = wdeg(g);    // find the weights and weighted degree of g
-    int leadvar = rvar(z);	// find which variable was declared
+    /* compute the weights and the weighted degree of g */
+    
+    intvec weights = qhweight(g);
 
-    if(rvar(z) == 0) { ERROR("variable not in base ring"); }
+    if (w == 0)
+    {
+        "// ** this procedure only works for weighted homogeneous polynomials";
+        ERROR(nameof(g) + "not weighted homogeneous");
+    }
 
-    // product from the formula
-    intvec prod = w[4] div w[leadvar] * (1, 1, 1) - (1, 2, 3);
+    poly homogenised_g;
+    
+    for (int i = 1; i <= size(w); i++)
+        { homogenised_g = subst(g, var(i), var(i)^w[i]); }
+
+    int d = deg(homogenised_g);
+
+    /* Apply the formulas by Marar, Montaldi and Ruas.
+     * We could do this in general if we had a partition function implemented;
+     * fortunately, there is one in Oscar! */
+
+    if(rvar(z) == 0) { ERROR("variable " + nameof(z) " not in base ring"); }
+
+    int declared_var = rvar(z);
+
+    intvec prod_vector = w[4] div w[declared_var] * (1, 1, 1) - (1, 2, 3);
 
     /* Singular does not like to use the `/` sign for integer division, so we
-     * need to use `div` instead.
-     * See https://www.singular.uni-kl.de/Manual/4-0-3/sing_466.htm */
+     * need to use `div` instead
+     * (https://www.singular.uni-kl.de/Manual/4-0-3/sing_466.htm) */
 
-    int @S = w[leadvar]^3 * product(prod) div product(w, 1..3);
-    int @K = @S * (w[4] - 4 * w[leadvar]) div w[leadvar];
-    int @T = @K * (w[4] - 5 * w[leadvar]) div (6 * w[leadvar]);
+    int @S = w[declared_var]^3 * product(prod_vector) div product(w, 1..3);
+    int @K = @S * (w[4] - 4 * w[declared_var]) div w[declared_var];
+    int @T = @K * (w[4] - 5 * w[declared_var]) div (6 * w[declared_var]);
 
     "";
     " * Swallowtails:               @S = " + string(@S);
@@ -319,25 +344,4 @@ static proc isfrontal(map f)
 
     // the size of the zero ideal is 0
     if (size(Jf) != 1) { ERROR (nameof(f) + "not frontal!"); }
-}
-
-//-----------------------------------------------------------------------------
-static proc wdeg(poly g)
-{
-    /* Given a quasihomogeneous polynomial g, find d such that
-     *
-     *   g(var(1)^w[1], ..., var(n)^w[n])
-     *
-     * is homogeneous of degree d, where w[1]..w[n] are the weights of g. */
-
-    intvec w = qhweight(g);
-
-    if (w == 0)
-    {
-     "// ** this procedure only works for weighted homogeneous polynomials";
-     ERROR(nameof(g) + "not weighted homogeneous");
-    }
-
-    for (int i = 1; i <= size(w); i++) { g = subst(g, var(i), var(i)^w[i]); }
-    return(w, deg(g));
 }
