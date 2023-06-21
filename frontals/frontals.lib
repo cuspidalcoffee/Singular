@@ -192,7 +192,7 @@ proc wfinvariants(poly g, poly z)
 
 COMPUTE:  invariants in the discriminant of the mapping 
 
-                  G[x, y, z] = [x, y, g[x, y, z]],
+                  G(x, y, z) = (x, y, g(x, y, z)),
               
           using the formulas from W.L. Marar, J.A. Montaldi and M.A.S. Ruas's
           "\Multiplicities of zero-schemes in quasihomogeneous corank-1
@@ -245,18 +245,17 @@ EXAMPLE:  example wfinvariants; shows an example"
      * need to use `div` instead
      * (https://www.singular.uni-kl.de/Manual/4-0-3/sing_466.htm) */
 
-    int @S = w[declared_var]^3 * product(prod_vector) div product(w, 1..3);
-    int @K = @S * (w[4] - 4 * w[declared_var]) div w[declared_var];
-    int @T = @K * (w[4] - 5 * w[declared_var]) div (6 * w[declared_var]);
+    int S = w[declared_var]^3 * product(prod_vector) div product(w, 1..3);
+    int K = S * (w[4] - 4 * w[declared_var]) div w[declared_var];
+    int T = K * (w[4] - 5 * w[declared_var]) div (6 * w[declared_var]);
 
     "";
-    " * Swallowtails:               @S = " + string(@S);
-    " * Cusp-folds:                 @K = " + string(@K);
-    " * Triple points:              @T = " + string(@T);
+    " * Swallowtails:                 " + string(S);
+    " * Cuspidal double points:       " + string(K);
+    " * Triple points:                " + string(T);
     "";
-    " * Target triple point space:       " + string(@S + @K + @T);
+    " * Target triple point space:    " + string(S + K + T);
     "";
-    export(@S, @K, @T);
 }
 example
 {

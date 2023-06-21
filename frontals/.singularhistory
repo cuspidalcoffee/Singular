@@ -177,3 +177,25 @@ quit;
 LIB "frontals_old.lib";
 example fcodim;
 quit;
+LIB "frontals_old.lib";
+quit;
+LIB "frontals_old.lib"
+;
+quit;
+LIB "frontals_old.lib"
+;
+quit;
+LIB "frontals_old.lib";
+quit;
+LIB "frontals_old.lib";
+quit;
+LIB "frontals_old.lib";
+quit;
+LIB "frontals_old.lib";
+quit;
+LIB "frontals_old.lib";
+quit;
+LIB "frontals_old.lib";
+quit;
+LIB "frontals_old.lib";
+quit;
