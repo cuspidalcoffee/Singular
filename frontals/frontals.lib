@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////
-version="$Id: frontals.lib  2023-06-20 $";
+version="$Id: frontalsurf.lib  2022-17-03 $";
 category="Singularities";
 info="
-LIBRARY: frontals.lib       Compute geometric invariants of a corank 1 frontal
-                            surface
+LIBRARY: frontals.lib       Geometric invariants of a corank 1 frontal
+                            hypersurface
 
 AUTHORS: C. Munoz-Cabello,  christian.munoz@uv.es
 
 PROCEDURES:
-    fcodim(f[, F, d]);   frontal codimension of a frontal hypersurface
+    fcodim(f[, F, d]);   frontal codimension
     invariants(f);       geometric frontal invariants
     wfinvariants(g, z);  geometric invariants of the discriminant
 
@@ -33,17 +33,16 @@ LIB "presmatrix.lib";   // presmatrix
 LIB "ring.lib";         // ord_test
 LIB "sing.lib";         // tjurina
 
-/*
 //-----------------------------------------------------------------------------
 proc fcodim(poly f, list #)
 "USAGE:   fcodim(f[, F, d]);  f, F = poly; d = int
 
-RETURN:   frontal codimension of a frontal hypersurface given by the ideal f,
-          with stable frontal unfolding in n parameters given by the ideal F
-          [not required for plane curves!]
+RETURN:   frontal codimension of an integral corank 1 frontal hypersurface f
+          with d-parameter stable frontal deformation F (not required for plane
+          curves!)
           
-REMARK:   * Unfolding variables must be added at the end in ring declaration
-          * This version of fcodim is only beta. Please send bugs and
+REMARK: * Deformation parameters must be added at the end in ring declaration
+        * This version of fcodim is only beta. Please send bugs and
           comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
           
@@ -51,31 +50,24 @@ EXAMPLE:  example fcodim; shows an example"
 {
     baseringlocal();
 
-    // we need to shed the parameter variables later
-    ring paramring = basering;
+    if (nvars(basering) == 2)
+    	{ return(tjurina(f) - delta(f) - mult(f) + 1); }
 
-    if (nvars(basering) > 1 && size(#) == 0)
-        { ERROR("stable unfolding not provided"); }
-
-    // since # is a polymorphism, we need to check typing
-
-	if (typeof(#[1]) != "poly")
-	    { ERROR(nameof(#[1]) + " not a polynomial"); }
-
+    if (nvars(basering) > 2)
+    {
+        if (size(#) == 0)
+            { ERROR("stable unfolding not provided"); }
+        if (size(#) == 1)
+            { ERROR("number of deformation parameters not provided"); }
+    }
+   
     poly F = #[1];
-
-	if (typeof(#[2]) != "int")
-	    { ERROR("number of unfolding parameters not specificed"); }
-
     int d = #[2];
 
     /* computations */
 
-    if (nvars(basering) == 1)
-    	{ return(tjurina(f) - delta(f) - mult(f) + 1); }
-
     "// ** The formula that is about to be applied is based on a conjecture by";
-    "// ** Nuno-Ballesteros, and may be inaccurate.";
+    "// ** Nuno-Ballesteros, and is only meant to be used for testing purposes.";
 
     ideal JF = jacob(F), F;
     ideal JrelF = JF[1..nvars(basering) - d], f;
@@ -83,26 +75,39 @@ EXAMPLE:  example fcodim; shows an example"
     // compute the quotient and tensorize
 	module MF = modulo(JF, JrelF);
 
-	for (int i = nvars(basering) + d; i > nvars(basering); i--)
-        { MF = subst(MF, var(i), 0); }
+	for (int i = 0; i < d; i++)
+        { MF = subst(MF, var(nvars(basering) - i), 0); }
 
+    ring paramring = basering;
     ring noparamring = char(paramring), x(1..nvars(paramring) - d), ds;
-    module MF = imap(paramring, MF);
+    module MF = fetch(paramring, MF);
 
-    return vdim(std(MF));
+    return(vdim(std(MF)));
 }
 example
 {
     "EXAMPLE";
     echo = 2;
 
-    ring source = 0, (x, y, t), ds;
-    
     // E_8 singularity from Bruce and Gaffney (1982)
+    ring source = 0, (x, y), ds;
     poly f = x5 + y3;
-	ideal g = elim(f,xy);
-    
-    fcodim(g);
+    fcodim(f);
+
+    // D_4 singularity from Arnol'd (1990)
+    ring source = 0, (x,y,t,X,Y,Z,T), ds;
+
+    ideal i = xy-X, x2+3y2-Y, y3+x2y-Z;
+    ideal I = xy-X, x2+3y2+2yt-Y, y3+x2y+1/2y2t-Z, t-T;
+
+    poly f = eliminate(i, xy)[1];
+    poly F = eliminate(I, xyt)[1];
+
+    ring source_noparams = 0, (X,Y,Z,T), ds;
+    poly f = imap(source, f);
+    poly F = imap(source, F);
+
+    fcodim(f, F, 1);
 }
 
 //-----------------------------------------------------------------------------
@@ -130,44 +135,44 @@ EXAMPLE:  example invariants; shows an example"
     baseringlocal();
     checkvars(2);
     option(noredefine);                 // hide messages such as "redefining"
-    
-    int S, K, W, C, D = dpscheme(c1coordinates(f));
 
+    int S, K, W, C, D = dpscheme(c1coordinates(f));
+    
     // image triple point space
     ideal @I = 0;
     export(@I);                         // we need this for presmatrix
-
+    
     "";
     "// Computing triple point space...";
     presmatrix(f, @I);
     setring RTPr;
     int T = vdim(std(fitting(PM, 2))) - S - K;
-
+    
     execute("setring " + string(br_name));
     int mufC = 2 * S + muC;
     number mufD = K + T + 1/2 * (muD + 1 - W - S);
     number muf = mufD + T + 1 - S - W;
-
+    
     "";
     "Isolated frontal singularities:";
     " * Swallowtails:              " + string(S);
     " * Cusp-folds:                " + string(K);
     " * Triple points:             " + string(T);
     " * Folded Whitney umbrellas:  " + string(W);
-
+    
     "";
     "Branch of cuspidal edges:";
     " * @cuspedge = " + string(@cuspedge);
     " * Milnor number (source):   " + string(muC);
     " *               (target):   " + string(mufC);
     "";
-
+    
     "Branch of transversal double points:";
     " * @dpoints = " + string(@dpoints);
     " * Milnor number (source):   " + string(muD);
     " *               (target):   " + string(mufD);
     "";
-
+    
     "Frontal Milnor number:       " + string(muf);
     "";
 }
@@ -184,29 +189,26 @@ example
     map f = target, x, 5y4 + 3xy2, 4y5 + 2xy3;
     invariants(f);
 }
-/*
+
 //-----------------------------------------------------------------------------
 proc wfinvariants(poly g, poly z)
-"USAGE:   wfinvariants(g, z);
-              g, z = poly
+"USAGE:   wfinvariants(g, z);  g, z = poly
 
 COMPUTE:  invariants in the discriminant of the mapping 
 
-                  G(x, y, z) = (x, y, g(x, y, z)),
-              
+              G(x, y, z) = (x, y, g(x, y, z))
+
           using the formulas from W.L. Marar, J.A. Montaldi and M.A.S. Ruas's
           "\Multiplicities of zero-schemes in quasihomogeneous corank-1
           singularities"\
           
-RETURN:   number of swallowtails (@S), cusp-folds (@K) and triple points (@T)
-          in the discriminant of G.
+RETURN:   number of swallowtails, cuspidal double points and triple points in
+          the discriminant of G.
           
 REMARK:   * g must be weighted homogeneous
           * This version of wfinvariants is only beta. Please send bugs and
           comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
-          
-NOTE:     objects with @ sign are exported to global scope
 
 EXAMPLE:  example wfinvariants; shows an example"
 {
@@ -225,7 +227,7 @@ EXAMPLE:  example wfinvariants; shows an example"
     }
 
     poly homogenised_g;
-    
+
     for (int i = 1; i <= size(w); i++)
         { homogenised_g = subst(g, var(i), var(i)^w[i]); }
 
@@ -242,8 +244,7 @@ EXAMPLE:  example wfinvariants; shows an example"
     intvec prod_vector = w[4] div w[declared_var] * (1, 1, 1) - (1, 2, 3);
 
     /* Singular does not like to use the `/` sign for integer division, so we
-     * need to use `div` instead
-     * (https://www.singular.uni-kl.de/Manual/4-0-3/sing_466.htm) */
+     * need to use `div` instead */
 
     int S = w[declared_var]^3 * product(prod_vector) div product(w, 1..3);
     int K = S * (w[4] - 4 * w[declared_var]) div w[declared_var];
@@ -379,27 +380,3 @@ static proc dpscheme(poly p, poly q, poly y)
            milnor(@cuspedge),                 // C
            milnor(@dpoints));                 // D
 }
-
-//-----------------------------------------------------------------------------
-static proc isfrontal(map f)
-{
-    baseringlocal();
-    option(noredefine);
-
-    int minor_size = min(nvars(basering), nvars(preimage(f)));
-    matrix df = jacob(ideal(f));
-    ideal Jf = std(minor(df, minor_size));
-
-    // the size of the zero ideal is 0
-    if (size(Jf) != 1) { ERROR (nameof(f) + "not frontal!"); }
-}
-
-//-----------------------------------------------------------------------------
-static proc fcodim_curve(list f)
-{
-	baseringlocal();
-	option(noredefine);
-
-	
-}
-*/
