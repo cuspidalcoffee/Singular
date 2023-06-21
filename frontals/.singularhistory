@@ -1,0 +1,9 @@
+LIB "frontals.lib";
+example wfinvariants;
+quit;
+LIB "frontals.lib";
+example wfinvariants;
+quit;
+LIB "frontals.lib";
+example wfinvariants;
+quit;
