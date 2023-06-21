@@ -37,8 +37,8 @@ LIB "sing.lib";         // tjurina
 proc fcodim(poly f, list #)
 "USAGE:   fcodim(f[, F, d]);  f, F = poly; d = int
 
-RETURN:   frontal codimension of a corank 1 frontal hypersurface f with
-          d-parameter stable frontal deformation F (not required for plane
+RETURN:   frontal codimension of an integral corank 1 frontal hypersurface f
+          with d-parameter stable frontal deformation F (not required for plane
           curves!)
           
 REMARK: * Deformation parameters must be added at the end in ring declaration
@@ -72,9 +72,6 @@ EXAMPLE:  example fcodim; shows an example"
     ideal JF = jacob(F), F;
     ideal JrelF = JF[1..nvars(basering) - d], f;
 
-    JF;
-    JrelF;
-
     // compute the quotient and tensorize
 	module MF = modulo(JF, JrelF);
 
@@ -93,12 +90,27 @@ example
     "EXAMPLE";
     echo = 2;
 
-    ring source = 0, (x, y), ds;
-    
     // E_8 singularity from Bruce and Gaffney (1982)
+    ring source = 0, (x, y), ds;
     poly f = x5 + y3;
     fcodim(f);
+
+    // D_4 singularity from Arnol'd (1990)
+    ring source = 0, (x,y,t,X,Y,Z,T), ds;
+
+    ideal i = xy-X, x2+3y2-Y, y3+x2y-Z;
+    ideal I = xy-X, x2+3y2+2yt-Y, y3+x2y+1/2y2t-Z, t-T;
+
+    poly f = eliminate(i, xy)[1];
+    poly F = eliminate(I, xyt)[1];
+
+    ring source_noparams = 0, (X,Y,Z,T), ds;
+    poly f = imap(source, f);
+    poly F = imap(source, F);
+
+    fcodim(f, F, 1);
 }
+
 //-----------------------------------------------------------------------------
 proc invariants(map f)
 "USAGE:   invariants(f);  f = map
