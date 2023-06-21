@@ -8,7 +8,7 @@ LIBRARY: frontals.lib       Compute geometric invariants of a corank 1 frontal
 AUTHORS: C. Munoz-Cabello,  christian.munoz@uv.es
 
 PROCEDURES:
-    fcodim(f);           frontal codimension of a plane curve
+    fcodim(f[, F, d]);   frontal codimension of a frontal hypersurface
     invariants(f);       geometric frontal invariants
     wfinvariants(g, z);  geometric invariants of the discriminant
 
