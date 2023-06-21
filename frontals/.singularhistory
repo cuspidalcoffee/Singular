@@ -1,0 +1,14 @@
+LIB "frontals.lib"
+;
+LIB "./frontals.lib"
+;
+pwd;
+quit;
+LIB "frontals.lib";
+quit;
+LIB "frontals.lib";
+quit;
+LIB "frontals.lib";
+quit;
+LIB "frontals.lib";
+quit;

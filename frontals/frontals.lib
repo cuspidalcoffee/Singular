@@ -33,13 +33,14 @@ LIB "presmatrix.lib";   // presmatrix
 LIB "ring.lib";         // ord_test
 LIB "sing.lib";         // tjurina
 
+/*
 //-----------------------------------------------------------------------------
 proc fcodim(poly f, list #)
 "USAGE:   fcodim(f[, F, d]);  f, F = poly; d = int
 
 RETURN:   frontal codimension of a frontal hypersurface given by the ideal f,
           with stable frontal unfolding in n parameters given by the ideal F
-          (not required for plane curves!)
+          [not required for plane curves!]
           
 REMARK:   * Unfolding variables must be added at the end in ring declaration
           * This version of fcodim is only beta. Please send bugs and
@@ -183,7 +184,7 @@ example
     map f = target, x, 5y4 + 3xy2, 4y5 + 2xy3;
     invariants(f);
 }
-
+/*
 //-----------------------------------------------------------------------------
 proc wfinvariants(poly g, poly z)
 "USAGE:   wfinvariants(g, z);
@@ -191,7 +192,7 @@ proc wfinvariants(poly g, poly z)
 
 COMPUTE:  invariants in the discriminant of the mapping 
 
-                  G(x, y, z) = (x, y, g(x, y, z)),
+                  G[x, y, z] = [x, y, g[x, y, z]],
               
           using the formulas from W.L. Marar, J.A. Montaldi and M.A.S. Ruas's
           "\Multiplicities of zero-schemes in quasihomogeneous corank-1
@@ -402,3 +403,4 @@ static proc fcodim_curve(list f)
 
 	
 }
+*/
