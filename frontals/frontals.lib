@@ -5,7 +5,7 @@ info="
 LIBRARY: frontals.lib       Compute geometric invariants of a corank 1 frontal
                             surface
 
-AUTHORS: C. Munoz-Cabello,  chmuca@alumni.uv.es
+AUTHORS: C. Munoz-Cabello,  christian.munoz@uv.es
 
 PROCEDURES:
     fcodim(f);           frontal codimension of a plane curve
@@ -26,7 +26,7 @@ REFERENCES:
 
 LIB "general.lib";      // product
 LIB "hnoether.lib";     // delta invariant
-LIB "homolog.lib";		// fitting
+LIB "homolog.lib";	// fitting
 LIB "presmatrix.lib";   // presmatrix
 LIB "ring.lib";         // ord_test
 LIB "sing.lib";         // tjurina
@@ -34,7 +34,7 @@ LIB "sing.lib";         // tjurina
 //-----------------------------------------------------------------------------
 proc fcodim(poly f)
 "USAGE:   fcodim(f);  f = poly
-RETURN:   frontal codimension of a plane curve
+RETURN:   frontal codimension of a frontal map germ
 REMARK:   This version of fcodim is only beta. Please send bugs and
           comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
@@ -44,40 +44,12 @@ EXAMPLE:  example fcodim; shows an example"
 
     if (nvars(basering) != 2)
     {
-    	ERROR("this procedure is only defined for plane curves!");
+        ERROR("this procedure is only implemented for plane curves!");
     }
 
 	// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
-    // [GLS], II.2.30(5)
+    	// [GLS], II.2.30(5)
    	return(tjurina(f) - delta(f) - mult(f) + 1);
-=======
-	if (typeof(f) == "ideal")
-	{
-	    string br_name = nameof(basering);
-		ring @target = char(basering), X[1..2], ds;
-	    
-        map @f = @target, f;
-	    ideal @I = 0;
-    	export(@target, @f, @I);     // we need this for presmatrix
-
-		presmatrix(@f, @I);
-	    setring RTPr;
-	    poly g = fitting(PM, 0)[1];
-	
-	    execute("setring " + string(br_name));
-		poly g = imap(RTPr, g);
-		return (fcodim(g));
-	}
-
-	if (typeof(f[1]) != "poly")
-	{
-		ERROR("please introduce either an ideal or a polynomial");
-	}
-    
-	// [dJP], II.2.30(5) or [MNB], D.3. Exercise 6
-    // [GLS], II.2.30(5)
-   	return(tjurina(f[1]) - delta(f[1]) - ord(f[1]) + 1);
->>>>>>> b8b49e7 (tifo there is actually an ord function???)
 }
 example
 {
@@ -346,7 +318,6 @@ static proc isfrontal(map f)
     matrix df = jacob(ideal(f));
     ideal Jf = std(minor(df, minor_size));
 
-    // the size of the zero ideal is 0
     if (size(Jf) != 1) { ERROR (nameof(f) + "not frontal!"); }
 }
 
@@ -363,8 +334,8 @@ static proc wdeg(poly g)
 
     if (w == 0)
     {
-     "// ** this procedure only works for weighted homogeneous polynomials";
-     ERROR(nameof(g) + "not weighted homogeneous");
+        "// ** this procedure only works for weighted homogeneous polynomials";
+        ERROR(nameof(g) + "not weighted homogeneous");
     }
 
     for (int i = 1; i <= size(w); i++) { g = subst(g, var(i), var(i)^w[i]); }

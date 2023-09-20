@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, fonts}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\mult}{mult}
+
+\title{frontal.lib}
+
+\begin{document}
+\maketitle
+
+\section{Public procedures}
+These procedures are available for other libraries and the end user to use.
+
+\subsection{fcodim}
+Given a frontal map germ $f\colon (N,x) \to (Z,y)$, compute the frontal codimension of $f$.
+For plane curves, if we write the equation for the image of $f$ as $g=0$, we can use the formula
+	\[\codim_{\ms{F}_e}f=\tau(g)-\delta(g)-\mult(g)+1\]
+from \cite{MNODeformations}.
+
+For the general case, let $g=0$ be the equation for the image of $f$ and $(f_t)$ be a frontal disentanglement of $f$ (see \cite{MNOSurfaces}) with equation $G=0$ in the image.
+A conjecture by Nuño-Ballesteros states that
+	\[\codim_{\ms{F}_e}f=\dim \frac{J(G)+(G)}{J_{rel}(G)+(g)}\otimes \mb{C}\{t\},\]
+where $J(G)$ is the Jacobian ideal of $G$ and $J_{rel}(G)$ is the \emph{relative} Jacobian ideal, wherein the partial derivatives with respect to the parameter $t$ are ignored.
+
+\section{Static procedures}
+These procedures are only available for this library, and are declared with the \verb!static! type.
+To make them available, simply remove the \verb!static! type in code.
+
+\subsection{wdeg}
+Given a weighted homogeneous polynomial $g \in \mb{K}[x_1,\dots,x_n]$, there exist by definition $w_1,\dots,w_n, d \geq 0$ such that
+	\[g((\lambda x_1)^{w_1},\dots,(\lambda x_n)^{w_n})=\lambda^dg(x_1^{w_1},\dots,x_n^{w_n}).\]
+The values $w_1,\dots,w_n$ are known as the \emph{weights} of $g$, and $d$, as the \emph{weighted homogeneous degree} of $g$.
+This procedure takes a weighted homogeneous polynomial $g$ and returns
+\begin{enumerate}
+	\item the weights of $g$;
+	\item the weighted homogeneous degree of $g$.
+\end{enumerate}
+
+\bibliographystyle{plain}
+\bibliography{frontal.bib}
+
+\end{document}
