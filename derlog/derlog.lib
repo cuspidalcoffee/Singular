@@ -1,73 +1,42 @@
 ///////////////////////////////////////////////////////////////////////////////
-version="$Id: derlog.lib  2022-17-03 $";
+version="$Id: derlog.lib  2023-07-11 $";
 category="Singularities";
 info="
 LIBRARY: derlog.lib           compute logarithmic vector fields
 
-AUTHORS: C. Munoz-Cabello,    chmuca@alumni.uv.es
+AUTHORS: C. Munoz-Cabello,    christian.munoz@uv.es
 
 PROCEDURES:
-    derlog(f);                 compute logarithmic vector fields
+    derlog(I);                compute logarithmic vector fields
+    TKV(I);					  compute Damon's KV-Tangent space
 ";
 
-LIB "presmatrix.lib";  // presmatrix
-
 //-----------------------------------------------------------------------------
-proc derlog(list f)
-"USAGE:   derlog(f);  f = poly or map
-COMPUTE:  logarithmic vector fields on the discriminant of f (if f is a map)
-          or the hypersurface of equation f = 0 (if f is a function), using
-          the module of relations of syzygys
-RETURN:   Killing (@K[1]..@K[n]) and Euler (@E) vector fields of the
-          corresponding hypersurface
+proc derlog(ideal I)
+"USAGE:   derlog(I);  I = ideal
+COMPUTE:  logarithmic vector fields on the complete intersection V(I)
+RETURN:   module of logarithmic vector fields
 REMARK:   This version of derlog is only beta. Please send bugs and
-          comments to: <https://github.com/Nelynx/Seminario-SINGULAR>
-          Known to work on Singular version 4.2.0.
+          comments to: <https://github.com//Seminario-SINGULAR>
+          Known to work on Singular version 4.2.1.
 NOTE:     objects with @ sign are exported to global scope
 EXAMPLE:  example derlog; shows an example"
 {
-    /* The derlog of the hypersurface g = 0 is defined as the vector fields X
-    /* such that Xg is a multiple of g.
+    /* The derlog of a complete intersection singularity V(I) is defined as
+    /* the space of vector fields X tangent to V(I).
     /* The generators for such an algebra verify that [X-k]g=0 for some
     /* scalar k, and can be found as the relations module of
     /*
     /*   dg         dg
     /*  ----, ..., ----, g
     /*   x1         xn                                                       */
-
-    // if user inputs a map, compute the discriminant and obtain its generating
-    // function
-    if (typeof(f[1]) == "map")
-    {
-        print("// Computing implicit function of " + nameof(f));
-
-        // check that the map goes from Kn to K(n+1)
-        if (nvars(preimage(f[1])) != nvars(basering) + 1)
-        {
-            "// Please introduce a map from K^n to K^(n+1)!";
-            ERROR("dimension mistmatch");
-        }
-
-        // compute the generating function using Fitting ideals
-        ideal @i = 0;
-        export (@i);                  // we need to export @i to use presmatrix
-        presmatrix(f[1], @i);
-        
-        ring target = preimage(f[1]);
-
-        setring RTPr;
-        ideal g = fitting(PM, 0);
-
-        setring target;
-        ideal g = imap(RTPr, g);
-        return (derlog(g[1]));
-    }
  
+    ideal generators = I;
+
     int n = nvars(basering);
-
-    ideal F = F + f[1];
-    for (int i = 1; i <= n; i++) { F = F + diff(f[1], var(i)); }
-
+    for(int i=1; i <= n; i++)
+        { generators = generators, diff(I, var(i)); }
+   
     /* The relations are given as a block matrix
     /*
     /*    S1  S2 ... Sp    (first row)
@@ -76,28 +45,49 @@ EXAMPLE:  example derlog; shows an example"
     /*
     /* If Sk == 0, Xk is a Killing field; otherwise, it is an Euler field. */
 
-    for (i = 1; i <= ncols(syz(F)); i++)
-    {
-        if (syz(F)[1,i] != 0)
-        {
-            matrix @Euler = submat(syz(F), 2..nrows(syz(F)), i);
-            poly lambda = syz(F)[1,i];
-
-            // We make a list of all the indices containing Killing fields
-            intvec k = delete(1..ncols(syz(F)), i);
-   
-            matrix @Kill = submat(syz(F), 2..nrows(syz(F)), k);
-        }
-    }
-
-    print("Killing fields (X(g) = 0):");
-    print(@Kill);
-
-    print("Euler fields (X(g) = "+ print(lambda) + "g):");
-    print(@Euler);
-    ;
-
-    "Use the @Kill and @Euler variables to access them from global scope!";
+    matrix relations_pre = syz(generators);
+    int p = ncols(relations_pre);
+    
+    matrix relations[n][p] = relations_pre[2..n+1, 1..p];
+    return(relations);
 }
+example
+{
+    "EXAMPLE";
+    echo = 2;
+
+    ring source = 0, (X, Y, Z), ds;
+    
+    // Whitney umbrella
+    poly f = Z2-X2Y;
+    derlog(f);
+}
+
+//-----------------------------------------------------------------------------
+
+proc TKVi(ideal I, int d)
+"USAGE:   TKVi(I, d);  I = ideal, d = int
+COMPUTE:  Damon's K-tangent vector field associated to a map with image V(I)
+RETURN:   module of logarithmic vector fields
+REMARK:   This version of derlog is only beta. Please send bugs and
+          comments to: <https://github.com//Seminario-SINGULAR>
+          Known to work on Singular version 4.2.1.
+NOTE:     objects with @ sign are exported to global scope
+EXAMPLE:  example derlog; shows an example"
+{
+   
+}
+example
+{
+    "EXAMPLE";
+    echo = 2;
+
+    ring source = 0, (X, Y, Z), ds;
+    
+    // Whitney umbrella
+    poly f = Z2-X2Y;
+    derlog(f);
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
