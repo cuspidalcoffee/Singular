@@ -8,7 +8,7 @@ LIBRARY: frontals.lib       Geometric invariants of a corank 1 frontal
 AUTHORS: C. Munoz-Cabello,  christian.munoz@uv.es
 
 PROCEDURES:
-    fcodim(f[, F, d]);   frontal codimension
+    fcodim(g[, G, d]);   frontal codimension
     invariants(f);       geometric frontal invariants
     wfinvariants(g, z);  geometric invariants of the discriminant
 
@@ -37,13 +37,11 @@ LIB "sing.lib";         // tjurina
 
 //-----------------------------------------------------------------------------
 proc fcodim(list #)
-"USAGE:   fcodim(f[, G, d]);  f = poly or ideal; F = poly; d = int
+"USAGE:   fcodim(g[, G, d]);  g = poly or ideal; G = poly; d = int
 
-RETURN:   frontal codimension of an integral corank 1 frontal hypersurface f
-          with d-parameter stable frontal deformation F
+RETURN: frontal codimension of an integral corank 1 frontal hypersurface
           
 REMARK: * Deformation parameters must be added at the end in ring declaration
-        * Plane curves do not require a deformation to be declared
         * This version of fcodim is only beta. Please send bugs and
           comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
@@ -52,42 +50,50 @@ EXAMPLE:  example fcodim; shows an example"
 {
     baseringlocal();
 
-    if (nvars(basering) == 1)
+    / * If there are two or less variables, the input must be a plane curve
+      * and we can use a result from [MNO2] which states that
+      *
+      *     codim(f) + mult(f) + delta(f) = tjurina(f) + 1
+      *
+      * I choose mu(f) over delta(f) since the former admits both ideals
+      * and polynomials. * /
+    
+    if (nvars(basering) <= 2)
     {
-        "// ** plane curves must be given in implicit form";
-        
+        list g = std(#[1]);
+    	return(tjurina(g[1]) - mu(g[1])/2 - mult(g[1]) + 1);
     }
 
-    if (nvars(basering) == 2)
-    	{ return(tjurina(f) - delta(f) - mult(f) + 1); }
+    / * If there are more than two variables, we can use a formula derived
+      * from a Damon-type theorem (see [MNO], Theorem 8.7) which will be
+      * described and proved in my thesis.
+      * If I never remembered to add the reference, feel free to fire me
+      * an email. * /
 
-    if (nvars(basering) > 2)
-    {
-        if (size(#) == 0)
-            { ERROR("stable unfolding not provided"); }
-        if (size(#) == 1)
-            { ERROR("number of deformation parameters not provided"); }
-    }
-   
-    poly F = #[1];
-    int d = #[2];
+    if (length(#) == 1)
+    	{ ERROR("stable unfolding for " + nameof(#[1]) + " not provided"); }
 
-    /* computations */
+    if (length(#) == 2)
+        { ERROR("number of unfolding parameters for " + nameof(#[2]) + " not provided"); }
+    
+    poly g = #[1];
+    poly G = #[2];
+    int d = #[3];
 
-    ideal JF = jacob(F), F;
-    ideal JrelF = JF[1..nvars(basering) - d], f;
+    ideal JG = jacob(G), G;
+    ideal JrelG = JG[1..nvars(basering) - d], g;
 
     // compute the quotient and specialise
-	module MF = modulo(JF, JrelF);
+	module MF = modulo(JG, JrelG);
 
 	for (int i = 0; i < d; i++)
-        { MF = subst(MF, var(nvars(basering) - i), 0); }
+        { MG = subst(MG, var(nvars(basering) - i), 0); }
 
     ring paramring = basering;
     ring noparamring = char(paramring), x(1..nvars(paramring) - d), ds;
-    module MF = fetch(paramring, MF);
+    module MG = fetch(paramring, MG);
 
-    return(vdim(std(MF)));
+    return(vdim(std(MG)));
 }
 example
 {

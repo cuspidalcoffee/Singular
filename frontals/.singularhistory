@@ -7,3 +7,7 @@ quit;
 LIB "frontals.lib";
 example wfinvariants;
 quit;
+help eliminate;
+help tjurina;
+help interpolation;
+quit;
