@@ -65,35 +65,60 @@ EXAMPLE:  example fcodim; shows an example"
     }
 
     / * If there are more than two variables, we can use a formula derived
-      * from a Damon-type theorem (see [MNO], Theorem 8.7) which will be
-      * described and proved in my thesis.
+      * from a Damon-type theorem (see [MNO], Theorem 8.7) which is described
+      * and proved in an unpublished article.
       * If I never remembered to add the reference, feel free to fire me
       * an email. * /
 
-    if (length(#) == 1)
-    	{ ERROR("stable unfolding for " + nameof(#[1]) + " not provided"); }
+        int @d = size(#);
 
-    if (length(#) == 2)
-        { ERROR("number of unfolding parameters for " + nameof(#[2]) + " not provided"); }
+    if (@d == 0)
+    {
+        "// ** Please input the unfolding parameters";
+        ERROR("no parameters declared");
+    }
+
+    ring @source = basering;
+    int @n = nvars(@source);
+   
+    for (int @i = 1; @i <= @d; @i++)
+    {
+        if (var(@i) != f[@i])
+        {
+            "Please place the unfolding parameters at the start,";
+            "both in ring declaration and map definition (see example).";
+
+            ERROR("unsupported declaration of parameters");
+        }
+    }
+
+    /* Source ring without parameters */
+    list @noparam_range = @d+1..@n
+    ring @source_noparam = char(@source), x(@noparam_range), ds;
+
+    setring @source;
+    ring @target = preimage(f);
     
-    poly g = #[1];
-    poly G = #[2];
-    int d = #[3];
+    /* Find the image equation of the unfolding */
+    ideal @Z = 0;
+    ideal @im = preimage(@source, f, @Z);
+    poly @ImEq = @im[1];
 
-    ideal JG = jacob(G), G;
-    ideal JrelG = JG[1..nvars(basering) - d], g;
+    /* Compute the unspecialised quotient */
+    ideal @JacIm = jacob(@ImEq);
+    ideal @I = @JacIm, @ImEq;
+    ideal @JacRed = @JacIm[@noparam_range];
+    ideal @II = @JacRed, @ImEq;
+    
+    module @Mg = modulo(@I, @II);
+    
+    /* Set the parameters to 0 */
+    for (int @ii = 1; @ii < @d; @ii++)
+        { @Mg = subst(@Mg, var(@ii), 0); }
+    
+    module @Mg = fetch(@source, @Mg);
 
-    // compute the quotient and specialise
-	module MF = modulo(JG, JrelG);
-
-	for (int i = 0; i < d; i++)
-        { MG = subst(MG, var(nvars(basering) - i), 0); }
-
-    ring paramring = basering;
-    ring noparamring = char(paramring), x(1..nvars(paramring) - d), ds;
-    module MG = fetch(paramring, MG);
-
-    return(vdim(std(MG)));
+    return(vdim(std(@Mg)));
 }
 example
 {
@@ -298,6 +323,30 @@ static proc checkvars(int n)
         ERROR("ring " + nameof(basering) + " must have " + string(n) +
         " variables");
     }
+}
+
+//-----------------------------------------------------------------------------
+static proc compat_assump(list #)
+{
+    ideal f = #[1];
+    ideal F = #[2];
+    int d = #[3];
+
+    ideal Jf = jacob(f);
+    ring source = basering;
+
+    // check for finiteness of f
+    module tkf = Jf + f*freemodule(nvars(source)); 
+    
+    if (vdim(std(tkf)) == -1)
+        { ERROR("map " + nameof(f) + " is not finite"); }
+
+    // check for Hartogs' phenomenom
+    ring target = char(source), @X(1..nvars(source)+1), ds;
+    setring source;
+
+    map Jfmap = target, Jf[1..ncols(Jf)];
+
 }
 
 //-----------------------------------------------------------------------------
