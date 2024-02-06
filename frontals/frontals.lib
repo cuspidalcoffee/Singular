@@ -36,89 +36,51 @@ LIB "ring.lib";         // ord_test
 LIB "sing.lib";         // tjurina
 
 //-----------------------------------------------------------------------------
-proc fcodim(list #)
-"USAGE:   fcodim(g[, G, d]);  g = poly or ideal; G = poly; d = int
+proc curve_codim(list g)
+"USAGE: curve_codim(g);  g = ideal or poly 
 
-RETURN: frontal codimension of an integral corank 1 frontal hypersurface
+RETURN: frontal codimension of an analytic plane curve g
           
-REMARK: * Deformation parameters must be added at the end in ring declaration
-        * This version of fcodim is only beta. Please send bugs and
+REMARK: * This version of curve_codim is only beta. Please send bugs and
           comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
           
-EXAMPLE:  example fcodim; shows an example"
+EXAMPLE:  example curve_codim; shows an example"
 {
     baseringlocal();
 
-    / * If there are two or less variables, the input must be a plane curve
-      * and we can use a result from [MNO2] which states that
-      *
-      *     codim(f) + mult(f) + delta(f) = tjurina(f) + 1
-      *
-      * I choose mu(f) over delta(f) since the former admits both ideals
-      * and polynomials. * /
-    
-    if (nvars(basering) <= 2)
+    /* Given an analytic plane curve with equation g = 0, a result from [MNO2]
+     * states that
+     *
+     *     fcodim(g) + mult(g) + milnor(g)/2 = tjurina(g) + 1
+     *
+     * If the normalisation (parametric equations) is given instead, we
+     * compute the image equation. */
+
+    if (typeof(g[1]) == "ideal")
     {
-        list g = std(#[1]);
-    	return(tjurina(g[1]) - mu(g[1])/2 - mult(g[1]) + 1);
+        /* I have tried to turn this into a static procedure, but rings
+         * cannot be exported as far as I can tell.
+         * And without the correct ambient ring predefined, you cannot export
+         * the polynomial.
+         * Suggestions? */
+
+        // Compute the image equation
+        ring @source = basering;
+        ring @target = char(@source), @x(1..2), ds;
+        setring @source;
+
+        map @gg = @target, g[1];
+        ideal @Z = 0;
+        setring @target;
+
+        ideal @ImEq = preimage(@source, @gg, @Z);
+
+        return(curve_codim(@ImEq[1]));
     }
 
-    / * If there are more than two variables, we can use a formula derived
-      * from a Damon-type theorem (see [MNO], Theorem 8.7) which is described
-      * and proved in an unpublished article.
-      * If I never remembered to add the reference, feel free to fire me
-      * an email. * /
-
-        int @d = size(#);
-
-    if (@d == 0)
-    {
-        "// ** Please input the unfolding parameters";
-        ERROR("no parameters declared");
-    }
-
-    ring @source = basering;
-    int @n = nvars(@source);
-   
-    for (int @i = 1; @i <= @d; @i++)
-    {
-        if (var(@i) != f[@i])
-        {
-            "Please place the unfolding parameters at the start,";
-            "both in ring declaration and map definition (see example).";
-
-            ERROR("unsupported declaration of parameters");
-        }
-    }
-
-    /* Source ring without parameters */
-    list @noparam_range = @d+1..@n
-    ring @source_noparam = char(@source), x(@noparam_range), ds;
-
-    setring @source;
-    ring @target = preimage(f);
-    
-    /* Find the image equation of the unfolding */
-    ideal @Z = 0;
-    ideal @im = preimage(@source, f, @Z);
-    poly @ImEq = @im[1];
-
-    /* Compute the unspecialised quotient */
-    ideal @JacIm = jacob(@ImEq);
-    ideal @I = @JacIm, @ImEq;
-    ideal @JacRed = @JacIm[@noparam_range];
-    ideal @II = @JacRed, @ImEq;
-    
-    module @Mg = modulo(@I, @II);
-    
-    /* Set the parameters to 0 */
-    for (int @ii = 1; @ii < @d; @ii++)
-        { @Mg = subst(@Mg, var(@ii), 0); }
-    
-    module @Mg = fetch(@source, @Mg);
-
-    return(vdim(std(@Mg)));
+    return(tjurina(g[1]) - milnor(g[1]) div 2 - mult(g[1]) + 1);
+    /* div is necessary to divide integers */
 }
 example
 {
@@ -126,24 +88,109 @@ example
     echo = 2;
 
     // E_8 singularity from Bruce and Gaffney (1982)
-    ring source = 0, (x, y), ds;
-    poly f = x5 + y3;
-    fcodim(f);
+
+    // Image equation
+    ring source = 0, (x,y), ds;
+    poly f = x3+y5;
+    curve_codim(f);
+
+    // Normalisation
+    ring source = 0, t, ds;
+    ideal i = t3, t5;
+    curve_codim(i);
+}
+
+//-----------------------------------------------------------------------------
+proc fcodim(list g, int d)
+"USAGE: fcodim(g, d); g = ideal or poly;  d = int
+
+RETURN: frontal codimension of an integral corank 1 frontal hypersurface,
+given a stable unfolding g with d parameters
+          
+REMARK: * This version of curve_codim is only beta. Please send bugs and
+          comments to: <https://github.com/cuspidalcoffee/Singular>
+          Known to work on Singular version 4.2.0.
+          
+EXAMPLE:  example fcodim; shows an example"
+{
+    baseringlocal();
+
+    /* If there are more than two variables, we can use a formula derived
+     * from a Damon-type theorem (see [MNO], Theorem 8.7) which is described
+     * and proved in an unpublished article.
+     * If I never remembered to add the reference, feel free to fire me
+     * an email. */
+
+    ring @source = basering;
+    int @n = nvars(@source) - d;
+
+    if (typeof(g[1]) == "ideal")
+    {
+        /* Compute the image equation */
+        ring @target = char(@source), @x(1..size(g[1])), ds;
+        setring @source;
+
+        map @gg = @target, g[1];
+        ideal @Z = 0;
+        setring @target;
+
+        ideal @ImEq = preimage(@source, @gg, @Z);
+
+        return(fcodim(@ImEq[1], 1));
+    }
+
+    /* Declare which variables are set as parameters as a sanity check
+     * for the user. */
+
+    "// ** Variables:";
+
+    string @varnames = varstr(1);
+
+    for (int @i = 2; @i <= @n; @i++)
+      { @varnames = @varnames + ", " + varstr(@i); }
+
+    "// ** " + @varnames;
+    "";
+    "// ** Parameters:";
+    string @paramnames = varstr(@n+1);
+
+    for (@i = @n+2; @i <= nvars(@source); @i++)
+      { @paramnames = @paramnames + ", " + varstr(@i); }
+
+    "// ** " + @paramnames;
+
+    /* Compute the unspecialised quotient */
+    ideal @JacIm = jacob(g[1]);
+    ideal @I = @JacIm, g[1];
+    ideal @JacRed = @JacIm[1..@n];
+    ideal @II = @JacRed, g[1];
+    
+    module @Mg = modulo(@I, @II);
+    
+    /* Set the parameters to 0 */
+    for (int @ii = @n+1; @ii <= @n+d; @ii++)
+        { @Mg = subst(@Mg, var(@ii), 0); }
+    
+    /* Source ring without parameters */
+    ring @source_noparam = char(@source), @x(1..@n), ds;
+    module @Mg = fetch(@source, @Mg);
+
+    return(vdim(std(@Mg)));
+}
+example
+{
+    "EXAMPLE:";
+    echo = 2;
 
     // D_4 singularity from Arnol'd (1990)
-    ring source = 0, (x,y,t,X,Y,Z,T), ds;
+    ring source = 0, (x,y,t), ds;
 
-    ideal i = xy-X, x2+3y2-Y, y3+x2y-Z;
-    ideal I = xy-X, x2+3y2+2yt-Y, y3+x2y+1/2y2t-Z, t-T;
+    // Variables: x, y
+    // Unfolding parameters: t
 
-    poly f = eliminate(i, xy)[1];
-    poly F = eliminate(I, xyt)[1];
+    ideal i = xy, x2+3y2+2yt, y3+x2y+1/2y2t, t;
 
-    ring source_noparams = 0, (X,Y,Z,T), ds;
-    poly f = imap(source, f);
-    poly F = imap(source, F);
-
-    fcodim(f, F, 1);
+    fcodim(i, 1);
 }
 
 //-----------------------------------------------------------------------------
@@ -323,30 +370,6 @@ static proc checkvars(int n)
         ERROR("ring " + nameof(basering) + " must have " + string(n) +
         " variables");
     }
-}
-
-//-----------------------------------------------------------------------------
-static proc compat_assump(list #)
-{
-    ideal f = #[1];
-    ideal F = #[2];
-    int d = #[3];
-
-    ideal Jf = jacob(f);
-    ring source = basering;
-
-    // check for finiteness of f
-    module tkf = Jf + f*freemodule(nvars(source)); 
-    
-    if (vdim(std(tkf)) == -1)
-        { ERROR("map " + nameof(f) + " is not finite"); }
-
-    // check for Hartogs' phenomenom
-    ring target = char(source), @X(1..nvars(source)+1), ds;
-    setring source;
-
-    map Jfmap = target, Jf[1..ncols(Jf)];
-
 }
 
 //-----------------------------------------------------------------------------
