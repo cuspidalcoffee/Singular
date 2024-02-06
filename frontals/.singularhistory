@@ -188,3 +188,141 @@ ring r=0,(x,y,u),ds;
 ideal i=u,x,y2,x2y3+uy3;
 fcodim(i,1);
 quit;
+ring R=0,(X,Y,a,b),ds;                          /* Anillo de llegada */
+ring r=0,(x,a,b),ds;                              /* Anillo de partida */
+map f=R,a*x + x^3, -5*a^2*x + 6*a*b*x^2 + 9*b*x^4 + 9*x^5,a,b;             /* Definimos la aplicacion */
+ideal Z=0;                                           /* Ideal cero para calcular la imagen */
+setring R;
+ideal Im=preimage(r,f,Z);                    /* Calculamos el ideal de la imagen */
+poly g=Im[1];                                      /* Ecuacion implicita de la imagen */
+ideal j=jacob(g);                                 /* Ideal Jacobiano */
+ideal i=j,g;	                                          /* Ideal Jacobiano mC!s la imagen */
+ideal jr=j[1..2];                                    /* Jacobiano relativo */
+ideal ir=jr,g;                                        /* Jacobiano relativo mas la imagen */
+module m=modulo(i,ir);         
+m=subst(m,a,0);
+m=subst(m,b,0);
+ring R0=0,(X,Y),ds;
+module m=imap(R,m);
+vdim(std(m));
+m;
+LIB "frontals.lib";
+fcodim(g);
+g;
+setring R;
+g;
+fcodim(g);
+fcodim(g,2);
+LIB "frontals.lib";
+fcodim(g,2);
+g;
+ ring @source = basering;
+    int @n = nvars(@source) - d;
+    if (typeof(g[1]) == "ideal")
+    {
+        /* Compute the image equation */
+        ring @target = char(@source), @x(1..size(g[1])), ds;
+        setring @source;
+        map @gg = @target, g[1];
+        ideal @Z = 0;
+        setring @target;
+        ideal @ImEq = preimage(@source, @gg, @Z);
+        return(fcodim(@ImEq[1], 1));
+    }
+    /* Declare which variables are set as parameters as a sanity check
+     * for the user. */
+    "// ** Parameters:";
+    string @paramnames = varstr(@n + 1);
+    for (int @i = @n + 2; @i <= nvars(@source); @i++)
+      { @paramnames = @paramnames + ", " + varstr(@i); }
+    "// ** " + @paramnames;
+    /* Compute the unspecialised quotient */
+    ideal @JacIm = jacob(g[1]);
+    ideal @I = @JacIm, g[1];
+    ideal @JacRed = @JacIm[1..@n];
+    ideal @II = @JacRed, g[1];
+    
+    module @Mg = modulo(@I, @II);
+    
+    /* Set the parameters to 0 */
+    for (int @ii = @n + 1; @ii <= nvars(@source); @ii++)
+        { @Mg = subst(@Mg, var(@ii), 0); }
+    
+    /* Source ring without parameters */
+    ring @source_noparam = char(@source), @x(1..@n), ds;
+    module @Mg = fetch(@source, @Mg);
+ring @source = basering;
+    int @n = nvars(@source) - d;
+int d=2;
+ring @source = basering;
+    int @n = nvars(@source) - d;
+"// ** Parameters:";
+    string @paramnames = varstr(@n + 1);
+    for (int @i = @n + 2; @i <= nvars(@source); @i++)
+      { @paramnames = @paramnames + ", " + varstr(@i); }
+    "// ** " + @paramnames;
+    /* Compute the unspecialised quotient */
+    ideal @JacIm = jacob(g[1]);
+    ideal @I = @JacIm, g[1];
+    ideal @JacRed = @JacIm[1..@n];
+    ideal @II = @JacRed, g[1];
+    
+    module @Mg = modulo(@I, @II);
+    
+    /* Set the parameters to 0 */
+    for (int @ii = @n + 1; @ii <= nvars(@source); @ii++)
+        { @Mg = subst(@Mg, var(@ii), 0); }
+    
+    /* Source ring without parameters */
+    ring @source_noparam = char(@source), @x(1..@n), ds;
+    module @Mg = fetch(@source, @Mg);
+    return(@Mg);
+g;
+exit;
+ring R=0,(X,Y,a,b),ds;                          /* Anillo de llegada */
+ring r=0,(x,a,b),ds;                              /* Anillo de partida */
+map f=R,a*x + x^3, -5*a^2*x + 6*a*b*x^2 + 9*b*x^4 + 9*x^5,a,b;             /* Definimos la aplicacion */
+ideal Z=0;                                           /* Ideal cero para calcular la imagen */
+setring R;
+ideal Im=preimage(r,f,Z);                    /* Calculamos el ideal de la imagen */
+poly g=Im[1];  
+LIB "frontals.lib";
+fcodim(g);
+fcodim(g,2);
+/* Ecuacion implicita de la imagen */
+ideal j=jacob(g);                                 /* Ideal Jacobiano */
+ideal i=j,g;	                                          /* Ideal Jacobiano mC!s la imagen */
+ideal jr=j[1..2];                                    /* Jacobiano relativo */
+ideal ir=jr,g;                                        /* Jacobiano relativo mas la imagen */
+module m=modulo(i,ir);                      /* Modulo cociente de los dos ideales */
+module m0=subst(m,a,0,b,0);            /* Parametros igual a cero */
+ring R0=0,(X,Y),ds;                            /* Anillo de llegada sin parametros */
+module m0=imap(R,m0); 
+print(m0);
+LIB "frontals.lib";
+fcodim(g,2);
+setring R;
+fcodim(g,2);
+fcodim(g,2);
+LIB "frontals.lib";
+fcodim(g,2);
+setring R0;
+std(m0);
+print(std(m0));
+setring R;
+setring R0;
+vdim(std(m0));
+LIB "frontals.lib";
+fcodim(g,2);
+setring R;
+fcodim(g,2);
+LIB "frontals.lib";
+fcodim(g,2);
+LIB "frontals.lib";
+ideal i=a*x + x^3, -5*a^2*x + 6*a*b*x^2 + 9*b*x^4 + 9*x^5,a,b;
+basering;
+setring r;
+ideal i=a*x + x^3, -5*a^2*x + 6*a*b*x^2 + 9*b*x^4 + 9*x^5,a,b;
+fcodim(i,2);
+example fcodim;
+quit;

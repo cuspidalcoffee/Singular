@@ -136,25 +136,16 @@ EXAMPLE:  example fcodim; shows an example"
 
         ideal @ImEq = preimage(@source, @gg, @Z);
 
-        return(fcodim(@ImEq[1], 1));
+        return(fcodim(@ImEq[1], d));
     }
 
     /* Declare which variables are set as parameters as a sanity check
      * for the user. */
 
-    "// ** Variables:";
-
-    string @varnames = varstr(1);
-
-    for (int @i = 2; @i <= @n; @i++)
-      { @varnames = @varnames + ", " + varstr(@i); }
-
-    "// ** " + @varnames;
-    "";
     "// ** Parameters:";
-    string @paramnames = varstr(@n+1);
+    string @paramnames = varstr(@n + 1);
 
-    for (@i = @n+2; @i <= nvars(@source); @i++)
+    for (int @i = @n + 2; @i <= nvars(@source); @i++)
       { @paramnames = @paramnames + ", " + varstr(@i); }
 
     "// ** " + @paramnames;
@@ -168,7 +159,7 @@ EXAMPLE:  example fcodim; shows an example"
     module @Mg = modulo(@I, @II);
     
     /* Set the parameters to 0 */
-    for (int @ii = @n+1; @ii <= @n+d; @ii++)
+    for (int @ii = @n + 1; @ii <= nvars(@source); @ii++)
         { @Mg = subst(@Mg, var(@ii), 0); }
     
     /* Source ring without parameters */
