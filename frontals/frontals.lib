@@ -23,13 +23,12 @@ REFERENCES:
     [MNB] Mond, D.; Nuno-Ballesteros, J.J.
         Singularities of Mappings (2020)
     [MNO1] Munoz-Cabello, C.; Nuno-Ballesteros, J.J.; Oset Sinha, R.
-        Deformations of Corank 1 Frontals (TBP)
+        Deformations of Corank 1 Frontals (2023)
     [MNO2] Munoz-Cabello, C.; Nuno-Ballesteros, J.J.; Oset Sinha, R.
-        Singularities of Frontal Surfaces (TBP)
+        Singularities of Frontal Surfaces (2024)
 ";
 
 LIB "general.lib";      // product
-// LIB "hnoether.lib";     // delta invariant
 LIB "homolog.lib";		// fitting
 LIB "presmatrix.lib";   // presmatrix
 LIB "ring.lib";         // ord_test
@@ -185,8 +184,8 @@ example
 }
 
 //-----------------------------------------------------------------------------
-proc finvariants(list f)
-"USAGE:   finvariants(f);  f = map or ideal
+proc finvariants(map f)
+"USAGE:   finvariants(f);  f = map
 
 COMPUTE:  isolated singularities and frontal Milnor number of a corank 1
           frontal surface
@@ -197,7 +196,7 @@ RETURN:   * number of swallowtails, cuspidal double points, triple points and
             along with their Milnor numbers
           * frontal Milnor number
           
-REMARK:   This version of invariants is only beta. Please send bugs and
+REMARK:   This version of finvariants is only beta. Please send bugs and
           comments to: <https://github.com/cuspidalcoffee/Singular>
           Known to work on Singular version 4.2.0.
           
@@ -205,23 +204,17 @@ NOTE:     objects with @ sign are exported to global scope
 
 EXAMPLE:  example finvariants; shows an example"
 {
+    /* This procedure relies on the presmatrix library, which makes some
+     * computations in global scope instead of local scope.
+     * Consequently, some calls in this procedure have to be made in global
+     * scope as well. */
+    
     string br_name = nameof(basering);  // we need this for presmatrix
     baseringlocal();
     checkvars(2);
     option(noredefine);                 // hide messages such as "redefining"
 
-    if (typeof(f[1]) == "ideal")
-    {
-        ring @source = basering;
-        ring @target = char(@source), @x(1..size(f[1])), ds;
-        setring @source;
-
-        map @ff = @target, f[1];
-
-        return(finvariants(@ff));
-    }
-
-    int S, K, W, C, D = dpscheme(c1normal(f[1]));
+    int S, K, W, muC, muD = dpscheme(c1normal(f[1]));
     
     // image triple point space
     ideal @I = 0;
@@ -229,7 +222,6 @@ EXAMPLE:  example finvariants; shows an example"
     
     "";
     "// Computing triple point space...";
-    execute("setring " + string(br_name)); // we need this for presmatrix
     presmatrix(f[1], @I);
     setring RTPr;
     int T = vdim(std(fitting(PM, 2))) - S - K;
