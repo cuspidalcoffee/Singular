@@ -1,0 +1,87 @@
+ring r=0,x[1..4],ds;
+ring r=0, x(1..4),ds;
+x(1);
+r;
+ideal f=x(1)2,x2(2);
+ideal f=x(1)^2,x2^(2);
+ideal f=x(1)^2,x(2)^2;
+jacob(f);
+ideal Jf=jacob(f);
+ring r=0,y(1..8),ds;
+ring s=0,y(1..8),ds;
+ring r=0,x(1..4),ds;
+Jf;
+ideal Jf=jacob(f);
+jacob(f);
+ideal f=x(1)^2,x(2)^2;
+ideal Jf=jacob(f);
+map JF=s,jacob(f)[1..length(Jf)];
+map JF=s,jacob(f)[1..size(Jf)];
+size(Jf);
+Jf;
+map JF=s,Jf[1..size(Jf)];
+JF;
+map JF=s,Jf[1..ncols(Jf)];
+JF;
+setring s;
+ideal z=0;
+setring r;
+preimage(s,JF,0);
+preimage(s,JF,z);
+preimage(r,JF,z);
+setring r;
+preimage(s,JF,z);
+preimage(r,JF,z);
+map JF=s,Jf;
+preimage(r,JF,z);
+setring s;
+ideal z=0;
+setring r;
+preimage(r,JF,z);
+preimage(s,JF,z);
+JF;
+setring r;
+kernel(r,JF);
+setring s;
+kernel(r,JF);
+print(JF);
+quit;
+ring r=0,(x,y),ds;
+ideal f=x2,y2;
+ring s=0,(X,Y,Z,T),ds;
+setring r;
+map jf=s,jacob(f);
+jf;
+kernel(r,jf);
+kernel(s,jf);
+setring s;
+kernel(r,jf);
+quit;
+ring R=0,(X,Y,a,b),ds;                          /* Anillo de llegada */
+ring r=0,(x,a,b),ds;                              /* Anillo de partida */
+map f=R,a*x + x^3, -5*a^2*x + 6*a*b*x^2 + 9*b*x^4 + 9*x^5,a,b;             /* Definimos la aplicacion */
+ideal Z=0;                                           /* Ideal cero para calcular la imagen */
+setring R;
+ideal Im=preimage(r,f,Z);                    /* Calculamos el ideal de la imagen */
+poly g=Im[1];                                      /* Ecuacion implicita de la imagen */
+ideal j=jacob(g);                                 /* Ideal Jacobiano */
+ideal i=j,g;	                                          /* Ideal Jacobiano mC!s la imagen */
+ideal jr=j[1..2]; 
+setring R;
+
+module k=modulo(i,jr);		
+mres(k,0);
+list L=mres(k,0);
+size(L);
+L;
+resolution L=mres(k,0);
+resolution LL=mres(k,0);
+LL;
+size(LL);
+ring r=31991,(t,x,y,z,w),ls;
+  ideal M=t2x2+tx2y+x2yz,t2y2+ty2z+y2zw,
+          t2z2+tz2w+xz2w,t2w2+txw2+xyw2;
+  resolution L=mres(M,0);
+size(L);
+LIB "cohen.lib";
+quit;

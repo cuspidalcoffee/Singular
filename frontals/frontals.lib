@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////
-version="$Id: frontalsurf.lib  2022-17-03 $";
+version="$Id: frontals.lib  2024-06-02 $";
 category="Singularities";
 info="
-LIBRARY: frontals.lib       Geometric invariants of a corank 1 frontal
-                            hypersurface
+LIBRARY: frontals.lib       Invariants of corank 1 frontal hypersurfaces
 
 AUTHORS: C. Munoz-Cabello,  christian.munoz@uv.es
 
 PROCEDURES:
-    fcodim(g[, G, d]);   frontal codimension
+    curve_codim(g);      frontal codimension (plane curves)
+    fcodim(g, d);        frontal codimension (Damon-like formula)
     invariants(f);       geometric frontal invariants
     wfinvariants(g, z);  geometric invariants of the discriminant
 
@@ -23,9 +23,9 @@ REFERENCES:
     [MNB] Mond, D.; Nuno-Ballesteros, J.J.
         Singularities of Mappings (2020)
     [MNO1] Munoz-Cabello, C.; Nuno-Ballesteros, J.J.; Oset Sinha, R.
-        Deformations of Corank 1 Frontals (TBP)
+        Deformations of Corank 1 Frontals (2023)
     [MNO2] Munoz-Cabello, C.; Nuno-Ballesteros, J.J.; Oset Sinha, R.
-        Singularities of Frontal Surfaces (TBP)
+        Singularities of Frontal Surfaces (2024)
 ";
 
 LIB "general.lib";      // product
