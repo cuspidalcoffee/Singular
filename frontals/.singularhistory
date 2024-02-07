@@ -344,3 +344,14 @@ cohen(i);
 cohen(i,2);
 quit
 ;
+LIB "cohen.lib";
+ring r=0,(x,a,b),ds;
+ideal i=a*x + x^3, -5*a^2*x + 6*a*b*x^2 + 9*b*x^4 + 9*x^5,a,b;
+fmilnor(i,2);
+ideal i=x,a2,a3x2+a3b,b;
+fmilnor(i,2);
+fmilnor(i,1);
+fmilnor(i,2);
+LIB "cohen.lib";
+fmilnor(i,2);
+quit;

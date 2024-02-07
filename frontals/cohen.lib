@@ -1,6 +1,7 @@
-proc cohen(list g, int d)
+proc fmilnor(list g, int d)
 {
    ring @source = basering;
+   int @n = nvars(@source) - d;
 
     if (typeof(g[1]) == "ideal")
     {
@@ -14,21 +15,49 @@ proc cohen(list g, int d)
 
         ideal @ImEq = preimage(@source, @gg, @Z);
 
-        return(cohen(@ImEq[1], d));
+        return(fmilnor(@ImEq[1], d));
     }
+
+    /* Declare which variables are set as parameters as a sanity check
+    * for the user. */
+
+    "// ** Parameters:";
+    string @paramnames = varstr(@n + 1);
+
+    for (int @i = @n + 2; @i <= nvars(@source); @i++)
+      { @paramnames = @paramnames + ", " + varstr(@i); }
+
+    "// ** " + @paramnames;
 
     /* Compute the unspecialised quotient */
     ideal @JacIm = jacob(g[1]);
     ideal @I = @JacIm, g[1];
-    ideal @JacRed = @JacIm[1..nvars(@source) - d];
+    ideal @JacRed = @JacIm[1..@n];
     
     /* The Auslander-Buchsbaum formula implies that a finitely generated
      * module M over a commutative Noetherian local ring R is Cohen-Macaulay
      * if and only if codim(M) = pd(M). */
 
     module @Mg = modulo(@I, @JacRed);
-    resolution @L = mres(@Mg,0);
+    int @codim = nvars(@source) - dim(std(@Mg));
 
-    "// ** Projective dimension: " + string(size(@L));
-    "// ** Codimension: " + string(nvars(@source) - dim(std(@Mg)));
+    resolution @L = mres(@Mg,0);
+    int @pd = size(@L);
+
+    if (@codim != @pd)
+    {
+        "// ** Projective dimension: " + string(@pd);
+        "// ** Codimension: " + string(@codim);
+        ERROR("module is not Cohen-Macaulay");
+    }
+
+    /* Set the parameters to 0 */
+    for (int @ii = @n + 1; @ii <= nvars(@source); @ii++)
+        { @Mg = subst(@Mg, var(@ii), 0); }
+
+    /* Source ring without parameters */
+    ring @source_noparam = char(@source), @x(1..@n), ds;
+    module @Mg = fetch(@source, @Mg);
+
+    return(vdim(std(@Mg)));
 }
