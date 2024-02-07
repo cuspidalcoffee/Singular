@@ -68,7 +68,6 @@ ideal j=jacob(g);                                 /* Ideal Jacobiano */
 ideal i=j,g;	                                          /* Ideal Jacobiano mC!s la imagen */
 ideal jr=j[1..2]; 
 setring R;
-
 module k=modulo(i,jr);		
 mres(k,0);
 list L=mres(k,0);
@@ -83,5 +82,9 @@ ring r=31991,(t,x,y,z,w),ls;
           t2z2+tz2w+xz2w,t2w2+txw2+xyw2;
   resolution L=mres(M,0);
 size(L);
+LIB "cohen.lib";
+quit;
+ring r=0,(x,a,b),ds;
+ideal i=a*x + x^3, -5*a^2*x + 6*a*b*x^2 + 9*b*x^4 + 9*x^5,a,b;
 LIB "cohen.lib";
 quit;
