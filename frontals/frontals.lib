@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-version="$Id: frontalsurf.lib  2022-17-03 $";
+version="$Id: frontals.lib  2024-07-02 $";
 category="Singularities";
 info="
 LIBRARY: frontals.lib       Geometric invariants of a corank 1 frontal
@@ -29,7 +29,7 @@ REFERENCES:
 ";
 
 LIB "general.lib";      // product
-LIB "hnoether.lib";     // delta invariant
+// LIB "hnoether.lib";     // delta invariant
 LIB "homolog.lib";		// fitting
 LIB "presmatrix.lib";   // presmatrix
 LIB "ring.lib";         // ord_test
@@ -185,8 +185,8 @@ example
 }
 
 //-----------------------------------------------------------------------------
-proc invariants(map f)
-"USAGE:   invariants(f);  f = map
+proc finvariants(list f)
+"USAGE:   finvariants(f);  f = map or ideal
 
 COMPUTE:  isolated singularities and frontal Milnor number of a corank 1
           frontal surface
@@ -203,14 +203,25 @@ REMARK:   This version of invariants is only beta. Please send bugs and
           
 NOTE:     objects with @ sign are exported to global scope
 
-EXAMPLE:  example invariants; shows an example"
+EXAMPLE:  example finvariants; shows an example"
 {
     string br_name = nameof(basering);  // we need this for presmatrix
     baseringlocal();
     checkvars(2);
     option(noredefine);                 // hide messages such as "redefining"
 
-    int S, K, W, C, D = dpscheme(c1coordinates(f));
+    if (typeof(f[1]) == "ideal")
+    {
+        ring @source = basering;
+        ring @target = char(@source), @x(1..size(f[1])), ds;
+        setring @source;
+
+        map @ff = @target, f[1];
+
+        return(finvariants(@ff));
+    }
+
+    int S, K, W, C, D = dpscheme(c1normal(f[1]));
     
     // image triple point space
     ideal @I = 0;
@@ -218,13 +229,14 @@ EXAMPLE:  example invariants; shows an example"
     
     "";
     "// Computing triple point space...";
-    presmatrix(f, @I);
+    execute("setring " + string(br_name)); // we need this for presmatrix
+    presmatrix(f[1], @I);
     setring RTPr;
     int T = vdim(std(fitting(PM, 2))) - S - K;
     
     execute("setring " + string(br_name));
     int mufC = 2 * S + muC;
-    number mufD = K + T + 1/2 * (muD + 1 - W - S);
+    number mufD = K + T + (muD + 1 - W - S) div 2;
     number muf = mufD + T + 1 - S - W;
     
     "";
@@ -261,7 +273,7 @@ example
 
     // 5_3 singularity from Marar and Tari (1995)
     map f = target, x, 5y4 + 3xy2, 4y5 + 2xy3;
-    invariants(f);
+    finvariants(f);
 }
 
 //-----------------------------------------------------------------------------
@@ -364,57 +376,56 @@ static proc checkvars(int n)
 }
 
 //-----------------------------------------------------------------------------
-static proc c1coordinates (map f)
+static proc c1normal (map f)
 {
-    /* "Non-free variable" refers to the variable x such that the partial
-     * derivative of f with respect to x vanishes at 0.
-     * If we write
-     *     f[x, y] = [x, p[x,y], q[x, y]],
-     * the non-free variable is y. */
+    /* If the ring has variables x, y, we assume that f has the form
+     *
+     *    f(x,y) = (x,p(x,y),q(x,y))
+     *
+     * We shall call x the "free variable". */
 
-    int free;
+    int @freevar, @freepos;
 
-	for (i=1; i <= 3; i++)
+	for (int @i = 1; @i <= 3; @i++)
 	{
-	    for (j=1; j <= 2; j++)
+	    for (int @ii = 1; @ii <= 2; @ii++)
 	    {
-	        if( diff(f[i], var[j]) == 1 )
+	        if( f[@i] == var(@ii) )
 	        {
-	            free = j;
-	            int freevar_pos = i;
+                @freepos = @i;
+	            @freevar = @ii;
 	        }
 	    }
 	}
 
-	/* the free variable has index j and is placed in the i position of f */
-
-	if (free == 0)
+	if (@freevar == 0)
 	{
-		"// ** please introduce " + nameof(f) + " as a map in the form";
-		"// **         var, p, q";
-		"// ** for p, q = poly and var a ring variable";
+		"// ** Invalid input format.";
+        "// ** See example finvariants for more information.";
 
 		ERROR("invalid input format");
 	}
 
-    /* Checking for frontality */
+    /* We want to set the p and q polynomials so that diff(p,y) divides
+     * diff(q,y).
+     * The function @i % 3 + 1 is a cyclical permutation of @i in (1,2,3). */
 
-    int nonfree = j % 2 + 1;
-    poly py = diff( f[i % 3 + 1], var[nonfree] );
-    poly qy = diff( f[(i % 3 + 1) % 3 + 1], var[nonfree] );
-
-	// Return the free variable, the positions for p and q, and qy/py
+    poly @nonfreevar = var(@ii % 2 + 1);
+    poly p = f[@i % 3 + 1];
+    poly q = f[(@i % 3 + 1) % 3 + 1];
+    poly py = diff( p, @nonfreevar );
+    poly qy = diff( q, @nonfreevar );
 
     if (qy % py == 0)
-        { return(var[nonfree], f[i % 3 + 1], f[(i % 3 + 1) % 3 + 1]); }
+        { return(@nonfreevar, p, q); }
     if (py % qy == 0)
-    	{ return(var[nonfree], f[(i % 3 + 1) % 3 + 1], f[i % 3 + 1]); }
+    	{ return(@nonfreevar, q, p); }
 
     ERROR("input not frontal");
 }
 
 //-----------------------------------------------------------------------------
-static proc dpscheme(poly p, poly q, poly y)
+static proc dpscheme(poly y, poly p, poly q)
 {
     /* define a ring of divided differences by adding an auxiliary variable */
     
@@ -428,6 +439,7 @@ static proc dpscheme(poly p, poly q, poly y)
     poly y = imap(source, y);
 
     "// Computing double point scheme...";
+
     poly P = (p - subst(p, y, @z)) / (y - @z);
     poly Q = (q - subst(q, y, @z)) / (y - @z);
     poly py = diff(p, y);
@@ -438,12 +450,12 @@ static proc dpscheme(poly p, poly q, poly y)
     ideal PAA = py, alpha, beta;
     int dimPAA = vdim(std(PAA));
  
-    setring src;
-    poly @cuspedge = imap(divdifring, py);    // S
+    setring source;
+    poly @cuspedge = imap(ddring, py);    // S
     ideal P3 = @cuspedge, diff(@cuspedge, y);
     int dimP3 = vdim(std(P3));
  
-    poly @dpoints = imap(divdifring, tau);    // 2S + K + W
+    poly @dpoints = imap(ddring, tau);    // 2S + K + W
     ideal PT = @cuspedge, @dpoints;
     int dimPT = vdim(std(PT));
 
