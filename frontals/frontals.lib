@@ -185,8 +185,8 @@ example
 }
 
 //-----------------------------------------------------------------------------
-proc invariants(map f)
-"USAGE:   invariants(f);  f = map
+proc invariants(list f)
+"USAGE:   invariants(f);  f = map or ideal
 
 COMPUTE:  isolated singularities and frontal Milnor number of a corank 1
           frontal surface
@@ -210,7 +210,18 @@ EXAMPLE:  example invariants; shows an example"
     checkvars(2);
     option(noredefine);                 // hide messages such as "redefining"
 
-    int S, K, W, C, D = dpscheme(c1coordinates(f));
+    if (typeof(f[1]) == "ideal")
+    {
+        ring @source = basering;
+        ring @target = char(@source), @x(1..size(f[1])), ds;
+        setring @source;
+
+        map @ff = @target, f[1];
+
+        return(invariants(@ff));
+    }
+
+    int S, K, W, C, D = dpscheme(c1coordinates(f[1]));
     
     // image triple point space
     ideal @I = 0;
@@ -218,7 +229,7 @@ EXAMPLE:  example invariants; shows an example"
     
     "";
     "// Computing triple point space...";
-    presmatrix(f, @I);
+    presmatrix(f[1], @I);
     setring RTPr;
     int T = vdim(std(fitting(PM, 2))) - S - K;
     
