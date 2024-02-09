@@ -48,7 +48,9 @@ proc fmilnor(list g, int d)
     {
         "// ** Projective dimension: " + string(@pd);
         "// ** Codimension: " + string(@codim);
-        ERROR("module is not Cohen-Macaulay");
+        "";
+        "// ** This module is not Cohen-Macaulay.";
+        return();
     }
 
     /* Set the parameters to 0 */
