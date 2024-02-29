@@ -229,7 +229,7 @@ EXAMPLE:  example finvariants; shows an example"
     execute("setring " + string(br_name));
     int mufC = 2 * S + muC;
     number mufD = K + T + (muD + 1 - W - S) div 2;
-    number muf = mufD + T + 1 - S - W;
+    number muf = mufD - T - 1 + S + W;
     
     "";
     "Isolated frontal singularities:";
