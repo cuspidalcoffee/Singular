@@ -1,3 +1,6 @@
+LIB "primdec.lib";  // radical
+LIB "homolog.lib";  // depth
+
 proc fmilnor(list g, int d)
 {
    ring @source = basering;
@@ -5,6 +8,12 @@ proc fmilnor(list g, int d)
 
     if (typeof(g[1]) == "ideal")
     {
+        if (size(g[1]) != nvars(basering) + 1)
+        {
+            "// ** Check the number of entries in the ideal!";
+            ERROR(ideal does not define a hypersurface);
+        }
+
         /* Compute the image equation */
         ring @target = char(@source), @x(1..size(g[1])), ds;
         setring @source;
@@ -18,40 +27,44 @@ proc fmilnor(list g, int d)
         return(fmilnor(@ImEq[1], d));
     }
 
-    /* Declare which variables are set as parameters as a sanity check
-    * for the user. */
-
-    "// ** Parameters:";
-    string @paramnames = varstr(@n + 1);
-
-    for (int @i = @n + 2; @i <= nvars(@source); @i++)
-      { @paramnames = @paramnames + ", " + varstr(@i); }
-
-    "// ** " + @paramnames;
-
     /* Compute the unspecialised quotient */
     ideal @JacIm = jacob(g[1]);
     ideal @I = @JacIm, g[1];
     ideal @JacRed = @JacIm[1..@n];
     
     /* The Auslander-Buchsbaum formula implies that a finitely generated
-     * module M over a commutative Noetherian local ring R is Cohen-Macaulay
-     * if and only if codim(M) = pd(M). */
+     * module M over C{x1,...,xn} is Cohen-Macaulay if and only if
+     * n-dim(M) = pd(M). */
 
     module @Mg = modulo(@I, @JacRed);
-    int @codim = nvars(@source) - dim(std(@Mg));
+    ideal @F1 = radical(@JacIm);
 
+    module @F1J = modulo(@F1, @JacIm);
+    module @F1Jr = modulo(@F1, @JacRed);
+
+    "";
+    "depth Mrel(G)       = " + string(depth(@Mg));
+    "dim Mrel(G)         = " + string(dim(std(@Mg)));
+    "vdim Mrel(G)        = " + string(vdim(std(@Mg)));
+
+    "";
+    "depth F1(F)/J(G)    = " + string(depth(@F1J));
+    "dim F1(F)/J(G)      = " + string(dim(std(@F1J)));
+    "vdim F1(F)/J(G)     = " + string(vdim(std(@F1J)));
+
+    "";
+    "depth F1(F)/Jred(G) = " + string(depth(@F1Jr));
+    "dim F1(F)/Jred(G)   = " + string(dim(std(@F1Jr)));
+    "vdim F1(F)/Jrel(G)  = " + string(vdim(std(@F1Jr)));
+
+    "";
+    "Free resolution:";
+
+    "";
     resolution @L = mres(@Mg,0);
-    int @pd = size(@L);
-
-    if (@codim != @pd)
-    {
-        "// ** Projective dimension: " + string(@pd);
-        "// ** Codimension: " + string(@codim);
-        "";
-        "// ** This module is not Cohen-Macaulay.";
-        return();
-    }
+    @L;
+    
+    "Projective dimension: " + string(size(@L)-1);
 
     /* Set the parameters to 0 */
     for (int @ii = @n + 1; @ii <= nvars(@source); @ii++)
@@ -61,5 +74,5 @@ proc fmilnor(list g, int d)
     ring @source_noparam = char(@source), @x(1..@n), ds;
     module @Mg = fetch(@source, @Mg);
 
-    return(vdim(std(@Mg)));
+    "Frontal Milnor number: " + string(vdim(std(@Mg)));
 }
