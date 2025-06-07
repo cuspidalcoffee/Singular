@@ -1,78 +1,20 @@
-LIB "primdec.lib";  // radical
+LIB "presmatrix.lib";
 LIB "homolog.lib";  // depth
+LIB "modules.lib";
 
-proc fmilnor(list g, int d)
+
+
+proc evf(ideal i, )
 {
-   ring @source = basering;
-   int @n = nvars(@source) - d;
+    int n = length(i);
 
-    if (typeof(g[1]) == "ideal")
-    {
-        if (size(g[1]) != nvars(basering) + 1)
-        {
-            "// ** Check the number of entries in the ideal!";
-            ERROR(ideal does not define a hypersurface);
-        }
+    if (nvars(basering) + 1 != n)
+        { ERROR("not a hypersurface"); }
 
-        /* Compute the image equation */
-        ring @target = char(@source), @x(1..size(g[1])), ds;
-        setring @source;
+    matrix m = jacob(i);
 
-        map @gg = @target, g[1];
-        ideal @Z = 0;
-        setring @target;
+    poly mu = m[n, n-1] / m[n-1, n-1];
+    vector qp = m[n, 1..n-1] - mu * m[n-1, 1..n-1];
 
-        ideal @ImEq = preimage(@source, @gg, @Z);
 
-        return(fmilnor(@ImEq[1], d));
-    }
-
-    /* Compute the unspecialised quotient */
-    ideal @JacIm = jacob(g[1]);
-    ideal @I = @JacIm, g[1];
-    ideal @JacRed = @JacIm[1..@n];
-    
-    /* The Auslander-Buchsbaum formula implies that a finitely generated
-     * module M over C{x1,...,xn} is Cohen-Macaulay if and only if
-     * n-dim(M) = pd(M). */
-
-    module @Mg = modulo(@I, @JacRed);
-    ideal @F1 = radical(@JacIm);
-
-    module @F1J = modulo(@F1, @JacIm);
-    module @F1Jr = modulo(@F1, @JacRed);
-
-    "";
-    "depth Mrel(G)       = " + string(depth(@Mg));
-    "dim Mrel(G)         = " + string(dim(std(@Mg)));
-    "vdim Mrel(G)        = " + string(vdim(std(@Mg)));
-
-    "";
-    "depth F1(F)/J(G)    = " + string(depth(@F1J));
-    "dim F1(F)/J(G)      = " + string(dim(std(@F1J)));
-    "vdim F1(F)/J(G)     = " + string(vdim(std(@F1J)));
-
-    "";
-    "depth F1(F)/Jred(G) = " + string(depth(@F1Jr));
-    "dim F1(F)/Jred(G)   = " + string(dim(std(@F1Jr)));
-    "vdim F1(F)/Jrel(G)  = " + string(vdim(std(@F1Jr)));
-
-    "";
-    "Free resolution:";
-
-    "";
-    resolution @L = mres(@Mg,0);
-    @L;
-    
-    "Projective dimension: " + string(size(@L)-1);
-
-    /* Set the parameters to 0 */
-    for (int @ii = @n + 1; @ii <= nvars(@source); @ii++)
-        { @Mg = subst(@Mg, var(@ii), 0); }
-
-    /* Source ring without parameters */
-    ring @source_noparam = char(@source), @x(1..@n), ds;
-    module @Mg = fetch(@source, @Mg);
-
-    "Frontal Milnor number: " + string(vdim(std(@Mg)));
 }

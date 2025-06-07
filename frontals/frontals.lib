@@ -230,7 +230,7 @@ EXAMPLE:  example finvariants; shows an example"
     execute("setring " + string(br_name));
     int mufC = 2 * S + muC;
     number mufD = K + T + (muD + 1 - W - S) div 2;
-    number muf = mufD - T - 1 + S + W;
+    number muf = mufD - 2 * K - 3 * T - 1 + S + W;
     
     "";
     "Isolated frontal singularities:";
@@ -246,7 +246,7 @@ EXAMPLE:  example finvariants; shows an example"
     " *               (target):   " + string(mufC);
     "";
     
-    "Branch of transversal double points:";
+    "Branch of transverse double points:";
     " * @dpoints = " + string(@dpoints);
     " * Milnor number (source):   " + string(muD);
     " *               (target):   " + string(mufD);
@@ -452,9 +452,9 @@ static proc dpscheme(poly y, poly p, poly q)
     int dimPT = vdim(std(PT));
 
     export(@cuspedge, @dpoints);
-    return(dimP3,                             // S
-           dimPAA - 2 * dimP3,                // K
-           dimPT - dimPAA,                    // W
-           milnor(@cuspedge),                 // C
-           milnor(@dpoints));                 // D
+    return(dimP3,                 // S
+           dimPAA - 2 * dimP3,    // K
+           dimPT - dimPAA,        // W
+           milnor(@cuspedge),     // C
+           milnor(@dpoints));     // D
 }

@@ -88,3 +88,8 @@ ring r=0,(x,a,b),ds;
 ideal i=a*x + x^3, -5*a^2*x + 6*a*b*x^2 + 9*b*x^4 + 9*x^5,a,b;
 LIB "cohen.lib";
 quit;
+LIB "codim.lib";
+LIB "codim.lib";
+ring r=0,(u,x,y,v,w),ds;
+ideal i=u,x,y,-uv2-uv3-v4-vw2+2wx+vy;
+codim(i);
