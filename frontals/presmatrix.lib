@@ -7,8 +7,7 @@ LIBRARY:  presmatrix.lib          Compute presentation matrix
 AUTHORS:  Marcelo Escudeiro Hernandes,     mehernandes@uem.br
           Aldicio Jose Miranda,            aldicio@famat.ufu.br
           Guillermo Penafort-Sanchis,      guillermo.penafort@uv.es
-
-		* Syntax modified by C. Munoz-Cabello (chmuozca@uv.es)
+	  C. Munoz-Cabello,		   chmuozca@uv.es
   
 PROCEDURES:
   presmatrix(Pullf, ISource); compute presentation matrix";
@@ -23,11 +22,6 @@ proc presmatrix(map Pullf, ideal ISource)
 "USAGE: presmatrix(f, I); f = map; I = ideal
 
 RETURN: Presentation matrix of the map f with respect to the ideal I
-          
-REMARK: Code has been edited independently by C. Munoz-Cabello to remove global scope computations.
-		Please check the original script before contacting the authors about bugs in this procedure.
-		If the bug is not present on the original implementation, contact me at chmuozca@uv.es
- 		Known to work on Singular version 4.3.2.
           
 EXAMPLE:  example presmatrix; shows an example"
 {
