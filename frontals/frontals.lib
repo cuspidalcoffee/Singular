@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////
-version="$Id: frontals.lib  2024-07-02 $";
+version="$Id: frontals.lib  2025-06-09 $";
 category="Singularities";
 info="
-LIBRARY: frontals.lib       Geometric invariants of a corank 1 frontal
-                            hypersurface
+LIBRARY: frontals.lib       Invariants of corank 1 frontal hypersurfaces
 
 AUTHORS: C. Munoz-Cabello,  christian.munoz@uv.es
 
 PROCEDURES:
-    fcodim(g[, G, d]);   frontal codimension
+    curve_codim(g);      frontal codimension (plane curves)
+    fcodim(g, d);        frontal codimension (Damon-like formula)
     invariants(f);       geometric frontal invariants
     wfinvariants(g, z);  geometric invariants of the discriminant
 
@@ -204,32 +204,29 @@ NOTE:     objects with @ sign are exported to global scope
 
 EXAMPLE:  example finvariants; shows an example"
 {
-    /* This procedure relies on the presmatrix library, which makes some
-     * computations in global scope instead of local scope.
-     * Consequently, some calls in this procedure have to be made in global
-     * scope as well. */
-    
-    string br_name = nameof(basering);  // we need this for presmatrix
     baseringlocal();
     checkvars(2);
     option(noredefine);                 // hide messages such as "redefining"
 
-    int S, K, W, muC, muD = dpscheme(c1normal(f[1]));
+    int S, K, W, muC, muD = dpscheme(c1normal(f));
     
     // image triple point space
     ideal @I = 0;
-    export(@I);                         // we need this for presmatrix
-    
+
+    ring source = basering;
+    ring target = preimage(f);
+    setring source;
+
     "";
     "// Computing triple point space...";
-    presmatrix(f[1], @I);
-    setring RTPr;
+    presmatrix(f, @I);
+    setring target;
     int T = vdim(std(fitting(PM, 2))) - S - K;
     
-    execute("setring " + string(br_name));
+    setring source;
     int mufC = 2 * S + muC;
     number mufD = K + T + (muD + 1 - W - S) div 2;
-    number muf = mufD - T - 1 + S + W;
+    number muf = mufD - 2 * K - 3 * T - 1 + S + W;
     
     "";
     "Isolated frontal singularities:";
@@ -245,7 +242,7 @@ EXAMPLE:  example finvariants; shows an example"
     " *               (target):   " + string(mufC);
     "";
     
-    "Branch of transversal double points:";
+    "Branch of transverse double points:";
     " * @dpoints = " + string(@dpoints);
     " * Milnor number (source):   " + string(muD);
     " *               (target):   " + string(mufD);
@@ -259,16 +256,14 @@ example
     "EXAMPLE";
     echo = 2;
 
-    ring target = 0, (x, y, z), ds;
+    ring target = 0, (X, Y, Z), ds;
     ring source = 0, (x, y), ds;
-    export(source, target);  // only needed for this example!
 
     // 5_3 singularity from Marar and Tari (1995)
     map f = target, x, 5y4 + 3xy2, 4y5 + 2xy3;
     finvariants(f);
 }
 
-//-----------------------------------------------------------------------------
 proc wfinvariants(poly g, poly z)
 "USAGE:   wfinvariants(g, z);  g, z = poly
 
@@ -347,7 +342,6 @@ example
     wfinvariants(z5 + xz + yz3, z);
 }
 
-//-----------------------------------------------------------------------------
 static proc baseringlocal()
 {
     option(noredefine);  // hide messages such as "redefining"
@@ -452,9 +446,9 @@ static proc dpscheme(poly y, poly p, poly q)
     int dimPT = vdim(std(PT));
 
     export(@cuspedge, @dpoints);
-    return(dimP3,                             // S
-           dimPAA - 2 * dimP3,                // K
-           dimPT - dimPAA,                    // W
-           milnor(@cuspedge),                 // C
-           milnor(@dpoints));                 // D
+    return(dimP3,                 // S
+           dimPAA - 2 * dimP3,    // K
+           dimPT - dimPAA,        // W
+           milnor(@cuspedge),     // C
+           milnor(@dpoints));     // D
 }
