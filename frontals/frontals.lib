@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-version="$Id: frontals.lib  2024-06-02 $";
+version="$Id: frontals.lib  2025-06-09 $";
 category="Singularities";
 info="
 LIBRARY: frontals.lib       Invariants of corank 1 frontal hypersurfaces
@@ -29,7 +29,6 @@ REFERENCES:
 ";
 
 LIB "general.lib";      // product
-LIB "hnoether.lib";     // delta invariant
 LIB "homolog.lib";		// fitting
 LIB "presmatrix.lib";   // presmatrix
 LIB "ring.lib";         // ord_test
@@ -184,6 +183,7 @@ example
     fcodim(i, 1);
 }
 
+//-----------------------------------------------------------------------------
 proc finvariants(map f)
 "USAGE:   finvariants(f);  f = map
 
@@ -425,6 +425,7 @@ static proc dpscheme(poly y, poly p, poly q)
     poly y = imap(source, y);
 
     "// Computing double point scheme...";
+
     poly P = (p - subst(p, y, @z)) / (y - @z);
     poly Q = (q - subst(q, y, @z)) / (y - @z);
     poly py = diff(p, y);

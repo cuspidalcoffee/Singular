@@ -10,4 +10,5 @@ A collection of all my Singular libraries
 - [ ] Write documentation.
 
 ## Updates
+**2024/02/07**: Implemented two new procedures to compute codimensions.
 **2023/06/20**: Implementation of the normal line has been discarded; will be implemented in an eventual Oscar port of this library.
