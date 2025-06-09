@@ -184,7 +184,6 @@ example
     fcodim(i, 1);
 }
 
-//-----------------------------------------------------------------------------
 proc finvariants(map f)
 "USAGE:   finvariants(f);  f = map
 
@@ -205,12 +204,6 @@ NOTE:     objects with @ sign are exported to global scope
 
 EXAMPLE:  example finvariants; shows an example"
 {
-    /* This procedure relies on the presmatrix library, which makes some
-     * computations in global scope instead of local scope.
-     * Consequently, some calls in this procedure have to be made in global
-     * scope as well. */
-    
-    string br_name = nameof(basering);  // we need this for presmatrix
     baseringlocal();
     checkvars(2);
     option(noredefine);                 // hide messages such as "redefining"
@@ -219,15 +212,18 @@ EXAMPLE:  example finvariants; shows an example"
     
     // image triple point space
     ideal @I = 0;
-    export(@I);                         // we need this for presmatrix
-    
+
+    ring source = basering;
+    ring target = preimage(f);
+    setring source;
+
     "";
     "// Computing triple point space...";
     presmatrix(f, @I);
-    setring RTPr;
+    setring target;
     int T = vdim(std(fitting(PM, 2))) - S - K;
     
-    execute("setring " + string(br_name));
+    setring source;
     int mufC = 2 * S + muC;
     number mufD = K + T + (muD + 1 - W - S) div 2;
     number muf = mufD - 2 * K - 3 * T - 1 + S + W;
@@ -260,16 +256,14 @@ example
     "EXAMPLE";
     echo = 2;
 
-    ring target = 0, (x, y, z), ds;
+    ring target = 0, (X, Y, Z), ds;
     ring source = 0, (x, y), ds;
-    export(source, target);  // only needed for this example!
 
     // 5_3 singularity from Marar and Tari (1995)
     map f = target, x, 5y4 + 3xy2, 4y5 + 2xy3;
     finvariants(f);
 }
 
-//-----------------------------------------------------------------------------
 proc wfinvariants(poly g, poly z)
 "USAGE:   wfinvariants(g, z);  g, z = poly
 
@@ -348,7 +342,6 @@ example
     wfinvariants(z5 + xz + yz3, z);
 }
 
-//-----------------------------------------------------------------------------
 static proc baseringlocal()
 {
     option(noredefine);  // hide messages such as "redefining"

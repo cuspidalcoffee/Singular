@@ -1,12 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////
-version="$Id: presmatrix.lib  2013-12-03 $";
+version="$Id: presmatrix.lib  2025-06-08 $";
 category="Singularity Theory, Commutative Algebra";
 info="
 LIBRARY:  presmatrix.lib          Compute presentation matrix
 
 AUTHORS:  Marcelo Escudeiro Hernandes,     mehernandes@uem.br
           Aldicio Jose Miranda,            aldicio@famat.ufu.br
-          Guillermo Penafort-Sanchis,      guillermo.penafort@uv.es 
+          Guillermo Penafort-Sanchis,      guillermo.penafort@uv.es
+
+		* Syntax modified by C. Munoz-Cabello (chmuozca@uv.es)
   
 PROCEDURES:
   presmatrix(Pullf, ISource); compute presentation matrix";
@@ -18,18 +20,28 @@ PROCEDURES:
  
 //-------------------------------------------------------------------------------------------------
 proc presmatrix(map Pullf, ideal ISource)
+"USAGE: presmatrix(f, I); f = map; I = ideal
+
+RETURN: Presentation matrix of the map f with respect to the ideal I
+          
+REMARK: Code has been edited independently by C. Munoz-Cabello to remove global scope computations.
+		Please check the original script before contacting the authors about bugs in this procedure.
+		If the bug is not present on the original implementation, contact me at chmuozca@uv.es
+ 		Known to work on Singular version 4.3.2.
+          
+EXAMPLE:  example presmatrix; shows an example"
 {
 	option(noredefine);
  
 	ring RS = basering;
 
-	if (ord_test(basering) != -1)
+	if (ord_test(RS) != -1)
 		{ "// No local order ring! Get generators using local order"; }
 
 	ideal IPullf = ideal(Pullf);
 	string TName = nameof(preimage(Pullf));
-
 	ring RT = preimage(Pullf);
+
 	setring RS;
 	int l = nvars(RS);
 	int n = nvars(RT) - 1;
@@ -53,7 +65,7 @@ proc presmatrix(map Pullf, ideal ISource)
 	"//Generators = " + string(Gen);
  
 	ring RG = char(RS), G(1..K), ds;		// auxiliar ring
-	ring RXY = char(RT), (X(1..K),Y), ds;	// auxiliar target ring
+	ring RXY = char(RT), (X(1..n),Y), ds;	// auxiliar target ring
 	matrix M[K][K];						   	// auxiliar matrix
 	matrix Pres = diag(Y, K);	       		// presentation matrix
 
@@ -70,9 +82,7 @@ proc presmatrix(map Pullf, ideal ISource)
 		done = 0;
 
 		while (!done)
-		{
-						//    print("ROW "+string( rh)+" WITH DEGREE "+ string( d));
-			
+		{	
 			setring RXY;
 			matrix Pols = PolyGen(d);
 			int np = size(Pols[1, 1]) + (K-1) * size(Pols[1, 2]) - 1;  // number of parameters
@@ -90,16 +100,15 @@ proc presmatrix(map Pullf, ideal ISource)
 			ring RSP1 = (char(RS), a(1..np)), x(1..l), dp;  		//source ring with the same parameters
 			ideal IPf = fetch(RSAux, IPf);                          //copying IPf from RSAux to RSP1
 			map Pf = RXYP1, IPf;
-			ideal I = fetch(RSAux, I);
-			I = std(I); 
-	//		execute("matrix Gen=fetch("+RSName+",Gen)");      	        	
+			ideal I = std(fetch(RSAux, I));   	        	
 			matrix Gen = fetch(RS, Gen);
 			poly p = (Pf(mM)[1]) * Gen[1, 1];
 
 			/* We multiply the row matrix M by column matrix Gen, getting the generic polynomial in the source.
 			* Next step is to reduce modulo ideal I */
 
-			for(int c = 2; c <= K; c++) { p = p + Pf(mM)[c] * Gen[1, c]; }
+			for(int c = 2; c <= K; c++)
+				{ p = p + Pf(mM)[c] * Gen[1, c]; }
 			p = reduce(p, I);
 					
 			ideal J; 
@@ -112,7 +121,7 @@ proc presmatrix(map Pullf, ideal ISource)
 			J = ideal(submat(C, 2, 1..ncols(C)));
 			int sj = size(J);
 					
-			ring RP = char(RS), (a(1..np)), dp;	//ring of parameters
+			ring RP = char(RS), (a(1..np)), dp;		//ring of parameters
 			ideal J = imap(RSP1, J);
 			list L = Sols(J); 
 			
@@ -181,17 +190,17 @@ static proc Sols(ideal nJ)
         
 		while (L[1] == 1 && i <= s)
 		{
-			LC = leadcoef(nJ[i]);
+			Ji = nJ[i];
+			LC = leadcoef(Ji);
 
 			if (LC != 0)
 			{
-				Ji = nJ[i];
 				LM = leadmonom(Ji); 	
 				Su = -Ji / LC + LM;
 
 				for (int j = i + 1; j <= s; j++)
 				{
-				     nJ[j] = subst(nJ[j], LM, Su); 	
+				    nJ[j] = subst(nJ[j], LM, Su); 	
 				}
 			}
 
@@ -200,9 +209,10 @@ static proc Sols(ideal nJ)
 
 		for(int i = s; i >= 1; i--)
 		{
-		    if (nJ[i] != 0)
+			Ji = nJ[i];
+
+		    if (Ji != 0)
 			{
-				Ji = nJ[i];
 				LM = leadmonom(Ji);
 			    
 				while (univariate(Ji) == 0)
@@ -232,7 +242,7 @@ static proc Row(int rh, poly D, poly A, int h)
  * h = order of present. matrix */
 {
 	matrix M[1][h];
-	D = D-Y; 	 
+	D = D - Y; 	 
 	int sD = size(D);
 	int sA = size(A); 
 	list ParList;
