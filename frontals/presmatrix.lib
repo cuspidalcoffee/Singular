@@ -2,12 +2,12 @@
 version="$Id: presmatrix.lib  2025-06-08 $";
 category="Singularity Theory, Commutative Algebra";
 info="
-LIBRARY:  presmatrix.lib          Compute presentation matrix
+LIBRARY: inline_presmatrix.lib           Compute presentation matrix (without messages)
 
 AUTHORS:  Marcelo Escudeiro Hernandes,     mehernandes@uem.br
           Aldicio Jose Miranda,            aldicio@famat.ufu.br
           Guillermo Penafort-Sanchis,      guillermo.penafort@uv.es
-	  C. Munoz-Cabello,		   chmuozca@uv.es
+	  	  C. Munoz-Cabello,		           chmuozca@uv.es
   
 PROCEDURES:
   presmatrix(Pullf, ISource); compute presentation matrix";
@@ -42,14 +42,14 @@ EXAMPLE:  example presmatrix; shows an example"
 	int n2 = size(IPullf);
 
 	if (n+1 != n2)
-		{ ERROR("Target dimension must be equal the number of entries of given map!"); }
+		{ ERROR("Dimension of " + TNAME + " must be equal the number of entries of the map."); }
 
 	ideal KB = IPullf[1..n], ISource;	// ideal by first "(n-1)-entries of f" + "ideal I"
 	KB = kbase(std(KB));				// generators
 	int K = size(KB);
 
 	if(K == 0)
-		{ ERROR("The number of generators must be greater than zero. Verify input!"); }
+		{ ERROR("Invalid input map. Is input correct?"); }
 
 	matrix Gen[1][K];					// matrix of generators
 
@@ -140,24 +140,6 @@ EXAMPLE:  example presmatrix; shows an example"
 			}
 		}
 	}
-
-	setring RT;
-    matrix PM[K][K] = fetch(RXY, Pres);
-
-	string RK = TName + "^" + string(K);
-
-	"";
-	"// " + RK + " --- PM ---> " + RK + " ------> Ox ------> 0";
-	"";
-	"// Presentation matrix (PM):";
-	print(PM);
-
-	export(PM);
-
-	"";
-	"// To access the presentation matrix PM, type:";
-	"//     setring " + TName + ";";
-	"//     PM;";
 }
 
 static proc Sols(ideal nJ)
